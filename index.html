@@ -27,6 +27,7 @@
   --accent:#8ea2ff; --accent-soft:#1f2747; --accent-ink:#0e1220; --mark:#4a3d12; --mark-ink:#ffe7a3;
   --good:#5fd3a0; --bad:#ff9b6b; color-scheme:dark}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 svg.i{width:1em;height:1em;fill:currentColor;flex:none}
 .wrap{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:20px}
@@ -38,9 +39,6 @@ h1{font-family:var(--f-head);font-weight:700;font-size:2.1rem;line-height:1.1;ma
 .prog b{color:var(--ink);font-weight:700}
 .bar{height:6px;background:var(--line);border-radius:99px;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--accent);transition:width .3s}
-nav.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
-nav.tabs button{border:0;background:none;color:var(--muted);font-family:var(--f-body);font-weight:500;font-size:.98rem;padding:10px 14px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;display:flex;align-items:center;gap:6px}
-nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
 .days{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
 .chip{flex:none;border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:8px;padding:6px 11px;font-family:var(--f-body);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;white-space:nowrap}
 .chip .n{color:var(--muted);margin-left:5px;font-family:var(--f-mono);font-size:.75rem}
@@ -101,7 +99,6 @@ textarea{width:100%;min-height:64px;font-family:var(--f-body);font-size:.95rem;b
 .qtext{padding:28px 24px;text-align:center;display:flex;flex-direction:column;gap:6px}
 .qtext .big{font-family:var(--f-head);font-weight:700;font-size:2.2rem;overflow-wrap:anywhere}
 .qtext .sent{font-family:var(--f-head);font-size:1.3rem;line-height:1.5}
-.qtext .sent .gap{display:inline-block;min-width:90px;border-bottom:2px solid var(--accent);margin:0 4px}
 .qtext .sub2{color:var(--muted);font-size:.9rem}
 .choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .ch{border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:14px;padding:14px 12px;cursor:pointer;font-family:var(--f-head);font-weight:500;font-size:1.15rem;min-height:62px;overflow-wrap:anywhere;display:grid;place-items:center}
@@ -145,6 +142,161 @@ textarea{width:100%;min-height:64px;font-family:var(--f-body);font-size:.95rem;b
   .b{padding:12px 10px;font-size:.95rem}
 }
 @media (prefers-reduced-motion:no-preference){.fade{animation:fade .22s ease}@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:4px;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{flex:none;border:0;background:none;color:var(--muted);font-family:var(--f-body);font-weight:500;font-size:.92rem;padding:8px 13px;cursor:pointer;border-radius:9px;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--accent);background:var(--accent-soft);font-weight:700}
+.qtext .sent .gap{display:inline-block;min-width:90px;height:1.1em;vertical-align:-.15em;background:var(--accent-soft);border:1px dashed var(--accent);border-radius:6px;margin:0 4px}
+.ex .en .gap{display:inline-block;min-width:70px;height:1em;vertical-align:-.1em;background:var(--accent-soft);border:1px dashed var(--accent);border-radius:5px;margin:0 3px}
+.panel{background:var(--sheet);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.panel h2{font-family:var(--f-head);font-size:1.45rem;margin:0;line-height:1.2}
+.panel h3{font-size:1rem;margin:0}
+.lead{color:var(--muted);font-size:.92rem;margin:0}
+.notice{display:flex;gap:10px;align-items:flex-start;background:var(--accent-soft);color:var(--ink);border-radius:12px;padding:12px 14px;font-size:.88rem}
+.notice b{color:var(--accent)}
+.rank{display:flex;flex-direction:column}
+.rk{display:grid;grid-template-columns:28px 44px minmax(0,1fr) 74px;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);cursor:pointer}
+.rk:first-child{border-top:0}
+.rk .no{font-family:var(--f-mono);color:var(--muted);font-size:.85rem;text-align:right;font-variant-numeric:tabular-nums}
+.rk .ic{width:44px;height:44px;border-radius:10px;background:var(--accent-soft);display:grid;place-items:center;color:var(--accent)}
+.rk .ic svg{width:60%;height:60%;fill:currentColor}
+.rk .w{font-family:var(--f-head);font-weight:700;font-size:1.05rem}
+.rk .m{font-size:.82rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rk .meter{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:5px}
+.rk .meter i{display:block;height:100%;background:var(--bad)}
+.rk .pct{text-align:right;font-variant-numeric:tabular-nums;font-size:.85rem}
+.rk .pct b{display:block;font-size:1.05rem;color:var(--bad)}
+.sw{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;align-self:flex-start}
+.sw button{border:0;background:none;color:var(--muted);padding:6px 12px;font-family:var(--f-body);font-size:.84rem;cursor:pointer}
+.sw button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.tipgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.tip{border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;background:var(--paper);min-width:0}
+.tip .tag{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.tip p{margin:0;font-size:.9rem}
+.fam{display:flex;flex-wrap:wrap;gap:6px}
+.wchip{border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:99px;padding:3px 10px;font-family:var(--f-head);font-size:.95rem;cursor:pointer}
+.wchip small{font-family:var(--f-body);color:var(--muted);font-size:.72rem;margin-left:4px}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;font-size:.86rem}
+.vs .mid{font-family:var(--f-mono);color:var(--muted);font-size:.75rem}
+.post{border-top:1px solid var(--line);padding:12px 0;display:flex;flex-direction:column;gap:4px}
+.post:first-child{border-top:0}
+.post .meta{font-size:.76rem;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.post .txt{font-size:.94rem;white-space:pre-wrap;overflow-wrap:anywhere}
+.post .reply{font-size:.86rem;background:var(--paper);border-radius:10px;padding:8px 12px;color:var(--ink)}
+.badge{font-size:.72rem;padding:1px 8px;border-radius:99px;background:var(--line);color:var(--ink)}
+.badge.done{background:color-mix(in srgb,var(--good) 18%,transparent);color:var(--good)}
+.badge.doing{background:var(--accent-soft);color:var(--accent)}
+.badge.cat{background:var(--paper);border:1px solid var(--line);color:var(--muted)}
+.form{display:flex;flex-direction:column;gap:10px}
+.form .row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.form input,.form select{width:100%;font-family:var(--f-body);font-size:.95rem;border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:var(--sheet);color:var(--ink)}
+.form label{font-size:.82rem;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.msg{font-size:.86rem;min-height:1.3em}
+.msg.ok{color:var(--good)}.msg.err{color:var(--bad)}
+.ctips{display:flex;flex-direction:column;gap:6px}
+.ctips .t{font-size:.88rem;background:var(--paper);border-radius:10px;padding:8px 12px}
+.ctips .t span{color:var(--muted);font-size:.75rem;margin-left:6px}
+.memo-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.small-b{border:1px solid var(--line);background:var(--sheet);color:var(--accent);border-radius:8px;padding:6px 12px;font-family:var(--f-body);font-size:.84rem;font-weight:700;cursor:pointer}
+@media (max-width:640px){.form .row2{grid-template-columns:1fr}.rk{grid-template-columns:22px 40px minmax(0,1fr) 62px;gap:10px}.vs{grid-template-columns:1fr}.vs .mid{display:none}}
+:root{--cA:#2f4fd8;--cB:#d97706}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--cA:#6d83ee;--cB:#c47a12}}
+:root[data-theme="dark"]{--cA:#6d83ee;--cB:#c47a12}
+.eyebrow-s{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.panel h3 small{font-weight:400;color:var(--muted);font-size:.8rem;margin-left:6px}
+.exp-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.steps-intro{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px;font-size:.92rem}
+.steps-intro b{display:block}
+.form label.check{flex-direction:row;align-items:center;gap:8px;color:var(--ink);font-size:.9rem}
+.stepper{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.stepper li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding:12px 0;position:relative}
+.stepper li:not(:last-child)::before{content:"";position:absolute;left:16px;top:44px;bottom:-4px;width:2px;background:var(--line)}
+.stepper .dotn{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:.85rem;border:1px solid var(--line);background:var(--paper);color:var(--muted)}
+.stepper .dotn svg{font-size:1rem}
+.stepper li.done .dotn{background:var(--good);border-color:var(--good);color:var(--sheet)}
+.stepper li.now .dotn{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.stepper .sbody{display:flex;flex-direction:column;gap:2px;min-width:0}
+.stepper .sbody span{font-size:.85rem;color:var(--muted)}
+.stepper li.lock b{color:var(--muted)}
+.b.sm{padding:8px 14px;font-size:.88rem;align-self:flex-start}
+.lik{display:flex;flex-direction:column;gap:8px;font-size:.92rem}
+.lik p{margin:0}
+.likr{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-width:360px}
+.likr button{border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:10px;padding:9px 0;font-family:var(--f-mono);cursor:pointer}
+.likr button[aria-pressed="true"],.wchip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.entry.is-plain{grid-template-columns:1fr}
+.plain{padding:40px 24px 30px;display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center;position:relative}
+.plain .no{position:absolute;left:14px;top:12px;font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+.chart{margin:0;display:flex;flex-direction:column;gap:8px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i,.key{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px}
+.sw-A{background:var(--cA)}.sw-B{background:var(--cB)}
+.cwrap{overflow-x:auto}
+.cwrap svg{width:100%;min-width:420px;height:auto;display:block}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .tick{fill:var(--muted);font-size:12px;font-family:var(--f-body)}
+.chart .ln{fill:none;stroke-width:2.5;stroke-linejoin:round}
+.chart .pt{stroke:var(--sheet);stroke-width:2}
+.chart .dl{font-size:12.5px;font-family:var(--f-body);fill:var(--ink);font-weight:500}
+.s-A .ln{stroke:var(--cA)}.s-A .pt,.s-A-fill{fill:var(--cA)}
+.s-B .ln{stroke:var(--cB)}.s-B .pt{fill:var(--cB)}
+.hbars{display:flex;flex-direction:column;gap:12px}
+.hb{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:12px;align-items:center}
+.hl{font-size:.86rem}
+.hbs{display:flex;flex-direction:column;gap:3px}
+.hbrow{display:grid;grid-template-columns:minmax(0,1fr) 52px;gap:8px;align-items:center}
+.hbtrack{height:12px;background:var(--paper);border-radius:4px;overflow:hidden}
+.hbtrack i{display:block;height:100%;border-radius:0 4px 4px 0}
+.hv{font-family:var(--f-mono);font-size:.78rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.kpi{border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;background:var(--paper);min-width:0}
+.kpi.wide{grid-column:span 1}
+.kpi span{font-size:.78rem;color:var(--muted)}
+.kpi b{font-family:var(--f-head);font-size:1.9rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi b small{font-size:.9rem;color:var(--muted);margin-left:2px;font-family:var(--f-body);font-weight:400}
+.kpi em{font-style:normal;font-size:.78rem;color:var(--muted)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:.84rem;font-variant-numeric:tabular-nums}
+th,td{padding:8px 10px;text-align:right;white-space:nowrap;border-top:1px solid var(--line)}
+thead th{border-top:0;background:var(--paper);color:var(--muted);font-weight:500;font-size:.78rem}
+th:first-child,td:first-child{text-align:left}
+.quotes{display:flex;flex-direction:column;gap:8px}
+.quotes blockquote{margin:0;background:var(--paper);border-radius:10px;padding:10px 14px;font-size:.9rem}
+.summary{display:flex;flex-direction:column;gap:8px;background:var(--paper);border-radius:12px;padding:14px 16px;font-size:.92rem}
+.summary p{margin:0}
+.limits{margin:0;padding-left:1.2em;font-size:.88rem;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.notice.demo{background:color-mix(in srgb,var(--cB) 16%,var(--sheet))}
+.notice.demo b{color:var(--ink)}
+@media (max-width:640px){.hb{grid-template-columns:1fr;gap:6px}.kpi b{font-size:1.6rem}}
+html.a-big{font-size:118%}
+html.a-big body{font-size:18px}
+html.a-cvd{--good:#0072b2;--bad:#d55e00}
+@media (prefers-color-scheme: dark){html.a-cvd:not([data-theme="light"]){--good:#56b4e9;--bad:#e69f00}}
+html.a-cvd[data-theme="dark"]{--good:#56b4e9;--bad:#e69f00}
+.a11y-btn{align-self:flex-end;margin-top:4px}
+.a11y{background:var(--sheet);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:.9rem}
+.a11y label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.like{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:var(--sheet);color:var(--muted);border-radius:99px;padding:3px 10px;font-family:var(--f-body);font-size:.78rem;cursor:pointer;margin-top:4px}
+.like svg{font-size:.9rem}
+.like b{color:var(--ink);font-variant-numeric:tabular-nums}
+.like[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.needs{border-color:var(--accent);border-width:1.5px}
+.goal{display:flex;flex-direction:column;gap:8px}
+.gbar{position:relative;height:16px;background:var(--paper);border:1px solid var(--line);border-radius:99px;overflow:visible}
+.gbar i{display:block;height:100%;border-radius:99px;background:var(--accent)}
+.gbar .mk{position:absolute;top:-4px;width:2px;height:22px;background:var(--line);transform:translateX(-1px)}
+.gbar .mk.on{background:var(--accent)}
+.gbar .mk:last-child{display:none}
+.gnum{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.gnum b{font-family:var(--f-head);font-size:1.6rem;color:var(--ink)}
+
+.anon{font-size:.8rem;color:var(--muted);text-align:center;margin:0}
+.anoncode{display:flex;flex-direction:column;gap:4px;background:var(--accent-soft);border-radius:12px;padding:12px 16px}
+.anoncode span{font-size:.8rem;color:var(--muted)}
+.anoncode b{font-family:var(--f-mono);font-size:1.6rem;letter-spacing:.12em;color:var(--accent)}
+.anoncode small{font-size:.8rem;color:var(--muted)}
+details summary{cursor:pointer;font-size:.86rem;color:var(--accent)}
 </style>
 
 </head>
@@ -523,7 +675,13 @@ textarea{width:100%;min-height:64px;font-family:var(--f-body);font-size:.95rem;b
   <nav class="tabs" role="tablist">
     <button role="tab" data-tab="study" aria-selected="true">단어 카드</button>
     <button role="tab" data-tab="quiz" aria-selected="false">퀴즈</button>
+    <button role="tab" data-tab="class" aria-selected="false">우리 반</button>
+    <button role="tab" data-tab="exp" aria-selected="false">효과 실험</button>
+    <button role="tab" data-tab="rank" aria-selected="false">오답 랭킹</button>
+    <button role="tab" data-tab="tips" aria-selected="false">암기 팁</button>
+    <button role="tab" data-tab="board" aria-selected="false">요청 게시판</button>
     <button role="tab" data-tab="list" aria-selected="false">전체 목록</button>
+    <button role="tab" data-tab="admin" aria-selected="false" id="adminTab" hidden>결과 분석</button>
   </nav>
   <div class="days" id="days" aria-label="학습 범위"></div>
   <section id="view"></section>
@@ -531,62 +689,129 @@ textarea{width:100%;min-height:64px;font-family:var(--f-body);font-size:.95rem;b
 </div>
 
 <script>
-const RAW=[["despite", "~에도 불구하고", ["umbrella", "person-simple-run"], "prep", "She went jogging despite the heavy rain.", "그녀는 폭우에도 불구하고 조깅을 하러 갔다."], ["achieve", "달성하다, 성취하다", ["trophy"], "v", "He worked hard to achieve his goal.", "그는 목표를 달성하기 위해 열심히 노력했다."], ["focus on", "~에 초점을 맞추다", ["target", "magnifying-glass"], "phr", "Try to focus on one task at a time.", "한 번에 한 가지 일에 집중하도록 노력해라."], ["visualize", "마음속에 그리다, 상상하다 ; 시각화하다", ["lightbulb-filament", "brain"], "v", "Close your eyes and visualize your success.", "눈을 감고 너의 성공을 마음속에 그려 봐라."], ["bite off", "···을 물어 끊다", ["bread", "tooth"], "phr", "The dog bit off a piece of the bread.", "개가 빵 한 조각을 물어 끊었다."], ["chew", "씹다", ["tooth", "hamburger"], "v", "Chew your food slowly before you swallow.", "삼키기 전에 음식을 천천히 씹어라."], ["tempt to-v", "···에게 ~할 마음이 생기게 하다", ["cookie", "hand-pointing"], "v", "The smell of cake tempted me to eat more.", "케이크 냄새는 내가 더 먹고 싶게 만들었다."], ["injure", "부상을 입다, 부상을 입히다", ["bandaids", "person-simple-run"], "v", "He injured his knee while playing soccer.", "그는 축구를 하다가 무릎을 다쳤다."], ["make up", "···을 이루다, 형성하다", ["puzzle-piece", "users-three"], "phr", "Girls make up half of our class.", "여학생이 우리 반의 절반을 이룬다."], ["consistent", "한결같은, 일관된", ["calendar-check"], "adj", "Consistent practice is the key to success.", "꾸준한 연습이 성공의 열쇠이다."], ["routine", "일상의 일", ["clock-clockwise", "coffee"], "n", "Exercise is part of my daily routine.", "운동은 내 일상의 일부이다."], ["automatic", "자동의; 무의식적인, 반사적인", ["gear-six", "robot"], "adj", "Brushing my teeth has become automatic.", "양치질은 무의식적인 습관이 되었다."], ["numerous", "많은", ["star-four", "stack"], "adj", "There are numerous stars in the sky.", "하늘에는 수많은 별이 있다."], ["passion", "열정, 정열", ["fire", "heart"], "n", "She has a real passion for music.", "그녀는 음악에 대한 진정한 열정이 있다."], ["fade", "약해지다, 사라지다; 바래다", ["sun-horizon", "cloud-fog"], "v", "The colors of the old photo have faded.", "오래된 사진의 색이 바랬다."], ["quit", "(직장·학교 등을) 그만두다; (하던 일을) 그만두다", ["sign-out", "door-open"], "v", "He quit his job to start a business.", "그는 사업을 시작하려고 직장을 그만두었다."], ["approach", "접근법, 처리 방법", ["path", "compass"], "n", "We need a new approach to this problem.", "우리는 이 문제에 대한 새로운 접근법이 필요하다."], ["get used to v-ing", "···에 익숙해지다", ["thermometer-cold", "smiley"], "phr", "I soon got used to waking up early.", "나는 곧 일찍 일어나는 것에 익숙해졌다."], ["attain", "이루다", ["medal", "flag-checkered"], "v", "She attained her dream of becoming a doctor.", "그녀는 의사가 되겠다는 꿈을 이루었다."], ["former", "전자", ["number-circle-one", "arrow-left"], "n", "Of tea and coffee, I prefer the former.", "차와 커피 중에서 나는 전자를 더 좋아한다."], ["inspire", "격려하다; (감정 등을) 불어넣다; 영감을 주다", ["lightbulb", "sparkle"], "v", "Her words inspired me to try again.", "그녀의 말은 내가 다시 도전하도록 격려했다."], ["out of reach", "손에 닿지 않는 곳에", ["hand-grabbing", "prohibit"], "phr", "Keep medicine out of reach of children.", "약은 아이들의 손이 닿지 않는 곳에 두어라."], ["latter", "후자", ["number-circle-two", "arrow-right"], "n", "Of the two plans, the latter is cheaper.", "두 계획 중 후자가 더 저렴하다."], ["nonetheless", "그렇기는 하지만", ["cloud-rain", "smiley"], "adv", "It was hard; nonetheless, we finished it.", "힘들었지만, 그렇기는 하지만 우리는 그것을 끝냈다."], ["deal", "일, 것", ["package"], "n", "Losing the game was no big deal.", "경기에서 진 것은 별일 아니었다."], ["stick to", "···을 고수하다, (어려움을 참고) ···을 계속하다", ["magnet", "calendar-check"], "phr", "Stick to your plan even when it is hard.", "힘들 때도 계획을 고수해라."], ["serving", "1인분", ["bowl-food", "number-one"], "n", "This box contains four servings of soup.", "이 상자에는 수프 4인분이 들어 있다."], ["knowledgeable", "아는 것이 많은, 많이 아는", ["books", "graduation-cap"], "adj", "Our guide was very knowledgeable about history.", "우리 가이드는 역사에 대해 아는 것이 많았다."], ["come true", "실현되다", ["shooting-star", "confetti"], "phr", "Her dream of studying abroad came true.", "유학하려는 그녀의 꿈이 실현되었다."], ["meaningful", "의미 있는", ["envelope-open", "heart"], "adj", "Volunteering was a meaningful experience.", "봉사활동은 의미 있는 경험이었다."], ["obsessed", "(···에) 사로잡힌", ["device-mobile", "eye"], "adj", "He is obsessed with his phone.", "그는 휴대폰에 사로잡혀 있다."], ["overwhelming", "압도적인", ["waves", "warning"], "adj", "The amount of homework was overwhelming.", "숙제의 양이 압도적이었다."], ["manageable", "감당할 수 있는, 처리할 수 있는", ["basket", "check-circle"], "adj", "Break the job into manageable parts.", "그 일을 감당할 수 있는 부분으로 나눠라."], ["take a step toward", "···을 향해 한 걸음 나아가다", ["footprints", "flag"], "phr", "Every day, take a step toward your goal.", "매일 목표를 향해 한 걸음 나아가라."], ["compare to", "···을 ~와 비교하다", ["scales"], "phr", "Don't compare yourself to others.", "자신을 다른 사람과 비교하지 마라."], ["jealousy", "질투심, 시기심", ["smiley-angry", "eye"], "n", "She felt jealousy when her friend won.", "친구가 이겼을 때 그녀는 질투심을 느꼈다."], ["aspect", "측면; 양상; 방향", ["cube", "diamond"], "n", "Money is only one aspect of a job.", "돈은 직업의 한 측면일 뿐이다."], ["individual", "개인", ["user-focus"], "n", "Every individual has different needs.", "모든 개인은 서로 다른 필요가 있다."], ["personality", "성격", ["mask-happy", "mask-sad"], "n", "She has a warm and friendly personality.", "그녀는 따뜻하고 친근한 성격을 가지고 있다."], ["talent", "재능, 소질", ["piano-keys", "star"], "n", "He has a talent for painting.", "그는 그림에 재능이 있다."], ["make an effort to-v", "···하기 위해 노력하다", ["barbell", "drop"], "phr", "I made an effort to read every day.", "나는 매일 책을 읽기 위해 노력했다."], ["appreciate", "진가를 알다, 인정하다", ["image", "heart"], "v", "I appreciate your help.", "당신의 도움에 감사드립니다(진가를 압니다)."], ["envy", "부러움, 선망", ["gift", "eye"], "n", "She looked at his new bike with envy.", "그녀는 부러움에 가득 차 그의 새 자전거를 보았다."], ["view as", "···을 ~로 여기다", ["eyeglasses", "star"], "phr", "Many people view him as a hero.", "많은 사람들이 그를 영웅으로 여긴다."], ["competition", "경쟁; 대회, 시합", ["person-simple-run", "flag-checkered"], "n", "There is strong competition for the prize.", "그 상을 두고 치열한 경쟁이 있다."], ["stay up late", "늦게까지 깨어 있다", ["moon-stars", "book-open"], "phr", "I stayed up late studying for the test.", "나는 시험 공부를 하느라 늦게까지 깨어 있었다."], ["frustrated", "좌절감을 느끼는", ["smiley-x-eyes", "puzzle-piece"], "adj", "I felt frustrated when I failed again.", "또 실패했을 때 나는 좌절감을 느꼈다."], ["strategy", "전략, 전술; 계략, 술수", ["strategy"], "n", "We need a better strategy to win.", "이기려면 더 나은 전략이 필요하다."], ["session", "(특정한 활동을 위한) 시간, 기간", ["timer", "student"], "n", "We had a two-hour study session.", "우리는 두 시간의 공부 시간을 가졌다."], ["guarantee", "보장하다, 약속하다", ["seal-check", "certificate"], "v", "Hard work does not guarantee success.", "노력이 성공을 보장하지는 않는다."], ["effective", "효과적인", ["pill", "thumbs-up"], "adj", "This medicine is very effective.", "이 약은 매우 효과적이다."], ["put forth", "(힘 등을) 내다, 발휘하다", ["hand-fist", "lightning"], "phr", "He put forth all his strength.", "그는 온 힘을 다 발휘했다."], ["suitable", "적합한", ["sneaker", "check"], "adj", "This book is suitable for beginners.", "이 책은 초보자에게 적합하다."], ["absorb", "흡수하다; 받아들이다, 이해하다", ["drop", "cloud-arrow-down"], "v", "Plants absorb water through their roots.", "식물은 뿌리를 통해 물을 흡수한다."], ["exhausted", "기진맥진한", ["battery-empty", "bed"], "adj", "I was exhausted after the long hike.", "긴 등산 후 나는 기진맥진했다."], ["rarely", "좀처럼 ~ 않는", ["rainbow"], "adv", "He rarely eats breakfast.", "그는 좀처럼 아침을 먹지 않는다."], ["see as", "···을 ~로 여기다", ["eye", "user-check"], "phr", "Many see the plan as a chance.", "많은 사람들이 그 계획을 기회로 여긴다."], ["mature", "어른스러운, 분별 있는", ["user-circle-check"], "adj", "She is very mature for her age.", "그녀는 나이에 비해 매우 어른스럽다."], ["be sick of", "···에 넌더리 나다", ["smiley-melting", "repeat"], "phr", "I'm sick of eating instant noodles.", "나는 라면 먹는 것에 넌더리가 난다."], ["adolescent", "사춘기 청소년(의)", ["student", "device-mobile"], "n", "Many adolescents worry about their looks.", "많은 청소년들이 외모를 걱정한다."], ["point of view", "관점, 견해", ["binoculars"], "n", "Try to see it from my point of view.", "내 관점에서 그것을 보려고 해 봐."], ["organized", "조직화된, 체계적인", ["folders", "list-checks"], "adj", "She keeps her desk very organized.", "그녀는 책상을 아주 체계적으로 정리한다."], ["be capable of", "~할 수 있다", ["barbell", "check-circle"], "phr", "You are capable of doing great things.", "너는 훌륭한 일을 할 수 있다."], ["conflict", "갈등, 충돌", ["sword", "lightning"], "n", "There was a conflict between the two groups.", "두 집단 사이에 갈등이 있었다."], ["vast", "거대한, 어마어마한", ["globe-hemisphere-east", "arrows-out"], "adj", "The Sahara is a vast desert.", "사하라는 거대한 사막이다."], ["metropolis", "대도시", ["buildings", "city"], "n", "Seoul is a busy metropolis.", "서울은 분주한 대도시이다."], ["surround", "둘러싸다, 에워싸다", ["arrows-in-cardinal", "house"], "v", "The village is surrounded by mountains.", "그 마을은 산으로 둘러싸여 있다."], ["construct", "건설하다", ["crane-tower", "hard-hat"], "v", "They plan to construct a new bridge.", "그들은 새 다리를 건설할 계획이다."], ["invader", "침략자, 침략군", ["sword", "shield-warning"], "n", "The castle protected the city from invaders.", "그 성은 침략자들로부터 도시를 지켰다."], ["approximately", "거의, ···가까이", ["approximate-equals"], "adv", "The trip takes approximately two hours.", "그 여행은 거의 두 시간이 걸린다."], ["anticipation", "예상; 기대", ["gift", "hourglass"], "n", "The children waited in anticipation of Christmas.", "아이들은 크리스마스를 기대하며 기다렸다."], ["stop by", "···에 잠시 들르다", ["storefront", "person-simple-walk"], "phr", "I'll stop by the store on my way home.", "집에 가는 길에 가게에 잠시 들를게."], ["refugee", "난민, 망명자", ["tent", "suitcase-rolling"], "n", "Many refugees fled the war.", "많은 난민들이 전쟁을 피해 달아났다."], ["be decorated with", "···로 장식되다", ["tree-evergreen", "sparkle"], "phr", "The hall was decorated with flowers.", "홀은 꽃으로 장식되었다."], ["sculpture", "조각품", ["castle-turret", "paint-brush"], "n", "A stone sculpture stands in the park.", "공원에 돌 조각품이 서 있다."], ["resemblance", "닮음, 유사함", ["users", "equals"], "n", "There is a strong resemblance between the sisters.", "그 자매는 아주 많이 닮았다."], ["slope", "경사지; 경사(도)", ["person-simple-ski", "mountains"], "n", "We walked down the steep slope.", "우리는 가파른 경사지를 걸어 내려갔다."], ["end up v-ing", "결국 ···하게 되다", ["path", "island"], "phr", "We got lost and ended up walking for hours.", "우리는 길을 잃어 결국 몇 시간을 걷게 되었다."], ["relatively", "비교적", ["ruler", "chart-bar"], "adv", "The test was relatively easy.", "그 시험은 비교적 쉬웠다."], ["steep", "가파른, 경사진", ["mountains", "arrow-up"], "adj", "The road up the hill is very steep.", "언덕 위로 가는 길은 매우 가파르다."], ["gaze", "(가만히) 응시하다, 바라보다", ["eye", "moon"], "v", "She gazed at the stars for a long time.", "그녀는 오랫동안 별을 응시했다."], ["spectacular", "장관을 이루는", ["sparkle", "confetti"], "adj", "The view from the top was spectacular.", "정상에서의 경치는 장관이었다."], ["summit", "정상, 꼭대기", ["flag-pennant", "mountains"], "n", "They finally reached the summit.", "그들은 마침내 정상에 도달했다."], ["a variety of", "여러 가지의", ["shapes", "swatches"], "phr", "The shop sells a variety of fruits.", "그 가게는 여러 가지 과일을 판다."], ["formation", "형성; 형성물", ["cloud", "arrows-in"], "n", "Clouds are a formation of water drops.", "구름은 물방울의 형성물이다."], ["tremendous", "엄청난", ["arrows-out", "lightning"], "adj", "The project was a tremendous success.", "그 프로젝트는 엄청난 성공이었다."], ["meditate", "명상하다, 묵상하다", ["person-simple-tai-chi", "flower-lotus"], "v", "He meditates for ten minutes every morning.", "그는 매일 아침 10분간 명상한다."], ["monk", "수도자, 수도승", ["person", "flower-lotus"], "n", "The monk lives in a quiet temple.", "그 수도승은 조용한 절에 산다."], ["split", "쪼개다, 찢다; 나누다", ["axe", "split-horizontal"], "v", "Let's split the pizza into four pieces.", "피자를 네 조각으로 나누자."], ["take in", "···을 보다", ["eye", "mountains"], "phr", "We stopped to take in the beautiful view.", "우리는 아름다운 경치를 보려고 멈췄다."], ["marvelous", "감탄할 만한, 놀라운, 경이로운", ["sparkle", "planet"], "adj", "The museum has a marvelous collection.", "그 박물관은 놀라운 소장품을 가지고 있다."], ["stall", "가판대, 좌판", ["storefront", "bowl-steam"], "n", "We bought snacks at a street stall.", "우리는 길거리 가판대에서 간식을 샀다."], ["wander", "거닐다, 돌아다니다", ["person-simple-walk", "map-trifold"], "v", "We wandered around the old town.", "우리는 구시가지를 돌아다녔다."], ["reconstructed", "재건된, 복원된", ["castle-turret", "wrench"], "adj", "We visited a reconstructed palace.", "우리는 복원된 궁궐을 방문했다."], ["recognizable", "(쉽게) 알아볼 수 있는", ["eye", "check"], "adj", "His voice was instantly recognizable.", "그의 목소리는 바로 알아볼 수 있었다."], ["landmark", "주요 지형지물, 랜드마크", ["map-pin", "building"], "n", "Namsan Tower is a famous Seoul landmark.", "남산타워는 유명한 서울의 랜드마크이다."], ["descend", "내려오다, 하강하다", ["parachute", "arrow-down"], "v", "The plane began to descend.", "비행기가 하강하기 시작했다."], ["pulse", "맥박 치다, 고동치다", ["heartbeat"], "v", "Music pulsed through the room.", "음악이 방 안에 고동쳤다."], ["reminder", "상기시키는 것", ["bell-ringing", "note"], "n", "The photo is a reminder of our trip.", "그 사진은 우리의 여행을 상기시킨다."], ["accomplishment", "성취, 완성", ["trophy", "check-circle"], "n", "Finishing the marathon was a great accomplishment.", "마라톤 완주는 대단한 성취였다."], ["remarkable", "주목할 만한, 놀랄 만한", ["star", "exclamation-mark"], "adj", "She made remarkable progress this year.", "그녀는 올해 놀랄 만한 발전을 이루었다."], ["impressive", "인상적인, 감명을 주는", ["hands-clapping", "star"], "adj", "His speech was very impressive.", "그의 연설은 매우 인상적이었다."], ["insignificant", "사소한, 하찮은", ["bug", "magnifying-glass-minus"], "adj", "Don't worry about such insignificant details.", "그런 사소한 세부 사항은 걱정하지 마라."], ["navy", "해군", ["anchor", "boat"], "n", "He served in the navy for two years.", "그는 2년 동안 해군에서 복무했다."], ["rising", "올라가는; 떠오르는", ["sun-horizon", "trend-up"], "adj", "Rising prices worry many families.", "오르는 물가가 많은 가정을 걱정시킨다."], ["abruptly", "갑자기, 불쑥", ["lightning", "stop"], "adv", "The car stopped abruptly.", "차가 갑자기 멈췄다."], ["contract", "수축하다; 병에 걸리다", ["virus", "arrows-in"], "v", "Metal contracts when it gets cold.", "금속은 차가워지면 수축한다."], ["vision", "시력; 시야", ["eye", "eyeglasses"], "n", "He lost his vision in an accident.", "그는 사고로 시력을 잃었다."], ["permanently", "영구히, (영구) 불변으로", ["infinity", "lock"], "adv", "The shop has closed permanently.", "그 가게는 영구히 문을 닫았다."], ["be compelled to-v", "할 수 없이 ···하다", ["hand-palm", "arrow-fat-right"], "phr", "He was compelled to leave his home.", "그는 할 수 없이 집을 떠나야 했다."], ["despair", "절망", ["smiley-sad", "cloud-rain"], "n", "She cried out in despair.", "그녀는 절망 속에서 울부짖었다."], ["grief", "큰 슬픔, 비탄", ["heart-break"], "n", "He was filled with grief after his loss.", "그는 상실 후 큰 슬픔에 잠겼다."], ["misfortune", "불운, 불행", ["cloud-lightning", "clover"], "n", "He had the misfortune of losing his wallet.", "그는 지갑을 잃어버리는 불운을 겪었다."], ["confront", "직면하다; 맞서다", ["boxing-glove", "warning"], "v", "We must confront the problem directly.", "우리는 그 문제에 정면으로 맞서야 한다."], ["navigate", "길을 찾다, 방향을 읽다", ["compass", "map-trifold"], "v", "Sailors navigated by the stars.", "선원들은 별을 보고 길을 찾았다."], ["ascend", "오르다, 올라가다", ["balloon", "arrow-up"], "v", "The climbers began to ascend the mountain.", "등반가들은 산을 오르기 시작했다."], ["ascent", "올라감", ["person-simple-hike", "arrow-up-right"], "n", "The ascent took six hours.", "올라가는 데 여섯 시간이 걸렸다."], ["intense", "극심한, 강렬한", ["pepper", "fire"], "adj", "The pain was intense.", "통증이 극심했다."], ["companion", "동반자, 동행", ["users", "person-simple-walk"], "n", "My dog is my best companion.", "내 개는 나의 가장 좋은 동반자이다."], ["unstable", "불안정한", ["stack", "warning"], "adj", "The ladder looks unstable.", "그 사다리는 불안정해 보인다."], ["proceed", "진행하다; 나아가다, 이동하다", ["play", "arrow-right"], "v", "Please proceed to the next room.", "다음 방으로 이동해 주세요."], ["make one’s way", "나아가다, 가다", ["person-simple-hike", "tree"], "phr", "We made our way through the crowd.", "우리는 군중 사이로 나아갔다."], ["thrilling", "흥분되는, 짜릿한", ["lightning", "smiley-wink"], "adj", "The roller coaster ride was thrilling.", "롤러코스터 타기는 짜릿했다."], ["no fewer than", "···(만큼)이나; 최소한", ["plus", "number-square-one"], "phr", "No fewer than 500 people came.", "무려 500명이나 왔다."], ["autobiography", "자서전", ["book-open-user", "pen-nib"], "n", "He wrote an autobiography about his life.", "그는 자신의 삶에 대한 자서전을 썼다."], ["narrative", "이야기", ["book-open-text", "chat-text"], "n", "The novel has an exciting narrative.", "그 소설은 흥미진진한 이야기를 담고 있다."], ["triumph", "업적, 승리, 대성공", ["trophy", "confetti"], "n", "The victory was a triumph for the team.", "그 승리는 팀의 대성공이었다."], ["adversity", "역경", ["cloud-lightning", "person-simple-hike"], "n", "She overcame great adversity.", "그녀는 큰 역경을 이겨냈다."], ["disability", "(신체적·정신적) 장애", ["wheelchair"], "n", "He lives a full life despite his disability.", "그는 장애에도 불구하고 충실한 삶을 산다."], ["constrain", "···하게 강요하다; 제한하다", ["lock", "link"], "v", "Lack of money constrained our plans.", "돈 부족이 우리의 계획을 제한했다."], ["abandoned", "버려진, 유기된", ["house", "dog"], "adj", "They rescued an abandoned dog.", "그들은 버려진 개를 구조했다."], ["knock down", "(건물을) 때려 부수다[철거하다]", ["hammer", "building"], "phr", "The old factory was knocked down.", "오래된 공장이 철거되었다."], ["oppose", "반대하다", ["hand-palm", "prohibit"], "v", "Many people opposed the new rule.", "많은 사람들이 새 규칙에 반대했다."], ["tear down", "~을 부수다, 철거하다", ["bulldozer", "building"], "phr", "They tore down the old school.", "그들은 오래된 학교를 부수었다."], ["precious", "귀중한, 값어치 있는", ["diamond", "heart"], "adj", "Time is precious.", "시간은 귀중하다."], ["justify", "정당화하다", ["scales", "chat-centered-text"], "v", "Nothing can justify violence.", "어떤 것도 폭력을 정당화할 수 없다."], ["take up", "(시간 · 공간을) 차지하다", ["couch", "arrows-out"], "phr", "The piano takes up too much space.", "피아노가 너무 많은 공간을 차지한다."], ["adaptive", "조정의; 적응할 수 있는", ["arrows-clockwise", "leaf"], "adj", "Animals have adaptive skills.", "동물들은 적응 능력이 있다."], ["other than", "···외에; ···와 다른[···이 아닌]", ["orange", "minus"], "phr", "I have no friends other than you.", "너 외에는 친구가 없다."], ["outstanding", "뛰어난, 우수한", ["star", "ranking"], "adj", "She is an outstanding student.", "그녀는 뛰어난 학생이다."], ["shut down", "(공장 등을) 폐쇄하다, 닫다", ["factory", "lock"], "phr", "The factory was shut down last year.", "그 공장은 작년에 폐쇄되었다."], ["at risk of", "···의 위험에 처한", ["warning", "thermometer-hot"], "phr", "Smokers are at risk of heart disease.", "흡연자는 심장병의 위험에 처해 있다."], ["maintain", "유지하다[지키다]", ["wrench", "car"], "v", "It is important to maintain good health.", "건강을 유지하는 것이 중요하다."], ["resemble", "닮다; ~와 공통점이 있다", ["cat", "equals"], "v", "She resembles her mother.", "그녀는 어머니를 닮았다."], ["feature", "특징으로 삼다", ["star", "list-star"], "v", "The festival features local food.", "그 축제는 지역 음식을 특징으로 한다."], ["installation", "설치[설비]; 설치 미술품", ["lamp-pendant", "shapes"], "n", "The museum has a new art installation.", "그 미술관에는 새 설치 미술품이 있다."], ["reception", "접수처[프런트]", ["call-bell", "user"], "n", "Please check in at the reception.", "접수처에서 체크인해 주세요."], ["be transformed into", "···로 변모되다", ["butterfly", "arrows-clockwise"], "phr", "The warehouse was transformed into a café.", "그 창고는 카페로 변모되었다."], ["contemporary", "동시대의; 현대의", ["palette", "clock"], "adj", "She loves contemporary art.", "그녀는 현대 미술을 좋아한다."], ["blend ... with ~", "···을 ~와 섞다, 조화시키다", ["paint-bucket", "intersect"], "phr", "The design blends old with new.", "그 디자인은 옛것을 새것과 조화시킨다."], ["infamous", "악명 높은", ["skull", "newspaper"], "adj", "The prison was infamous for its cruelty.", "그 감옥은 잔인함으로 악명 높았다."], ["undergo", "(변화 등을) 겪다[받다]", ["hospital", "arrows-clockwise"], "v", "He underwent surgery last week.", "그는 지난주 수술을 받았다."], ["accommodation", "거처; 숙박 시설", ["bed", "building-apartment"], "n", "The hotel offers cheap accommodation.", "그 호텔은 저렴한 숙박 시설을 제공한다."], ["be converted into", "···로 전환되다", ["factory", "arrow-right"], "phr", "The old station was converted into a museum.", "옛 역은 박물관으로 전환되었다."], ["furnishing", "가구, 비품", ["armchair", "lamp"], "n", "The room has simple furnishings.", "그 방에는 간단한 가구가 있다."], ["desperately", "절망적으로; 필사적으로", ["hands-praying"], "adv", "He desperately needed help.", "그는 필사적으로 도움이 필요했다."], ["be eager to-v", "···을 하고 싶어 하다", ["hand-waving", "sparkle"], "phr", "She is eager to learn Spanish.", "그녀는 스페인어를 배우고 싶어 한다."], ["hangar", "격납고", ["airplane", "warehouse"], "n", "The plane is kept in a hangar.", "그 비행기는 격납고에 보관된다."], ["manufacture", "제조[생산]하다", ["factory", "gear"], "v", "The company manufactures cars.", "그 회사는 자동차를 제조한다."], ["fall into disuse", "못쓰게 되다, 쓰이지 않게 되다", ["bicycle", "prohibit"], "phr", "The old railway fell into disuse.", "오래된 철도는 쓰이지 않게 되었다."], ["go bankrupt", "파산하다", ["chart-line-down", "money"], "phr", "The company went bankrupt last year.", "그 회사는 작년에 파산했다."], ["massive", "거대한", ["arrows-out", "building-office"], "adj", "A massive ship arrived at the port.", "거대한 배가 항구에 도착했다."], ["deserted", "사람이 없는; 버려진", ["island", "user-minus"], "adj", "The streets were deserted at night.", "밤에는 거리에 사람이 없었다."], ["dome", "둥근 지붕; 반구형의 것[건물]", ["mosque"], "n", "The church has a golden dome.", "그 교회에는 황금 둥근 지붕이 있다."], ["artificial", "인공[인조]의", ["potted-plant", "factory"], "adj", "The park has an artificial lake.", "그 공원에는 인공 호수가 있다."], ["enormous", "막대한, 거대한", ["arrows-out", "mountains"], "adj", "The project cost an enormous amount of money.", "그 프로젝트는 막대한 돈이 들었다."], ["destination", "목적지, 도착지", ["map-pin-area", "flag-checkered"], "n", "Jeju is a popular tourist destination.", "제주는 인기 있는 관광 목적지이다."], ["breathe new life into", "···에 새 생명을 불어넣다", ["plant", "wind"], "phr", "The festival breathed new life into the town.", "그 축제는 마을에 새 생명을 불어넣었다."], ["perspective", "관점, 시각", ["perspective", "eye"], "n", "Travel gives you a new perspective.", "여행은 새로운 시각을 준다."], ["have difficulty v-ing", "···하는 데 어려움을 겪다", ["smiley-nervous", "wall"], "phr", "I have difficulty remembering names.", "나는 이름을 기억하는 데 어려움을 겪는다."], ["devote to", "~에 바치다[쏟다]", ["hand-heart", "clock"], "phr", "She devoted her life to helping others.", "그녀는 다른 사람을 돕는 데 평생을 바쳤다."], ["a great deal of", "다량의, 많은", ["stack", "plus"], "phr", "It takes a great deal of time.", "그것은 많은 시간이 걸린다."], ["resolve", "(문제 등을) 해결하다", ["key", "lock-key-open"], "v", "We resolved the problem together.", "우리는 함께 그 문제를 해결했다."], ["at one’s fingertips", "당장 이용할 수 있는", ["hand-tap", "device-mobile"], "phr", "Information is now at our fingertips.", "이제 정보를 당장 이용할 수 있다."], ["take a wrong turn", "진로를 잘못 들다", ["signpost", "x-circle"], "phr", "We took a wrong turn and got lost.", "우리는 길을 잘못 들어 길을 잃었다."], ["launch", "시작[착수]하다; (우주선 등을) 발사하다", ["rocket-launch"], "v", "They launched a new campaign.", "그들은 새로운 캠페인을 시작했다."], ["man-made", "사람이 만든, 인공의", ["hard-hat", "cube"], "adj", "The island is man-made.", "그 섬은 사람이 만든 것이다."], ["satellite", "(인공)위성", ["globe-hemisphere-west", "cell-tower"], "n", "The satellite sends data to Earth.", "그 위성은 지구로 데이터를 보낸다."], ["orbit", "궤도", ["planet", "arrows-clockwise"], "n", "The Moon is in orbit around the Earth.", "달은 지구 주위의 궤도를 돈다."], ["monitor", "감시하다, 지켜보다", ["monitor", "eye"], "v", "Doctors monitored his heart rate.", "의사들은 그의 심박수를 지켜보았다."], ["persistent", "끈질긴; 지속되는", ["repeat", "hourglass"], "adj", "He had a persistent cough.", "그는 끈질긴 기침을 했다."], ["frequency", "빈도; (소리 · 전자파 등의) 주파수", ["wave-sine", "radio"], "n", "The radio uses a high frequency.", "그 라디오는 높은 주파수를 사용한다."], ["keep track of", "···을 추적하다, ···에 대해 지속적으로 파악하다", ["gps-fix", "path"], "phr", "I keep track of my spending.", "나는 내 지출을 계속 파악한다."], ["determine", "알아내다, 밝히다", ["magnifying-glass", "check-circle"], "v", "Scientists determined the cause.", "과학자들이 원인을 알아냈다."], ["precise", "정밀한, 정확한", ["crosshair", "ruler"], "adj", "We need precise measurements.", "우리는 정확한 측정이 필요하다."], ["fascinating", "대단히 흥미로운, 매력적인", ["planet", "sparkle"], "adj", "Space is a fascinating subject.", "우주는 대단히 흥미로운 주제이다."], ["suspect", "의심하다", ["detective", "question"], "v", "I suspect he is lying.", "나는 그가 거짓말을 하고 있다고 의심한다."], ["revolutionary", "혁명의; 획기적인", ["lightbulb-filament", "lightning"], "adj", "The smartphone was a revolutionary invention.", "스마트폰은 획기적인 발명품이었다."], ["insight", "통찰(력)", ["eye", "lightbulb"], "n", "The book gives insight into history.", "그 책은 역사에 대한 통찰을 준다."], ["fundamental", "근본적인, 기본적인; 중요한", ["stack-simple", "house-simple"], "adj", "Water is fundamental to life.", "물은 생명에 근본적이다."], ["transmit", "전송[송신]하다", ["broadcast", "cell-tower"], "v", "The signal is transmitted by satellite.", "그 신호는 위성으로 전송된다."], ["turn ... on its head", "···을 완전히 뒤집어 생각하게 하다", ["arrows-counter-clockwise", "lightbulb"], "phr", "The discovery turned science on its head.", "그 발견은 과학을 완전히 뒤집어 놓았다."], ["extraordinary", "기이한, 놀라운; 비범한", ["sparkle", "star-four"], "adj", "She has an extraordinary memory.", "그녀는 비범한 기억력을 가지고 있다."], ["reverse", "(정반대로) 뒤바꾸다", ["arrows-left-right", "swap"], "v", "They reversed the order of the list.", "그들은 목록의 순서를 뒤바꿨다."], ["consist in", "(주요 특징 등이) ···에 있다", ["key", "heart"], "phr", "Happiness consists in small things.", "행복은 작은 것들에 있다."], ["statistics", "통계, 통계 자료; 통계학", ["chart-pie", "chart-bar"], "n", "The statistics show a rise in crime.", "통계는 범죄 증가를 보여준다."], ["injured", "부상을 입은, 다친", ["bandaids", "first-aid"], "adj", "The injured man was taken to hospital.", "부상당한 남자는 병원으로 옮겨졌다."], ["compassion", "연민, 동정심", ["hand-heart"], "n", "She showed compassion for the poor.", "그녀는 가난한 사람들에게 연민을 보였다."], ["alliance", "동맹, 연합; 동맹 단체[동맹국]", ["handshake", "shield"], "n", "The two nations formed an alliance.", "두 나라는 동맹을 맺었다."], ["contribute", "기부[기증]하다; (원조 · 지식 등을) 주다, 제공", ["hand-coins", "gift"], "v", "Many people contributed money to the charity.", "많은 사람들이 자선단체에 돈을 기부했다."], ["troop", "(특히 대규모의) 병력, 군대", ["users-four", "shield"], "n", "The troops returned home.", "병력이 고국으로 돌아왔다."], ["sufficient", "충분한", ["check-circle", "bowl-food"], "adj", "We have sufficient food for a week.", "우리에게는 일주일 동안 충분한 식량이 있다."], ["deal with", "(문제 등에) 대처하다", ["fire-extinguisher"], "phr", "We must deal with the problem now.", "우리는 지금 그 문제에 대처해야 한다."], ["inadequate", "부적당한, 부적절한", ["x-circle", "ruler"], "adj", "The hospital had inadequate supplies.", "그 병원은 물자가 부적당했다."], ["sanitation", "위생 시설[관리]", ["hand-soap", "toilet"], "n", "Poor sanitation causes disease.", "열악한 위생 시설은 질병을 일으킨다."], ["exposure", "(유해한 환경 등에의) 노출", ["sun", "person"], "n", "Avoid long exposure to the sun.", "햇볕에 오래 노출되는 것을 피해라."], ["classify", "분류[구분]하다", ["tree-structure", "folders"], "v", "Books are classified by subject.", "책은 주제별로 분류된다."], ["dedicate", "(시간 · 노력을) 바치다, 전념[헌신]하다", ["hand-heart", "hourglass"], "v", "He dedicated his life to science.", "그는 과학에 일생을 바쳤다."], ["witness", "목격하다", ["eye", "siren"], "v", "She witnessed a car accident.", "그녀는 교통사고를 목격했다."], ["tragic", "비극적인", ["mask-sad"], "adj", "It was a tragic accident.", "그것은 비극적인 사고였다."], ["sanitary", "위생의", ["spray-bottle", "hand-soap"], "adj", "Keep the kitchen sanitary.", "부엌을 위생적으로 유지해라."], ["reform", "개혁[개선]", ["wrench", "bank"], "n", "The government promised education reform.", "정부는 교육 개혁을 약속했다."], ["statistician", "통계 전문가, 통계학자", ["chart-scatter", "user"], "n", "The statistician analyzed the data.", "통계학자가 그 데이터를 분석했다."], ["at a glance", "한눈에", ["eye", "lightning"], "phr", "I could see at a glance that he was sad.", "나는 그가 슬프다는 것을 한눈에 알 수 있었다."], ["indicate", "나타내다[보여 주다]", ["navigation-arrow", "traffic-sign"], "v", "The arrow indicates the exit.", "그 화살표는 출구를 나타낸다."], ["attribute … to ~", "···을 ~의 결과로 보다", ["virus", "arrow-right"], "phr", "He attributed his success to hard work.", "그는 자신의 성공을 노력의 결과로 보았다."], ["infectious", "전염되는[전염성의]", ["virus", "users"], "adj", "Flu is an infectious disease.", "독감은 전염성 질병이다."], ["wound", "상처, 부상; (마음의) 상처, 고통", ["bandaids", "drop"], "n", "The nurse cleaned the wound.", "간호사가 상처를 소독했다."], ["combat", "전투, 싸움", ["sword", "shield-chevron"], "n", "Many soldiers died in combat.", "많은 병사들이 전투에서 죽었다."], ["stand for", "···을 나타내다[의미하다]", ["text-aa", "info"], "phr", "What does \"UN\" stand for?", "\"UN\"은 무엇을 나타내니?"], ["sewage", "하수, 오물", ["pipe", "waves"], "n", "The river was polluted by sewage.", "그 강은 하수로 오염되었다."], ["contagious", "전염되는, 전염성의", ["face-mask", "virus"], "adj", "The disease is highly contagious.", "그 병은 전염성이 매우 강하다."], ["demonstrate", "입증하다", ["flask", "chart-line-up"], "v", "The test demonstrated that the idea works.", "그 실험은 그 아이디어가 효과가 있다는 것을 입증했다."], ["substantial", "상당한", ["stack-plus", "coins"], "adj", "We saw a substantial increase in sales.", "우리는 매출이 상당히 증가하는 것을 보았다."], ["wipe out", "···을 완전히 파괴하다[없애 버리다]", ["broom", "trash"], "phr", "The storm wiped out the village.", "폭풍이 마을을 완전히 파괴했다."], ["convince", "납득시키다, 확신시키다", ["chat-circle-dots", "thumbs-up"], "v", "She convinced me to join the club.", "그녀는 나를 설득해 동아리에 가입시켰다."], ["procedure", "절차[방법]", ["list-numbers"], "n", "Follow the safety procedure carefully.", "안전 절차를 주의 깊게 따라라."], ["extensive", "아주 넓은[많은], 대규모의", ["map-trifold", "arrows-out"], "adj", "The fire caused extensive damage.", "그 화재는 대규모 피해를 입혔다."], ["crucial", "중대한, 결정적인", ["key", "star"], "adj", "Sleep is crucial for good health.", "수면은 건강에 결정적이다."], ["lasting", "지속적인", ["infinity", "hourglass"], "adj", "The war had a lasting effect.", "그 전쟁은 지속적인 영향을 미쳤다."], ["barrier", "장애; 방벽, 국경의 요새", ["barricade"], "n", "Language can be a barrier to communication.", "언어는 의사소통의 장애가 될 수 있다."], ["obvious", "뚜렷한, 명백한; 알기 쉬운", ["eye", "lightbulb-filament"], "adj", "The answer was obvious.", "그 답은 명백했다."], ["alternative", "대안, 선택 가능한 것", ["shuffle", "signpost"], "n", "We need an alternative to plastic bags.", "우리는 비닐봉지의 대안이 필요하다."], ["weird", "기이한, 이상한", ["alien", "question"], "adj", "I heard a weird noise last night.", "나는 어젯밤 이상한 소리를 들었다."], ["on some occasion(s)", "어떤 경우에는", ["calendar-dots", "question"], "phr", "On some occasions, I take the bus.", "어떤 경우에는 나는 버스를 탄다."], ["offend", "기분 상하게[불쾌하게] 하다", ["smiley-angry", "chat-teardrop"], "v", "I didn't mean to offend you.", "너를 기분 상하게 할 생각은 아니었어."], ["offense", "위반; 화나게[불쾌하게] 하는 행위, 모욕", ["gavel", "prohibit"], "n", "Speeding is a traffic offense.", "과속은 교통 위반이다."], ["nod", "(고개를) 끄덕이다, (고개를) 끄덕임", ["smiley", "arrows-vertical"], "v", "She nodded in agreement.", "그녀는 동의하며 고개를 끄덕였다."], ["signify", "의미하다, 나타내다", ["traffic-signal", "info"], "v", "A red light signifies \"stop\".", "빨간불은 \"멈춤\"을 의미한다."], ["vary", "서로[각기] 다르다", ["orange", "sliders"], "v", "Prices vary from store to store.", "가격은 가게마다 다르다."], ["exaggerated", "과장된, 부풀린", ["fish", "arrows-out"], "adj", "His story was exaggerated.", "그의 이야기는 과장되었다."], ["emphasis", "강조", ["highlighter", "exclamation-mark"], "n", "The school puts emphasis on reading.", "그 학교는 독서를 강조한다."], ["tendency", "경향", ["trend-up", "arrow-right"], "n", "He has a tendency to talk too much.", "그는 말을 너무 많이 하는 경향이 있다."], ["pull off the road", "도로를 벗어나다", ["car", "road-horizon"], "phr", "The driver pulled off the road to rest.", "운전자는 쉬려고 도로를 벗어났다."], ["restricted", "제한된", ["prohibit", "lock"], "adj", "Entry is restricted to members.", "입장은 회원으로 제한된다."], ["stiff", "뻣뻣한; (행동·태도가) 딱딱한, 경직된", ["person-simple", "ruler"], "adj", "My legs felt stiff after the run.", "달리기 후 다리가 뻣뻣했다."], ["minimum", "최소한(도), 최저(치)", ["arrow-line-down", "number-one"], "n", "The minimum age is 18.", "최저 나이는 18세이다."], ["excessive", "지나친, 과도한", ["hamburger", "plus"], "adj", "Excessive sugar is bad for you.", "과도한 설탕은 몸에 나쁘다."], ["aggressive", "공격적인", ["smiley-angry", "lightning"], "adj", "The dog became aggressive.", "그 개는 공격적으로 변했다."], ["owing to", "···때문에", ["cloud-rain", "arrow-right"], "phr", "The game was canceled owing to rain.", "경기는 비 때문에 취소되었다."], ["restrained", "자제하는, 차분한", ["person-simple-tai-chi", "hand-palm"], "adj", "He gave a restrained response.", "그는 차분한 반응을 보였다."], ["mere", "단순한; 단지 ···에 불과한", ["dot-outline"], "adj", "He was a mere child then.", "그는 그때 단지 아이에 불과했다."], ["assumption", "추정, 상정", ["chat-circle-dots", "question"], "n", "Your assumption is wrong.", "너의 추정은 틀렸다."], ["take into account", "···을 고려하다", ["scales", "list-checks"], "phr", "Take his age into account.", "그의 나이를 고려해라."], ["hence", "그러므로, 따라서", ["arrow-fat-right", "check"], "adv", "It was late; hence, we left.", "늦었다. 그러므로 우리는 떠났다."], ["artificial intelligence", "인공 지능", ["robot", "brain"], "n", "Artificial intelligence is changing the world.", "인공 지능이 세상을 바꾸고 있다."], ["field trip", "현장 학습", ["bus", "bank"], "n", "We went on a field trip to a museum.", "우리는 박물관으로 현장 학습을 갔다."], ["distinguish from …", "…을 ~와 구별하다", ["cow", "horse"], "phr", "Can you distinguish a crow from a raven?", "까마귀와 큰까마귀를 구별할 수 있니?"], ["distant", "먼, 떨어져 있는", ["binoculars", "mountains"], "adj", "We saw a distant mountain.", "우리는 멀리 있는 산을 보았다."], ["hit the road", "길을 나서다, 여행을 떠나다", ["car-profile", "road-horizon"], "phr", "We hit the road early in the morning.", "우리는 아침 일찍 길을 나섰다."], ["at the wheel", "핸들을 잡고, 운전하여", ["steering-wheel"], "phr", "My father was at the wheel.", "아버지가 운전하고 계셨다."], ["vehicle", "탈 것, 차", ["van", "bus"], "n", "Electric vehicles are becoming popular.", "전기 자동차가 인기를 얻고 있다."], ["phase", "(변화·발달의) 단계[시기/국면]", ["moon", "circle-half"], "n", "The project is in its final phase.", "그 프로젝트는 마지막 단계에 있다."], ["input", "입력하다", ["keyboard", "arrow-line-up"], "v", "Input your password here.", "여기에 비밀번호를 입력해라."], ["automobile", "자동차", ["car-simple"], "n", "He works in the automobile industry.", "그는 자동차 산업에서 일한다."], ["detect", "~을 찾아내다, 검출하다", ["scan", "magnifying-glass"], "v", "The machine can detect metal.", "그 기계는 금속을 검출할 수 있다."], ["distracted", "(정신이) 산만해진", ["device-mobile", "spiral"], "adj", "Distracted drivers cause accidents.", "산만한 운전자는 사고를 일으킨다."], ["interact with …", "···와 상호 작용하다", ["robot", "user"], "phr", "Children interact with each other.", "아이들은 서로 상호 작용한다."], ["interpret", "해석[이해]하다", ["translate", "chat-text"], "v", "How do you interpret this poem?", "이 시를 어떻게 해석하니?"], ["engage … in ~", "···을 ~에 관여[참여]하게 하다", ["users-three", "hand-waving"], "phr", "The teacher engaged students in discussion.", "선생님은 학생들을 토론에 참여시켰다."], ["on behalf of …", "···을 대신[대표]하여", ["microphone-stage", "users"], "phr", "I accepted the prize on behalf of my team.", "나는 팀을 대표하여 상을 받았다."], ["by itself", "저절로; 홀로, 단독으로", ["gear", "arrows-clockwise"], "phr", "The door opened by itself.", "문이 저절로 열렸다."], ["abstract", "추상적인", ["scribble-loop", "palette"], "adj", "Love is an abstract idea.", "사랑은 추상적인 개념이다."], ["acquire", "얻다, 취득하다; 배우다", ["shopping-cart", "hand-arrow-down"], "v", "She acquired a new skill.", "그녀는 새로운 기술을 익혔다."], ["code", "(프로그램을) 코드화하다", ["code", "brackets-curly"], "v", "He coded a simple game.", "그는 간단한 게임을 코드로 만들었다."], ["infinite", "셀 수 없는, 무한한; 막대한", ["infinity"], "adj", "The universe seems infinite.", "우주는 무한해 보인다."], ["carry out …", "···을 수행하다", ["list-checks", "check-square"], "phr", "We carried out the experiment.", "우리는 실험을 수행했다."], ["controversial", "토론의, 논쟁의 여지가 있는", ["chats", "lightning"], "adj", "It is a controversial issue.", "그것은 논쟁의 여지가 있는 문제이다."], ["exceed", "넘어서다; 초과하다", ["speedometer", "arrow-up"], "v", "Don't exceed the speed limit.", "제한 속도를 넘지 마라."], ["claim", "(진실을) 주장하다; 요구하다", ["megaphone"], "v", "He claims that he is innocent.", "그는 자신이 결백하다고 주장한다."], ["overtake", "···을 따라잡다; 앞지르다, 능가하다", ["car", "fast-forward"], "v", "The runner overtook the leader.", "그 주자는 선두를 앞질렀다."], ["independent", "독립된; 별개의", ["bird", "user"], "adj", "She became financially independent.", "그녀는 경제적으로 독립했다."], ["unfold", "(접힌 것을) 펴다; (이야기 등이) 펼쳐지다, 전개되다", ["scroll", "arrows-out-line-horizontal"], "v", "The story unfolds slowly.", "이야기가 천천히 전개된다."], ["legal", "법률의; 합법적인", ["gavel", "scales"], "adj", "They took legal action.", "그들은 법적 조치를 취했다."], ["ethical", "윤리적인", ["scales", "heart"], "adj", "It raises an ethical question.", "그것은 윤리적 질문을 제기한다."], ["devise", "생각해 내다; 고민하다", ["lightbulb", "wrench"], "v", "They devised a new plan.", "그들은 새로운 계획을 생각해 냈다."], ["coexist", "동시에 존재하다, 공존하다", ["cat", "dog"], "v", "Humans and nature must coexist.", "인간과 자연은 공존해야 한다."], ["futurist", "미래 학자", ["binoculars", "chart-line-up"], "n", "Futurists predict changes in society.", "미래 학자들은 사회 변화를 예측한다."], ["pursue", "추구하다; 뒤쫓다", ["butterfly", "person-simple-run"], "v", "She pursued a career in medicine.", "그녀는 의학 분야의 경력을 추구했다."], ["depict", "그리다, 묘사하다", ["paint-brush", "image"], "v", "The painting depicts a busy street.", "그 그림은 분주한 거리를 묘사한다."], ["take over …", "인계받다; 장악하다", ["robot", "arrow-elbow-right"], "phr", "Machines may take over many jobs.", "기계가 많은 일자리를 장악할지도 모른다."], ["replace", "대신하다, 대체하다; 교체하다; (제자리에) 돌려놓다", ["lightbulb", "arrows-clockwise"], "v", "Robots may replace some workers.", "로봇이 일부 노동자를 대체할 수도 있다."], ["occupation", "직업, 업무", ["briefcase", "identification-badge"], "n", "What is your occupation?", "당신의 직업은 무엇입니까?"], ["involve", "수반하다, 포함하다", ["package", "plus-circle"], "v", "The job involves a lot of travel.", "그 일은 많은 출장을 수반한다."], ["repetitive", "반복적인, 되풀이하는", ["repeat"], "adj", "Factory work can be repetitive.", "공장 일은 반복적일 수 있다."], ["mechanical", "기계로 작동되는; 기계적인, 자동적인", ["gear-six", "robot"], "adj", "He gave a mechanical answer.", "그는 기계적인 대답을 했다."], ["inevitable", "피할 수 없는, 당연한", ["sun-horizon", "arrow-fat-right"], "adj", "Change is inevitable.", "변화는 피할 수 없다."], ["when it comes to …", "···에 관한 한", ["pizza", "hand-pointing"], "phr", "When it comes to math, she is the best.", "수학에 관한 한, 그녀가 최고다."], ["striking", "눈에 띄는, 두드러진", ["lightning", "eye"], "adj", "There is a striking difference between them.", "그들 사이에는 두드러진 차이가 있다."], ["promising", "전도유망한, 앞날이 창창한", ["plant", "star"], "adj", "He is a promising young player.", "그는 전도유망한 젊은 선수이다."], ["the majority of …", "···의 다수", ["users-four", "check"], "phr", "The majority of students agreed.", "학생들의 다수가 동의했다."], ["outdated", "구식의, 시대에 뒤진", ["cassette-tape", "clock-counter-clockwise"], "adj", "This map is outdated.", "이 지도는 구식이다."], ["stay[keep] up to date", "최신 정보를 (계속) 알다", ["newspaper", "arrows-clockwise"], "phr", "I read the news to stay up to date.", "나는 최신 정보를 알기 위해 뉴스를 읽는다."], ["quote", "인용구[문]", ["quotes"], "n", "I like this quote from Einstein.", "나는 아인슈타인의 이 인용구를 좋아한다."], ["forecast", "예상[예측]하다", ["cloud-sun", "chart-line-up"], "v", "Experts forecast slow growth.", "전문가들은 느린 성장을 예측한다."], ["outsourcing", "아웃소싱", ["globe", "briefcase"], "n", "Outsourcing can reduce costs.", "아웃소싱은 비용을 줄일 수 있다."], ["lead to …", "(어떤 결과에) 이르다, 초래하다", ["flow-arrow"], "phr", "Stress can lead to illness.", "스트레스는 질병을 초래할 수 있다."], ["term", "용어", ["tag", "book"], "n", "\"Gene\" is a scientific term.", "\"유전자\"는 과학 용어이다."], ["coin", "(새로운 낱말을) 만들다", ["coin", "pen-nib"], "v", "Who coined the word \"robot\"?", "누가 \"로봇\"이라는 단어를 만들었니?"], ["get on one's feet", "일어서다, 기립하다", ["person-arms-spread", "arrow-up"], "phr", "The crowd got on their feet and cheered.", "관중은 일어서서 환호했다."], ["monument", "기념물; 건축물", ["bank"], "n", "The monument honors the soldiers.", "그 기념물은 병사들을 기린다."], ["magnificent", "장엄한, 훌륭한", ["castle-turret", "sparkle"], "adj", "The palace was magnificent.", "그 궁전은 장엄했다."], ["sculptor", "조각가", ["user", "hammer"], "n", "Rodin was a famous sculptor.", "로댕은 유명한 조각가였다."], ["await", "기다리다", ["hourglass-medium", "user"], "v", "We are awaiting your reply.", "우리는 당신의 답장을 기다리고 있다."], ["assembly", "의회, 입법 기관; 집회, 모임; 조립(품)", ["users-three", "lectern"], "n", "The National Assembly passed the law.", "국회가 그 법을 통과시켰다."], ["fund", "자금을 대다", ["piggy-bank", "building"], "v", "The city funded the new library.", "시가 새 도서관에 자금을 댔다."], ["fundraising", "모금", ["tip-jar", "coins"], "n", "The school held a fundraising event.", "학교는 모금 행사를 열었다."], ["donor", "기증자", ["hand-heart", "drop"], "n", "The donor gave blood.", "기증자가 헌혈을 했다."], ["donation", "기부(금), 기증(품)", ["gift", "hand-coins"], "n", "They made a donation to the hospital.", "그들은 병원에 기부를 했다."], ["comprehensive", "이해력 있는; 포괄적인, 넓은", ["globe", "list-bullets"], "adj", "This is a comprehensive guide.", "이것은 포괄적인 안내서이다."], ["encyclopedia", "백과사전", ["books", "text-aa"], "n", "Look it up in an encyclopedia.", "백과사전에서 그것을 찾아봐라."], ["accelerate", "가속화하다", ["rocket", "fast-forward"], "v", "The car accelerated quickly.", "그 차는 빠르게 가속했다."], ["permission", "허락, 허가", ["seal-check", "hand-pointing"], "n", "You need permission to leave.", "떠나려면 허락이 필요하다."], ["collaboration", "협동, 합작", ["puzzle-piece", "handshake"], "n", "The film was a collaboration between two studios.", "그 영화는 두 스튜디오의 합작이었다."], ["swell", "부풀다; 증가하다", ["balloon", "trend-up"], "v", "The number of visitors swelled.", "방문객 수가 증가했다."], ["compile", "(책을) 편찬하다; (자료를) 수집하다", ["book-bookmark", "files"], "v", "She compiled a list of names.", "그녀는 이름 목록을 수집했다."], ["observe", "관찰하다, 지켜보다; 지키다, 준수하다", ["binoculars", "bird"], "v", "We observed the birds.", "우리는 새들을 관찰했다."], ["citizen", "국민; 시민, 주민", ["user-circle", "city"], "n", "Every citizen has the right to vote.", "모든 시민은 투표할 권리가 있다."], ["database", "데이터베이스", ["database"], "n", "The library has an online database.", "도서관에는 온라인 데이터베이스가 있다."], ["accumulate", "모으다, 쌓아 올리다", ["coins", "stack"], "v", "Dust accumulates quickly.", "먼지는 빠르게 쌓인다."], ["respond to …", "···에 반응하다", ["bell-ringing", "person-simple-run"], "phr", "He responded to my email quickly.", "그는 내 이메일에 빨리 반응했다."], ["regionally", "국지적으로, 지역적으로", ["map-pin-simple-area"], "adv", "The food is popular regionally.", "그 음식은 지역적으로 인기가 있다."], ["enhance", "높이다, 강화하다", ["sun", "trend-up"], "v", "Music can enhance your mood.", "음악은 기분을 높여 줄 수 있다."], ["platform", "(기차역의) 플랫폼; 강단; 플랫폼(사용 기반이 되는 컴퓨터 시스템·소프트웨어)", ["train", "device-tablet"], "n", "Wait on platform 3.", "3번 플랫폼에서 기다려라."], ["take advantage of …", "···을 이용하다", ["person-simple-swim", "waves"], "phr", "Take advantage of this chance.", "이 기회를 이용해라."], ["combined", "결합된, 합동의", ["link", "plus"], "adj", "Our combined efforts made it work.", "우리의 결합된 노력이 그것을 성공시켰다."], ["mass", "덩어리; 일반 대중", ["users-four", "globe"], "n", "The show is popular with the masses.", "그 프로그램은 대중에게 인기가 있다."], ["collective", "집단의, 단체의", ["users-three", "puzzle-piece"], "adj", "It was a collective decision.", "그것은 집단의 결정이었다."], ["disabled", "장애가 있는", ["wheelchair-motion"], "adj", "The building is open to disabled people.", "그 건물은 장애가 있는 사람들에게 열려 있다."], ["breeze", "산들바람", ["wind", "leaf"], "n", "A cool breeze came from the sea.", "바다에서 시원한 산들바람이 불어왔다."], ["spectator", "관중", ["users-four", "eye"], "n", "Thousands of spectators watched the game.", "수천 명의 관중이 경기를 지켜보았다."], ["dash", "돌진; 단거리 경주", ["person-simple-run", "lightning"], "n", "He won the 100-meter dash.", "그는 100미터 단거리 경주에서 이겼다."], ["contestant", "참가자", ["identification-badge", "user"], "n", "Each contestant sang one song.", "각 참가자는 한 곡씩 불렀다."], ["blast", "폭발시키다; 크게 울리다", ["speaker-high", "bomb"], "v", "Music blasted from the speakers.", "스피커에서 음악이 크게 울렸다."], ["vigorously", "필사적으로; 힘차게", ["barbell", "lightning"], "adv", "He shook his head vigorously.", "그는 고개를 힘차게 저었다."], ["take the lead", "선두에 서다", ["medal", "person-simple-run"], "phr", "She took the lead in the race.", "그녀는 경주에서 선두에 섰다."], ["stumble", "비틀거리다; 넘어질 뻔하다", ["person-simple-walk", "warning"], "v", "He stumbled on a rock.", "그는 돌에 걸려 비틀거렸다."], ["bleed", "피가 나다", ["drop"], "v", "My nose is bleeding.", "코피가 나고 있다."], ["distressed", "괴로워하는", ["smiley-nervous", "cloud-rain"], "adj", "She looked distressed.", "그녀는 괴로워 보였다."], ["sympathy", "동정, 연민; 지지", ["hand-heart", "heart"], "n", "I have great sympathy for them.", "나는 그들에게 깊은 동정을 느낀다."], ["take … by surprise", "···을 깜짝 놀라게 하다", ["confetti", "exclamation-mark"], "phr", "The news took me by surprise.", "그 소식은 나를 깜짝 놀라게 했다."], ["fellow", "동료", ["users", "handshake"], "n", "He is a fellow student.", "그는 같은 반 동료 학생이다."], ["autism", "자폐증", ["puzzle-piece", "brain"], "n", "He was diagnosed with autism as a child.", "그는 어릴 때 자폐증 진단을 받았다."], ["brush … off ~", "~에게서 ···을 털어주다", ["broom", "t-shirt"], "phr", "She brushed the snow off his coat.", "그녀는 그의 코트에서 눈을 털어 주었다."], ["pat", "쓰다듬다, 토닥거리다", ["hand-palm", "paw-print"], "v", "He patted the dog on the head.", "그는 개의 머리를 쓰다듬었다."], ["Down syndrome", "다운 증후군", ["sock", "heart"], "n", "People with Down syndrome can live full lives.", "다운 증후군이 있는 사람들도 충실한 삶을 살 수 있다."], ["chin up", "기운내", ["smiley", "arrow-fat-up"], "phr", "Chin up! You'll do better next time.", "기운 내! 다음엔 더 잘할 거야."], ["competitor", "경쟁자", ["boxing-glove", "users"], "n", "He beat all his competitors.", "그는 모든 경쟁자를 이겼다."], ["burst into …", "갑자기 ···하기 시작하다", ["smiley-wink", "lightning"], "phr", "She burst into tears.", "그녀는 갑자기 울음을 터뜨렸다."], ["applause", "박수갈채, 칭찬", ["hands-clapping"], "n", "The audience burst into applause.", "관객들은 박수갈채를 터뜨렸다."], ["be moved to tears", "감동해서 울다", ["drop-half", "heart"], "phr", "We were moved to tears by the story.", "우리는 그 이야기에 감동해서 울었다."], ["coexistence", "공존", ["globe-hemisphere-east", "handshake"], "n", "Peaceful coexistence is important.", "평화로운 공존은 중요하다."]];
+/* ============================================================
+   설정: 구글 Apps Script 웹 앱 주소를 따옴표 안에 붙여 넣으세요.
+   비워 두면 공유 기능(오답 랭킹, 팁 공유, 요청 게시판)은 꺼지고
+   개인 학습 기능만 동작합니다.
+   ============================================================ */
+const API_URL = "";
+
+/* ============================================================
+   효과 실험 설정
+   - setX, setY : 실험 단어 두 묶음(각 20개). 참가 번호 끝자리가 홀수면
+     setX를 "그림·예문" 방식, setY를 "기본(단어·뜻만)" 방식으로 공부하고,
+     짝수면 반대로 배정됩니다.
+   - studyDays  : 사전 시험 뒤 며칠 동안 공부할지 (사후 시험이 열리는 날)
+   - delayDays  : 사후 시험 뒤 며칠 뒤에 지연 시험을 볼지
+   - postOpenDate, delayOpenDate : 반 전체가 같은 날 시험을 보려면
+     '2026-11-16' 처럼 날짜를 넣으세요. 비워 두면 학생마다 위 일수로 계산합니다.
+   ============================================================ */
+const EXP = {
+  setX: ['refugee','resemblance','summit','meditate','stall','descend','abruptly','despair','constrain','infamous',
+         'undergo','sanitation','contagious','signify','restrained','assumption','hence','compile','monument','stumble'],
+  setY: ['invader','anticipation','slope','wander','hangar','navigate','vigorously','adversity','justify','deserted',
+         'devise','applause','substantial','acquire','inevitable','spectator','nonetheless','enhance','metropolis','gaze'],
+  studyDays: 14,
+  delayDays: 7,
+  postOpenDate: '',
+  delayOpenDate: ''
+};
+
+/* ============================================================
+   우리 반 협동 목표
+   - COOP.goal : 반 전체가 함께 채울 학습 횟수(카드 표시 + 퀴즈 풀이)
+   ============================================================ */
+const COOP = { goal: 5000, title: '우리 반 함께 5,000번 복습하기' };
+
+const RAW=[["despite", "~에도 불구하고", ["umbrella", "person-simple-run"], "prep", "She went jogging despite the heavy rain.", "그녀는 폭우에도 불구하고 조깅을 하러 갔다."], ["achieve", "달성하다, 성취하다", ["trophy"], "v", "He worked hard to achieve his goal.", "그는 목표를 달성하기 위해 열심히 노력했다."], ["focus on", "~에 초점을 맞추다", ["target", "magnifying-glass"], "phr", "Try to focus on one task at a time.", "한 번에 한 가지 일에 집중하도록 노력해라."], ["visualize", "마음속에 그리다, 상상하다 ; 시각화하다", ["lightbulb-filament", "brain"], "v", "Close your eyes and visualize your success.", "눈을 감고 너의 성공을 마음속에 그려 봐라."], ["bite off", "···을 물어 끊다", ["bread", "tooth"], "phr", "The dog bit off a piece of the bread.", "개가 빵 한 조각을 물어 끊었다."], ["chew", "씹다", ["tooth", "hamburger"], "v", "Chew your food slowly before you swallow.", "삼키기 전에 음식을 천천히 씹어라."], ["tempt to-v", "···에게 ~할 마음이 생기게 하다", ["cookie", "hand-pointing"], "v", "The smell of cake tempted me to eat more.", "케이크 냄새는 내가 더 먹고 싶게 만들었다."], ["injure", "부상을 입다, 부상을 입히다", ["bandaids", "person-simple-run"], "v", "He injured his knee while playing soccer.", "그는 축구를 하다가 무릎을 다쳤다."], ["make up", "···을 이루다, 형성하다", ["puzzle-piece", "users-three"], "phr", "Girls make up half of our class.", "여학생이 우리 반의 절반을 이룬다."], ["consistent", "한결같은, 일관된", ["calendar-check"], "adj", "Consistent practice is the key to success.", "꾸준한 연습이 성공의 열쇠이다."], ["routine", "일상의 일", ["clock-clockwise", "coffee"], "n", "Exercise is part of my daily routine.", "운동은 내 일상의 일부이다."], ["automatic", "자동의; 무의식적인, 반사적인", ["gear-six", "robot"], "adj", "Brushing my teeth has become automatic.", "양치질은 무의식적인 습관이 되었다."], ["numerous", "많은", ["star-four", "stack"], "adj", "There are numerous stars in the sky.", "하늘에는 수많은 별이 있다."], ["passion", "열정, 정열", ["fire", "heart"], "n", "She has a real passion for music.", "그녀는 음악에 대한 진정한 열정이 있다."], ["fade", "약해지다, 사라지다; 바래다", ["sun-horizon", "cloud-fog"], "v", "The colors of the old photo have faded.", "오래된 사진의 색이 바랬다."], ["quit", "(직장·학교 등을) 그만두다; (하던 일을) 그만두다", ["sign-out", "door-open"], "v", "He quit his job to start a business.", "그는 사업을 시작하려고 직장을 그만두었다."], ["approach", "접근법, 처리 방법", ["path", "compass"], "n", "We need a new approach to this problem.", "우리는 이 문제에 대한 새로운 접근법이 필요하다."], ["get used to v-ing", "···에 익숙해지다", ["thermometer-cold", "smiley"], "phr", "I soon got used to waking up early.", "나는 곧 일찍 일어나는 것에 익숙해졌다."], ["attain", "이루다", ["medal", "flag-checkered"], "v", "She attained her dream of becoming a doctor.", "그녀는 의사가 되겠다는 꿈을 이루었다."], ["former", "전자", ["number-circle-one", "arrow-left"], "n", "Of tea and coffee, I prefer the former.", "차와 커피 중에서 나는 전자를 더 좋아한다."], ["inspire", "격려하다; (감정 등을) 불어넣다; 영감을 주다", ["lightbulb", "sparkle"], "v", "Her words inspired me to try again.", "그녀의 말은 내가 다시 도전하도록 격려했다."], ["out of reach", "손에 닿지 않는 곳에", ["hand-grabbing", "prohibit"], "phr", "Keep medicine out of reach of children.", "약은 아이들의 손이 닿지 않는 곳에 두어라."], ["latter", "후자", ["number-circle-two", "arrow-right"], "n", "Of the two plans, the latter is cheaper.", "두 계획 중 후자가 더 저렴하다."], ["nonetheless", "그렇기는 하지만", ["cloud-rain", "smiley"], "adv", "It was hard; nonetheless, we finished it.", "힘들었지만, 그렇기는 하지만 우리는 그것을 끝냈다."], ["deal", "일, 것", ["package"], "n", "Losing the game was no big deal.", "경기에서 진 것은 별일 아니었다."], ["stick to", "···을 고수하다, (어려움을 참고) ···을 계속하다", ["magnet", "calendar-check"], "phr", "Stick to your plan even when it is hard.", "힘들 때도 계획을 고수해라."], ["serving", "1인분", ["bowl-food", "number-one"], "n", "This box contains four servings of soup.", "이 상자에는 수프 4인분이 들어 있다."], ["knowledgeable", "아는 것이 많은, 많이 아는", ["books", "graduation-cap"], "adj", "Our guide was very knowledgeable about history.", "우리 가이드는 역사에 대해 아는 것이 많았다."], ["come true", "실현되다", ["shooting-star", "confetti"], "phr", "Her dream of studying abroad came true.", "유학하려는 그녀의 꿈이 실현되었다."], ["meaningful", "의미 있는", ["envelope-open", "heart"], "adj", "Volunteering was a meaningful experience.", "봉사활동은 의미 있는 경험이었다."], ["obsessed", "(···에) 사로잡힌", ["device-mobile", "eye"], "adj", "He is obsessed with his phone.", "그는 휴대폰에 사로잡혀 있다."], ["overwhelming", "압도적인", ["waves", "warning"], "adj", "The amount of homework was overwhelming.", "숙제의 양이 압도적이었다."], ["manageable", "감당할 수 있는, 처리할 수 있는", ["basket", "check-circle"], "adj", "Break the job into manageable parts.", "그 일을 감당할 수 있는 부분으로 나눠라."], ["take a step toward", "···을 향해 한 걸음 나아가다", ["footprints", "flag"], "phr", "Every day, take a step toward your goal.", "매일 목표를 향해 한 걸음 나아가라."], ["compare to", "···을 ~와 비교하다", ["scales"], "phr", "Don't compare yourself to others.", "자신을 다른 사람과 비교하지 마라."], ["jealousy", "질투심, 시기심", ["smiley-angry", "eye"], "n", "She felt jealousy when her friend won.", "친구가 이겼을 때 그녀는 질투심을 느꼈다."], ["aspect", "측면; 양상; 방향", ["cube", "diamond"], "n", "Money is only one aspect of a job.", "돈은 직업의 한 측면일 뿐이다."], ["individual", "개인", ["user-focus"], "n", "Every individual has different needs.", "모든 개인은 서로 다른 필요가 있다."], ["personality", "성격", ["mask-happy", "mask-sad"], "n", "She has a warm and friendly personality.", "그녀는 따뜻하고 친근한 성격을 가지고 있다."], ["talent", "재능, 소질", ["piano-keys", "star"], "n", "He has a talent for painting.", "그는 그림에 재능이 있다."], ["make an effort to-v", "···하기 위해 노력하다", ["barbell", "drop"], "phr", "I made an effort to read every day.", "나는 매일 책을 읽기 위해 노력했다."], ["appreciate", "진가를 알다, 인정하다", ["image", "heart"], "v", "I appreciate your help.", "당신의 도움에 감사드립니다(진가를 압니다)."], ["envy", "부러움, 선망", ["gift", "eye"], "n", "She looked at his new bike with envy.", "그녀는 부러움에 가득 차 그의 새 자전거를 보았다."], ["view as", "···을 ~로 여기다", ["eyeglasses", "star"], "phr", "Many people view him as a hero.", "많은 사람들이 그를 영웅으로 여긴다."], ["competition", "경쟁; 대회, 시합", ["person-simple-run", "flag-checkered"], "n", "There is strong competition for the prize.", "그 상을 두고 치열한 경쟁이 있다."], ["stay up late", "늦게까지 깨어 있다", ["moon-stars", "book-open"], "phr", "I stayed up late studying for the test.", "나는 시험 공부를 하느라 늦게까지 깨어 있었다."], ["frustrated", "좌절감을 느끼는", ["smiley-x-eyes", "puzzle-piece"], "adj", "I felt frustrated when I failed again.", "또 실패했을 때 나는 좌절감을 느꼈다."], ["strategy", "전략, 전술; 계략, 술수", ["strategy"], "n", "We need a better strategy to win.", "이기려면 더 나은 전략이 필요하다."], ["session", "(특정한 활동을 위한) 시간, 기간", ["timer", "student"], "n", "We had a two-hour study session.", "우리는 두 시간의 공부 시간을 가졌다."], ["guarantee", "보장하다, 약속하다", ["seal-check", "certificate"], "v", "Hard work does not guarantee success.", "노력이 성공을 보장하지는 않는다."], ["effective", "효과적인", ["pill", "thumbs-up"], "adj", "This medicine is very effective.", "이 약은 매우 효과적이다."], ["put forth", "(힘 등을) 내다, 발휘하다", ["hand-fist", "lightning"], "phr", "He put forth all his strength.", "그는 온 힘을 다 발휘했다."], ["suitable", "적합한", ["sneaker", "check"], "adj", "This book is suitable for beginners.", "이 책은 초보자에게 적합하다."], ["absorb", "흡수하다; 받아들이다, 이해하다", ["drop", "cloud-arrow-down"], "v", "Plants absorb water through their roots.", "식물은 뿌리를 통해 물을 흡수한다."], ["exhausted", "기진맥진한", ["battery-empty", "bed"], "adj", "I was exhausted after the long hike.", "긴 등산 후 나는 기진맥진했다."], ["rarely", "좀처럼 ~ 않는", ["rainbow"], "adv", "He rarely eats breakfast.", "그는 좀처럼 아침을 먹지 않는다."], ["see as", "···을 ~로 여기다", ["eye", "user-check"], "phr", "Many see the plan as a chance.", "많은 사람들이 그 계획을 기회로 여긴다."], ["mature", "어른스러운, 분별 있는", ["user-circle-check"], "adj", "She is very mature for her age.", "그녀는 나이에 비해 매우 어른스럽다."], ["be sick of", "···에 넌더리 나다", ["smiley-melting", "repeat"], "phr", "I'm sick of eating instant noodles.", "나는 라면 먹는 것에 넌더리가 난다."], ["adolescent", "사춘기 청소년(의)", ["student", "device-mobile"], "n", "Many adolescents worry about their looks.", "많은 청소년들이 외모를 걱정한다."], ["point of view", "관점, 견해", ["binoculars"], "n", "Try to see it from my point of view.", "내 관점에서 그것을 보려고 해 봐."], ["organized", "조직화된, 체계적인", ["folders", "list-checks"], "adj", "She keeps her desk very organized.", "그녀는 책상을 아주 체계적으로 정리한다."], ["be capable of", "~할 수 있다", ["barbell", "check-circle"], "phr", "You are capable of doing great things.", "너는 훌륭한 일을 할 수 있다."], ["conflict", "갈등, 충돌", ["sword", "lightning"], "n", "There was a conflict between the two groups.", "두 집단 사이에 갈등이 있었다."], ["vast", "거대한, 어마어마한", ["globe-hemisphere-east", "arrows-out"], "adj", "The Sahara is a vast desert.", "사하라는 거대한 사막이다."], ["metropolis", "대도시", ["buildings", "city"], "n", "Seoul is a busy metropolis.", "서울은 분주한 대도시이다."], ["surround", "둘러싸다, 에워싸다", ["arrows-in-cardinal", "house"], "v", "The village is surrounded by mountains.", "그 마을은 산으로 둘러싸여 있다."], ["construct", "건설하다", ["crane-tower", "hard-hat"], "v", "They plan to construct a new bridge.", "그들은 새 다리를 건설할 계획이다."], ["invader", "침략자, 침략군", ["sword", "shield-warning"], "n", "The castle protected the city from invaders.", "그 성은 침략자들로부터 도시를 지켰다."], ["approximately", "거의, ···가까이", ["approximate-equals"], "adv", "The trip takes approximately two hours.", "그 여행은 거의 두 시간이 걸린다."], ["anticipation", "예상; 기대", ["gift", "hourglass"], "n", "The children waited in anticipation of Christmas.", "아이들은 크리스마스를 기대하며 기다렸다."], ["stop by", "···에 잠시 들르다", ["storefront", "person-simple-walk"], "phr", "I'll stop by the store on my way home.", "집에 가는 길에 가게에 잠시 들를게."], ["refugee", "난민, 망명자", ["tent", "suitcase-rolling"], "n", "Many refugees fled the war.", "많은 난민들이 전쟁을 피해 달아났다."], ["be decorated with", "···로 장식되다", ["tree-evergreen", "sparkle"], "phr", "The hall was decorated with flowers.", "홀은 꽃으로 장식되었다."], ["sculpture", "조각품", ["castle-turret", "paint-brush"], "n", "A stone sculpture stands in the park.", "공원에 돌 조각품이 서 있다."], ["resemblance", "닮음, 유사함", ["users", "equals"], "n", "There is a strong resemblance between the sisters.", "그 자매는 아주 많이 닮았다."], ["slope", "경사지; 경사(도)", ["person-simple-ski", "mountains"], "n", "We walked down the steep slope.", "우리는 가파른 경사지를 걸어 내려갔다."], ["end up v-ing", "결국 ···하게 되다", ["path", "island"], "phr", "We got lost and ended up walking for hours.", "우리는 길을 잃어 결국 몇 시간을 걷게 되었다."], ["relatively", "비교적", ["ruler", "chart-bar"], "adv", "The test was relatively easy.", "그 시험은 비교적 쉬웠다."], ["steep", "가파른, 경사진", ["mountains", "arrow-up"], "adj", "The road up the hill is very steep.", "언덕 위로 가는 길은 매우 가파르다."], ["gaze", "(가만히) 응시하다, 바라보다", ["eye", "moon"], "v", "She gazed at the stars for a long time.", "그녀는 오랫동안 별을 응시했다."], ["spectacular", "장관을 이루는", ["sparkle", "confetti"], "adj", "The view from the top was spectacular.", "정상에서의 경치는 장관이었다."], ["summit", "정상, 꼭대기", ["flag-pennant", "mountains"], "n", "They finally reached the summit.", "그들은 마침내 정상에 도달했다."], ["a variety of", "여러 가지의", ["shapes", "swatches"], "phr", "The shop sells a variety of fruits.", "그 가게는 여러 가지 과일을 판다."], ["formation", "형성; 형성물", ["cloud", "arrows-in"], "n", "Clouds are a formation of water drops.", "구름은 물방울의 형성물이다."], ["tremendous", "엄청난", ["arrows-out", "lightning"], "adj", "The project was a tremendous success.", "그 프로젝트는 엄청난 성공이었다."], ["meditate", "명상하다, 묵상하다", ["person-simple-tai-chi", "flower-lotus"], "v", "He meditates for ten minutes every morning.", "그는 매일 아침 10분간 명상한다."], ["monk", "수도자, 수도승", ["person", "flower-lotus"], "n", "The monk lives in a quiet temple.", "그 수도승은 조용한 절에 산다."], ["split", "쪼개다, 찢다; 나누다", ["axe", "split-horizontal"], "v", "Let's split the pizza into four pieces.", "피자를 네 조각으로 나누자."], ["take in", "···을 보다", ["eye", "mountains"], "phr", "We stopped to take in the beautiful view.", "우리는 아름다운 경치를 보려고 멈췄다."], ["marvelous", "감탄할 만한, 놀라운, 경이로운", ["sparkle", "planet"], "adj", "The museum has a marvelous collection.", "그 박물관은 놀라운 소장품을 가지고 있다."], ["stall", "가판대, 좌판", ["storefront", "bowl-steam"], "n", "We bought snacks at a street stall.", "우리는 길거리 가판대에서 간식을 샀다."], ["wander", "거닐다, 돌아다니다", ["person-simple-walk", "map-trifold"], "v", "We wandered around the old town.", "우리는 구시가지를 돌아다녔다."], ["reconstructed", "재건된, 복원된", ["castle-turret", "wrench"], "adj", "We visited a reconstructed palace.", "우리는 복원된 궁궐을 방문했다."], ["recognizable", "(쉽게) 알아볼 수 있는", ["eye", "check"], "adj", "His voice was instantly recognizable.", "그의 목소리는 바로 알아볼 수 있었다."], ["landmark", "주요 지형지물, 랜드마크", ["map-pin", "building"], "n", "Namsan Tower is a famous Seoul landmark.", "남산타워는 유명한 서울의 랜드마크이다."], ["descend", "내려오다, 하강하다", ["parachute", "arrow-down"], "v", "The plane began to descend.", "비행기가 하강하기 시작했다."], ["pulse", "맥박 치다, 고동치다", ["heartbeat"], "v", "Music pulsed through the room.", "음악이 방 안에 고동쳤다."], ["reminder", "상기시키는 것", ["bell-ringing", "note"], "n", "The photo is a reminder of our trip.", "그 사진은 우리의 여행을 상기시킨다."], ["accomplishment", "성취, 완성", ["trophy", "check-circle"], "n", "Finishing the marathon was a great accomplishment.", "마라톤 완주는 대단한 성취였다."], ["remarkable", "주목할 만한, 놀랄 만한", ["star", "exclamation-mark"], "adj", "She made remarkable progress this year.", "그녀는 올해 놀랄 만한 발전을 이루었다."], ["impressive", "인상적인, 감명을 주는", ["hands-clapping", "star"], "adj", "His speech was very impressive.", "그의 연설은 매우 인상적이었다."], ["insignificant", "사소한, 하찮은", ["bug", "magnifying-glass-minus"], "adj", "Don't worry about such insignificant details.", "그런 사소한 세부 사항은 걱정하지 마라."], ["navy", "해군", ["anchor", "boat"], "n", "He served in the navy for two years.", "그는 2년 동안 해군에서 복무했다."], ["rising", "올라가는; 떠오르는", ["sun-horizon", "trend-up"], "adj", "Rising prices worry many families.", "오르는 물가가 많은 가정을 걱정시킨다."], ["abruptly", "갑자기, 불쑥", ["lightning", "stop"], "adv", "The car stopped abruptly.", "차가 갑자기 멈췄다."], ["contract", "수축하다; 병에 걸리다", ["virus", "arrows-in"], "v", "Metal contracts when it gets cold.", "금속은 차가워지면 수축한다."], ["vision", "시력; 시야", ["eye", "eyeglasses"], "n", "He lost his vision in an accident.", "그는 사고로 시력을 잃었다."], ["permanently", "영구히, (영구) 불변으로", ["infinity", "lock"], "adv", "The shop has closed permanently.", "그 가게는 영구히 문을 닫았다."], ["be compelled to-v", "할 수 없이 ···하다", ["hand-palm", "arrow-fat-right"], "phr", "He was compelled to leave his home.", "그는 할 수 없이 집을 떠나야 했다."], ["despair", "절망", ["smiley-sad", "cloud-rain"], "n", "She cried out in despair.", "그녀는 절망 속에서 울부짖었다."], ["grief", "큰 슬픔, 비탄", ["heart-break"], "n", "He was filled with grief after his loss.", "그는 상실 후 큰 슬픔에 잠겼다."], ["misfortune", "불운, 불행", ["cloud-lightning", "clover"], "n", "He had the misfortune of losing his wallet.", "그는 지갑을 잃어버리는 불운을 겪었다."], ["confront", "직면하다; 맞서다", ["boxing-glove", "warning"], "v", "We must confront the problem directly.", "우리는 그 문제에 정면으로 맞서야 한다."], ["navigate", "길을 찾다, 방향을 읽다", ["compass", "map-trifold"], "v", "Sailors navigated by the stars.", "선원들은 별을 보고 길을 찾았다."], ["ascend", "오르다, 올라가다", ["balloon", "arrow-up"], "v", "The climbers began to ascend the mountain.", "등반가들은 산을 오르기 시작했다."], ["ascent", "올라감", ["person-simple-hike", "arrow-up-right"], "n", "The ascent took six hours.", "올라가는 데 여섯 시간이 걸렸다."], ["intense", "극심한, 강렬한", ["pepper", "fire"], "adj", "The pain was intense.", "통증이 극심했다."], ["companion", "동반자, 동행", ["users", "person-simple-walk"], "n", "My dog is my best companion.", "내 개는 나의 가장 좋은 동반자이다."], ["unstable", "불안정한", ["stack", "warning"], "adj", "The ladder looks unstable.", "그 사다리는 불안정해 보인다."], ["proceed", "진행하다; 나아가다, 이동하다", ["play", "arrow-right"], "v", "Please proceed to the next room.", "다음 방으로 이동해 주세요."], ["make one’s way", "나아가다, 가다", ["person-simple-hike", "tree"], "phr", "We made our way through the crowd.", "우리는 군중 사이로 나아갔다."], ["thrilling", "흥분되는, 짜릿한", ["lightning", "smiley-wink"], "adj", "The roller coaster ride was thrilling.", "롤러코스터 타기는 짜릿했다."], ["no fewer than", "···(만큼)이나; 최소한", ["plus", "number-square-one"], "phr", "No fewer than 500 people came.", "무려 500명이나 왔다."], ["autobiography", "자서전", ["book-open-user", "pen-nib"], "n", "He wrote an autobiography about his life.", "그는 자신의 삶에 대한 자서전을 썼다."], ["narrative", "이야기", ["book-open-text", "chat-text"], "n", "The novel has an exciting narrative.", "그 소설은 흥미진진한 이야기를 담고 있다."], ["triumph", "업적, 승리, 대성공", ["trophy", "confetti"], "n", "The victory was a triumph for the team.", "그 승리는 팀의 대성공이었다."], ["adversity", "역경", ["cloud-lightning", "person-simple-hike"], "n", "She overcame great adversity.", "그녀는 큰 역경을 이겨냈다."], ["disability", "(신체적·정신적) 장애", ["wheelchair"], "n", "He lives a full life despite his disability.", "그는 장애에도 불구하고 충실한 삶을 산다."], ["constrain", "···하게 강요하다; 제한하다", ["lock", "link"], "v", "Lack of money constrained our plans.", "돈 부족이 우리의 계획을 제한했다."], ["abandoned", "버려진, 유기된", ["house", "dog"], "adj", "They rescued an abandoned dog.", "그들은 버려진 개를 구조했다."], ["knock down", "(건물을) 때려 부수다[철거하다]", ["hammer", "building"], "phr", "The old factory was knocked down.", "오래된 공장이 철거되었다."], ["oppose", "반대하다", ["hand-palm", "prohibit"], "v", "Many people opposed the new rule.", "많은 사람들이 새 규칙에 반대했다."], ["tear down", "~을 부수다, 철거하다", ["bulldozer", "building"], "phr", "They tore down the old school.", "그들은 오래된 학교를 부수었다."], ["precious", "귀중한, 값어치 있는", ["diamond", "heart"], "adj", "Time is precious.", "시간은 귀중하다."], ["justify", "정당화하다", ["scales", "chat-centered-text"], "v", "Nothing can justify violence.", "어떤 것도 폭력을 정당화할 수 없다."], ["take up", "(시간 · 공간을) 차지하다", ["couch", "arrows-out"], "phr", "The piano takes up too much space.", "피아노가 너무 많은 공간을 차지한다."], ["adaptive", "조정의; 적응할 수 있는", ["arrows-clockwise", "leaf"], "adj", "Animals have adaptive skills.", "동물들은 적응 능력이 있다."], ["other than", "···외에; ···와 다른[···이 아닌]", ["orange", "minus"], "phr", "I have no friends other than you.", "너 외에는 친구가 없다."], ["outstanding", "뛰어난, 우수한", ["star", "ranking"], "adj", "She is an outstanding student.", "그녀는 뛰어난 학생이다."], ["shut down", "(공장 등을) 폐쇄하다, 닫다", ["factory", "lock"], "phr", "The factory was shut down last year.", "그 공장은 작년에 폐쇄되었다."], ["at risk of", "···의 위험에 처한", ["warning", "thermometer-hot"], "phr", "Smokers are at risk of heart disease.", "흡연자는 심장병의 위험에 처해 있다."], ["maintain", "유지하다[지키다]", ["wrench", "car"], "v", "It is important to maintain good health.", "건강을 유지하는 것이 중요하다."], ["resemble", "닮다; ~와 공통점이 있다", ["cat", "equals"], "v", "She resembles her mother.", "그녀는 어머니를 닮았다."], ["feature", "특징으로 삼다", ["star", "list-star"], "v", "The festival features local food.", "그 축제는 지역 음식을 특징으로 한다."], ["installation", "설치[설비]; 설치 미술품", ["lamp-pendant", "shapes"], "n", "The museum has a new art installation.", "그 미술관에는 새 설치 미술품이 있다."], ["reception", "접수처[프런트]", ["call-bell", "user"], "n", "Please check in at the reception.", "접수처에서 체크인해 주세요."], ["be transformed into", "···로 변모되다", ["butterfly", "arrows-clockwise"], "phr", "The warehouse was transformed into a café.", "그 창고는 카페로 변모되었다."], ["contemporary", "동시대의; 현대의", ["palette", "clock"], "adj", "She loves contemporary art.", "그녀는 현대 미술을 좋아한다."], ["blend ... with ~", "···을 ~와 섞다, 조화시키다", ["paint-bucket", "intersect"], "phr", "The design blends old with new.", "그 디자인은 옛것을 새것과 조화시킨다."], ["infamous", "악명 높은", ["skull", "newspaper"], "adj", "The prison was infamous for its cruelty.", "그 감옥은 잔인함으로 악명 높았다."], ["undergo", "(변화 등을) 겪다[받다]", ["hospital", "arrows-clockwise"], "v", "He underwent surgery last week.", "그는 지난주 수술을 받았다."], ["accommodation", "거처; 숙박 시설", ["bed", "building-apartment"], "n", "The hotel offers cheap accommodation.", "그 호텔은 저렴한 숙박 시설을 제공한다."], ["be converted into", "···로 전환되다", ["factory", "arrow-right"], "phr", "The old station was converted into a museum.", "옛 역은 박물관으로 전환되었다."], ["furnishing", "가구, 비품", ["armchair", "lamp"], "n", "The room has simple furnishings.", "그 방에는 간단한 가구가 있다."], ["desperately", "절망적으로; 필사적으로", ["hands-praying"], "adv", "He desperately needed help.", "그는 필사적으로 도움이 필요했다."], ["be eager to-v", "···을 하고 싶어 하다", ["hand-waving", "sparkle"], "phr", "She is eager to learn Spanish.", "그녀는 스페인어를 배우고 싶어 한다."], ["hangar", "격납고", ["airplane", "warehouse"], "n", "The plane is kept in a hangar.", "그 비행기는 격납고에 보관된다."], ["manufacture", "제조[생산]하다", ["factory", "gear"], "v", "The company manufactures cars.", "그 회사는 자동차를 제조한다."], ["fall into disuse", "못쓰게 되다, 쓰이지 않게 되다", ["bicycle", "prohibit"], "phr", "The old railway fell into disuse.", "오래된 철도는 쓰이지 않게 되었다."], ["go bankrupt", "파산하다", ["chart-line-down", "money"], "phr", "The company went bankrupt last year.", "그 회사는 작년에 파산했다."], ["massive", "거대한", ["arrows-out", "building-office"], "adj", "A massive ship arrived at the port.", "거대한 배가 항구에 도착했다."], ["deserted", "사람이 없는; 버려진", ["island", "user-minus"], "adj", "The streets were deserted at night.", "밤에는 거리에 사람이 없었다."], ["dome", "둥근 지붕; 반구형의 것[건물]", ["mosque"], "n", "The church has a golden dome.", "그 교회에는 황금 둥근 지붕이 있다."], ["artificial", "인공[인조]의", ["potted-plant", "factory"], "adj", "The park has an artificial lake.", "그 공원에는 인공 호수가 있다."], ["enormous", "막대한, 거대한", ["arrows-out", "mountains"], "adj", "The project cost an enormous amount of money.", "그 프로젝트는 막대한 돈이 들었다."], ["destination", "목적지, 도착지", ["map-pin-area", "flag-checkered"], "n", "Jeju is a popular tourist destination.", "제주는 인기 있는 관광 목적지이다."], ["breathe new life into", "···에 새 생명을 불어넣다", ["plant", "wind"], "phr", "The festival breathed new life into the town.", "그 축제는 마을에 새 생명을 불어넣었다."], ["perspective", "관점, 시각", ["perspective", "eye"], "n", "Travel gives you a new perspective.", "여행은 새로운 시각을 준다."], ["have difficulty v-ing", "···하는 데 어려움을 겪다", ["smiley-nervous", "wall"], "phr", "I have difficulty remembering names.", "나는 이름을 기억하는 데 어려움을 겪는다."], ["devote to", "~에 바치다[쏟다]", ["hand-heart", "clock"], "phr", "She devoted her life to helping others.", "그녀는 다른 사람을 돕는 데 평생을 바쳤다."], ["a great deal of", "다량의, 많은", ["stack", "plus"], "phr", "It takes a great deal of time.", "그것은 많은 시간이 걸린다."], ["resolve", "(문제 등을) 해결하다", ["key", "lock-key-open"], "v", "We resolved the problem together.", "우리는 함께 그 문제를 해결했다."], ["at one’s fingertips", "당장 이용할 수 있는", ["hand-tap", "device-mobile"], "phr", "Information is now at our fingertips.", "이제 정보를 당장 이용할 수 있다."], ["take a wrong turn", "진로를 잘못 들다", ["signpost", "x-circle"], "phr", "We took a wrong turn and got lost.", "우리는 길을 잘못 들어 길을 잃었다."], ["launch", "시작[착수]하다; (우주선 등을) 발사하다", ["rocket-launch"], "v", "They launched a new campaign.", "그들은 새로운 캠페인을 시작했다."], ["man-made", "사람이 만든, 인공의", ["hard-hat", "cube"], "adj", "The island is man-made.", "그 섬은 사람이 만든 것이다."], ["satellite", "(인공)위성", ["globe-hemisphere-west", "cell-tower"], "n", "The satellite sends data to Earth.", "그 위성은 지구로 데이터를 보낸다."], ["orbit", "궤도", ["planet", "arrows-clockwise"], "n", "The Moon is in orbit around the Earth.", "달은 지구 주위의 궤도를 돈다."], ["monitor", "감시하다, 지켜보다", ["monitor", "eye"], "v", "Doctors monitored his heart rate.", "의사들은 그의 심박수를 지켜보았다."], ["persistent", "끈질긴; 지속되는", ["repeat", "hourglass"], "adj", "He had a persistent cough.", "그는 끈질긴 기침을 했다."], ["frequency", "빈도; (소리 · 전자파 등의) 주파수", ["wave-sine", "radio"], "n", "The radio uses a high frequency.", "그 라디오는 높은 주파수를 사용한다."], ["keep track of", "···을 추적하다, ···에 대해 지속적으로 파악하다", ["gps-fix", "path"], "phr", "I keep track of my spending.", "나는 내 지출을 계속 파악한다."], ["determine", "알아내다, 밝히다", ["magnifying-glass", "check-circle"], "v", "Scientists determined the cause.", "과학자들이 원인을 알아냈다."], ["precise", "정밀한, 정확한", ["crosshair", "ruler"], "adj", "We need precise measurements.", "우리는 정확한 측정이 필요하다."], ["fascinating", "대단히 흥미로운, 매력적인", ["planet", "sparkle"], "adj", "Space is a fascinating subject.", "우주는 대단히 흥미로운 주제이다."], ["suspect", "의심하다", ["detective", "question"], "v", "I suspect he is lying.", "나는 그가 거짓말을 하고 있다고 의심한다."], ["revolutionary", "혁명의; 획기적인", ["lightbulb-filament", "lightning"], "adj", "The smartphone was a revolutionary invention.", "스마트폰은 획기적인 발명품이었다."], ["insight", "통찰(력)", ["eye", "lightbulb"], "n", "The book gives insight into history.", "그 책은 역사에 대한 통찰을 준다."], ["fundamental", "근본적인, 기본적인; 중요한", ["stack-simple", "house-simple"], "adj", "Water is fundamental to life.", "물은 생명에 근본적이다."], ["transmit", "전송[송신]하다", ["broadcast", "cell-tower"], "v", "The signal is transmitted by satellite.", "그 신호는 위성으로 전송된다."], ["turn ... on its head", "···을 완전히 뒤집어 생각하게 하다", ["arrows-counter-clockwise", "lightbulb"], "phr", "The discovery turned science on its head.", "그 발견은 과학을 완전히 뒤집어 놓았다."], ["extraordinary", "기이한, 놀라운; 비범한", ["sparkle", "star-four"], "adj", "She has an extraordinary memory.", "그녀는 비범한 기억력을 가지고 있다."], ["reverse", "(정반대로) 뒤바꾸다", ["arrows-left-right", "swap"], "v", "They reversed the order of the list.", "그들은 목록의 순서를 뒤바꿨다."], ["consist in", "(주요 특징 등이) ···에 있다", ["key", "heart"], "phr", "Happiness consists in small things.", "행복은 작은 것들에 있다."], ["statistics", "통계, 통계 자료; 통계학", ["chart-pie", "chart-bar"], "n", "The statistics show a rise in crime.", "통계는 범죄 증가를 보여준다."], ["injured", "부상을 입은, 다친", ["bandaids", "first-aid"], "adj", "The injured man was taken to hospital.", "부상당한 남자는 병원으로 옮겨졌다."], ["compassion", "연민, 동정심", ["hand-heart"], "n", "She showed compassion for the poor.", "그녀는 가난한 사람들에게 연민을 보였다."], ["alliance", "동맹, 연합; 동맹 단체[동맹국]", ["handshake", "shield"], "n", "The two nations formed an alliance.", "두 나라는 동맹을 맺었다."], ["contribute", "기부[기증]하다; (원조 · 지식 등을) 주다, 제공", ["hand-coins", "gift"], "v", "Many people contributed money to the charity.", "많은 사람들이 자선단체에 돈을 기부했다."], ["troop", "(특히 대규모의) 병력, 군대", ["users-four", "shield"], "n", "The troops returned home.", "병력이 고국으로 돌아왔다."], ["sufficient", "충분한", ["check-circle", "bowl-food"], "adj", "We have sufficient food for a week.", "우리에게는 일주일 동안 충분한 식량이 있다."], ["deal with", "(문제 등에) 대처하다", ["fire-extinguisher"], "phr", "We must deal with the problem now.", "우리는 지금 그 문제에 대처해야 한다."], ["inadequate", "부적당한, 부적절한", ["x-circle", "ruler"], "adj", "The hospital had inadequate supplies.", "그 병원은 물자가 부적당했다."], ["sanitation", "위생 시설[관리]", ["hand-soap", "toilet"], "n", "Poor sanitation causes disease.", "열악한 위생 시설은 질병을 일으킨다."], ["exposure", "(유해한 환경 등에의) 노출", ["sun", "person"], "n", "Avoid long exposure to the sun.", "햇볕에 오래 노출되는 것을 피해라."], ["classify", "분류[구분]하다", ["tree-structure", "folders"], "v", "Books are classified by subject.", "책은 주제별로 분류된다."], ["dedicate", "(시간 · 노력을) 바치다, 전념[헌신]하다", ["hand-heart", "hourglass"], "v", "He dedicated his life to science.", "그는 과학에 일생을 바쳤다."], ["witness", "목격하다", ["eye", "siren"], "v", "She witnessed a car accident.", "그녀는 교통사고를 목격했다."], ["tragic", "비극적인", ["mask-sad"], "adj", "It was a tragic accident.", "그것은 비극적인 사고였다."], ["sanitary", "위생의", ["spray-bottle", "hand-soap"], "adj", "Keep the kitchen sanitary.", "부엌을 위생적으로 유지해라."], ["reform", "개혁[개선]", ["wrench", "bank"], "n", "The government promised education reform.", "정부는 교육 개혁을 약속했다."], ["statistician", "통계 전문가, 통계학자", ["chart-scatter", "user"], "n", "The statistician analyzed the data.", "통계학자가 그 데이터를 분석했다."], ["at a glance", "한눈에", ["eye", "lightning"], "phr", "I could see at a glance that he was sad.", "나는 그가 슬프다는 것을 한눈에 알 수 있었다."], ["indicate", "나타내다[보여 주다]", ["navigation-arrow", "traffic-sign"], "v", "The arrow indicates the exit.", "그 화살표는 출구를 나타낸다."], ["attribute … to ~", "···을 ~의 결과로 보다", ["virus", "arrow-right"], "phr", "He attributed his success to hard work.", "그는 자신의 성공을 노력의 결과로 보았다."], ["infectious", "전염되는[전염성의]", ["virus", "users"], "adj", "Flu is an infectious disease.", "독감은 전염성 질병이다."], ["wound", "상처, 부상; (마음의) 상처, 고통", ["bandaids", "drop"], "n", "The nurse cleaned the wound.", "간호사가 상처를 소독했다."], ["combat", "전투, 싸움", ["sword", "shield-chevron"], "n", "Many soldiers died in combat.", "많은 병사들이 전투에서 죽었다."], ["stand for", "···을 나타내다[의미하다]", ["text-aa", "info"], "phr", "What does \"UN\" stand for?", "\"UN\"은 무엇을 나타내니?"], ["sewage", "하수, 오물", ["pipe", "waves"], "n", "The river was polluted by sewage.", "그 강은 하수로 오염되었다."], ["contagious", "전염되는, 전염성의", ["face-mask", "virus"], "adj", "The disease is highly contagious.", "그 병은 전염성이 매우 강하다."], ["demonstrate", "입증하다", ["flask", "chart-line-up"], "v", "The test demonstrated that the idea works.", "그 실험은 그 아이디어가 효과가 있다는 것을 입증했다."], ["substantial", "상당한", ["stack-plus", "coins"], "adj", "We saw a substantial increase in sales.", "우리는 매출이 상당히 증가하는 것을 보았다."], ["wipe out", "···을 완전히 파괴하다[없애 버리다]", ["broom", "trash"], "phr", "The storm wiped out the village.", "폭풍이 마을을 완전히 파괴했다."], ["convince", "납득시키다, 확신시키다", ["chat-circle-dots", "thumbs-up"], "v", "She convinced me to join the club.", "그녀는 나를 설득해 동아리에 가입시켰다."], ["procedure", "절차[방법]", ["list-numbers"], "n", "Follow the safety procedure carefully.", "안전 절차를 주의 깊게 따라라."], ["extensive", "아주 넓은[많은], 대규모의", ["map-trifold", "arrows-out"], "adj", "The fire caused extensive damage.", "그 화재는 대규모 피해를 입혔다."], ["crucial", "중대한, 결정적인", ["key", "star"], "adj", "Sleep is crucial for good health.", "수면은 건강에 결정적이다."], ["lasting", "지속적인", ["infinity", "hourglass"], "adj", "The war had a lasting effect.", "그 전쟁은 지속적인 영향을 미쳤다."], ["barrier", "장애; 방벽, 국경의 요새", ["barricade"], "n", "Language can be a barrier to communication.", "언어는 의사소통의 장애가 될 수 있다."], ["obvious", "뚜렷한, 명백한; 알기 쉬운", ["eye", "lightbulb-filament"], "adj", "The answer was obvious.", "그 답은 명백했다."], ["alternative", "대안, 선택 가능한 것", ["shuffle", "signpost"], "n", "We need an alternative to plastic bags.", "우리는 비닐봉지의 대안이 필요하다."], ["weird", "기이한, 이상한", ["alien", "question"], "adj", "I heard a weird noise last night.", "나는 어젯밤 이상한 소리를 들었다."], ["on some occasion(s)", "어떤 경우에는", ["calendar-dots", "question"], "phr", "On some occasions, I take the bus.", "어떤 경우에는 나는 버스를 탄다."], ["offend", "기분 상하게[불쾌하게] 하다", ["smiley-angry", "chat-teardrop"], "v", "I didn't mean to offend you.", "너를 기분 상하게 할 생각은 아니었어."], ["offense", "위반; 화나게[불쾌하게] 하는 행위, 모욕", ["gavel", "prohibit"], "n", "Speeding is a traffic offense.", "과속은 교통 위반이다."], ["nod", "(고개를) 끄덕이다, (고개를) 끄덕임", ["smiley", "arrows-vertical"], "v", "She nodded in agreement.", "그녀는 동의하며 고개를 끄덕였다."], ["signify", "의미하다, 나타내다", ["traffic-signal", "info"], "v", "A red light signifies \"stop\".", "빨간불은 \"멈춤\"을 의미한다."], ["vary", "서로[각기] 다르다", ["orange", "sliders"], "v", "Prices vary from store to store.", "가격은 가게마다 다르다."], ["exaggerated", "과장된, 부풀린", ["fish", "arrows-out"], "adj", "His story was exaggerated.", "그의 이야기는 과장되었다."], ["emphasis", "강조", ["highlighter", "exclamation-mark"], "n", "The school puts emphasis on reading.", "그 학교는 독서를 강조한다."], ["tendency", "경향", ["trend-up", "arrow-right"], "n", "He has a tendency to talk too much.", "그는 말을 너무 많이 하는 경향이 있다."], ["pull off the road", "도로를 벗어나다", ["car", "road-horizon"], "phr", "The driver pulled off the road to rest.", "운전자는 쉬려고 도로를 벗어났다."], ["restricted", "제한된", ["prohibit", "lock"], "adj", "Entry is restricted to members.", "입장은 회원으로 제한된다."], ["stiff", "뻣뻣한; (행동·태도가) 딱딱한, 경직된", ["person-simple", "ruler"], "adj", "My legs felt stiff after the run.", "달리기 후 다리가 뻣뻣했다."], ["minimum", "최소한(도), 최저(치)", ["arrow-line-down", "number-one"], "n", "The minimum age is 18.", "최저 나이는 18세이다."], ["excessive", "지나친, 과도한", ["hamburger", "plus"], "adj", "Excessive sugar is bad for you.", "과도한 설탕은 몸에 나쁘다."], ["aggressive", "공격적인", ["smiley-angry", "lightning"], "adj", "The dog became aggressive.", "그 개는 공격적으로 변했다."], ["owing to", "···때문에", ["cloud-rain", "arrow-right"], "phr", "The game was canceled owing to rain.", "경기는 비 때문에 취소되었다."], ["restrained", "자제하는, 차분한", ["person-simple-tai-chi", "hand-palm"], "adj", "He gave a restrained response.", "그는 차분한 반응을 보였다."], ["mere", "단순한; 단지 ···에 불과한", ["dot-outline"], "adj", "He was a mere child then.", "그는 그때 단지 아이에 불과했다."], ["assumption", "추정, 상정", ["chat-circle-dots", "question"], "n", "Your assumption is wrong.", "너의 추정은 틀렸다."], ["take into account", "···을 고려하다", ["scales", "list-checks"], "phr", "Take his age into account.", "그의 나이를 고려해라."], ["hence", "그러므로, 따라서", ["arrow-fat-right", "check"], "adv", "It was late; hence, we left.", "늦었다. 그러므로 우리는 떠났다."], ["artificial intelligence", "인공 지능", ["robot", "brain"], "n", "Artificial intelligence is changing the world.", "인공 지능이 세상을 바꾸고 있다."], ["field trip", "현장 학습", ["bus", "bank"], "n", "We went on a field trip to a museum.", "우리는 박물관으로 현장 학습을 갔다."], ["distinguish from …", "…을 ~와 구별하다", ["cow", "horse"], "phr", "Can you distinguish a crow from a raven?", "까마귀와 큰까마귀를 구별할 수 있니?"], ["distant", "먼, 떨어져 있는", ["binoculars", "mountains"], "adj", "We saw a distant mountain.", "우리는 멀리 있는 산을 보았다."], ["hit the road", "길을 나서다, 여행을 떠나다", ["car-profile", "road-horizon"], "phr", "We hit the road early in the morning.", "우리는 아침 일찍 길을 나섰다."], ["at the wheel", "핸들을 잡고, 운전하여", ["steering-wheel"], "phr", "My father was at the wheel.", "아버지가 운전하고 계셨다."], ["vehicle", "탈 것, 차", ["van", "bus"], "n", "Electric vehicles are becoming popular.", "전기 자동차가 인기를 얻고 있다."], ["phase", "(변화·발달의) 단계[시기/국면]", ["moon", "circle-half"], "n", "The project is in its final phase.", "그 프로젝트는 마지막 단계에 있다."], ["input", "입력하다", ["keyboard", "arrow-line-up"], "v", "Input your password here.", "여기에 비밀번호를 입력해라."], ["automobile", "자동차", ["car-simple"], "n", "He works in the automobile industry.", "그는 자동차 산업에서 일한다."], ["detect", "~을 찾아내다, 검출하다", ["scan", "magnifying-glass"], "v", "The machine can detect metal.", "그 기계는 금속을 검출할 수 있다."], ["distracted", "(정신이) 산만해진", ["device-mobile", "spiral"], "adj", "Distracted drivers cause accidents.", "산만한 운전자는 사고를 일으킨다."], ["interact with …", "···와 상호 작용하다", ["robot", "user"], "phr", "Children interact with each other.", "아이들은 서로 상호 작용한다."], ["interpret", "해석[이해]하다", ["translate", "chat-text"], "v", "How do you interpret this poem?", "이 시를 어떻게 해석하니?"], ["engage … in ~", "···을 ~에 관여[참여]하게 하다", ["users-three", "hand-waving"], "phr", "The leader engaged everyone in the discussion.", "리더는 모두를 토론에 참여시켰다."], ["on behalf of …", "···을 대신[대표]하여", ["microphone-stage", "users"], "phr", "I accepted the prize on behalf of my team.", "나는 팀을 대표하여 상을 받았다."], ["by itself", "저절로; 홀로, 단독으로", ["gear", "arrows-clockwise"], "phr", "The door opened by itself.", "문이 저절로 열렸다."], ["abstract", "추상적인", ["scribble-loop", "palette"], "adj", "Love is an abstract idea.", "사랑은 추상적인 개념이다."], ["acquire", "얻다, 취득하다; 배우다", ["shopping-cart", "hand-arrow-down"], "v", "She acquired a new skill.", "그녀는 새로운 기술을 익혔다."], ["code", "(프로그램을) 코드화하다", ["code", "brackets-curly"], "v", "He coded a simple game.", "그는 간단한 게임을 코드로 만들었다."], ["infinite", "셀 수 없는, 무한한; 막대한", ["infinity"], "adj", "The universe seems infinite.", "우주는 무한해 보인다."], ["carry out …", "···을 수행하다", ["list-checks", "check-square"], "phr", "We carried out the experiment.", "우리는 실험을 수행했다."], ["controversial", "토론의, 논쟁의 여지가 있는", ["chats", "lightning"], "adj", "It is a controversial issue.", "그것은 논쟁의 여지가 있는 문제이다."], ["exceed", "넘어서다; 초과하다", ["speedometer", "arrow-up"], "v", "Don't exceed the speed limit.", "제한 속도를 넘지 마라."], ["claim", "(진실을) 주장하다; 요구하다", ["megaphone"], "v", "He claims that he is innocent.", "그는 자신이 결백하다고 주장한다."], ["overtake", "···을 따라잡다; 앞지르다, 능가하다", ["car", "fast-forward"], "v", "The runner overtook the leader.", "그 주자는 선두를 앞질렀다."], ["independent", "독립된; 별개의", ["bird", "user"], "adj", "She became financially independent.", "그녀는 경제적으로 독립했다."], ["unfold", "(접힌 것을) 펴다; (이야기 등이) 펼쳐지다, 전개되다", ["scroll", "arrows-out-line-horizontal"], "v", "The story unfolds slowly.", "이야기가 천천히 전개된다."], ["legal", "법률의; 합법적인", ["gavel", "scales"], "adj", "They took legal action.", "그들은 법적 조치를 취했다."], ["ethical", "윤리적인", ["scales", "heart"], "adj", "It raises an ethical question.", "그것은 윤리적 질문을 제기한다."], ["devise", "생각해 내다; 고민하다", ["lightbulb", "wrench"], "v", "They devised a new plan.", "그들은 새로운 계획을 생각해 냈다."], ["coexist", "동시에 존재하다, 공존하다", ["cat", "dog"], "v", "Humans and nature must coexist.", "인간과 자연은 공존해야 한다."], ["futurist", "미래 학자", ["binoculars", "chart-line-up"], "n", "Futurists predict changes in society.", "미래 학자들은 사회 변화를 예측한다."], ["pursue", "추구하다; 뒤쫓다", ["butterfly", "person-simple-run"], "v", "She pursued a career in medicine.", "그녀는 의학 분야의 경력을 추구했다."], ["depict", "그리다, 묘사하다", ["paint-brush", "image"], "v", "The painting depicts a busy street.", "그 그림은 분주한 거리를 묘사한다."], ["take over …", "인계받다; 장악하다", ["robot", "arrow-elbow-right"], "phr", "Machines may take over many jobs.", "기계가 많은 일자리를 장악할지도 모른다."], ["replace", "대신하다, 대체하다; 교체하다; (제자리에) 돌려놓다", ["lightbulb", "arrows-clockwise"], "v", "Robots may replace some workers.", "로봇이 일부 노동자를 대체할 수도 있다."], ["occupation", "직업, 업무", ["briefcase", "identification-badge"], "n", "What is your occupation?", "당신의 직업은 무엇입니까?"], ["involve", "수반하다, 포함하다", ["package", "plus-circle"], "v", "The job involves a lot of travel.", "그 일은 많은 출장을 수반한다."], ["repetitive", "반복적인, 되풀이하는", ["repeat"], "adj", "Factory work can be repetitive.", "공장 일은 반복적일 수 있다."], ["mechanical", "기계로 작동되는; 기계적인, 자동적인", ["gear-six", "robot"], "adj", "He gave a mechanical answer.", "그는 기계적인 대답을 했다."], ["inevitable", "피할 수 없는, 당연한", ["sun-horizon", "arrow-fat-right"], "adj", "Change is inevitable.", "변화는 피할 수 없다."], ["when it comes to …", "···에 관한 한", ["pizza", "hand-pointing"], "phr", "When it comes to math, she is the best.", "수학에 관한 한, 그녀가 최고다."], ["striking", "눈에 띄는, 두드러진", ["lightning", "eye"], "adj", "There is a striking difference between them.", "그들 사이에는 두드러진 차이가 있다."], ["promising", "전도유망한, 앞날이 창창한", ["plant", "star"], "adj", "He is a promising young player.", "그는 전도유망한 젊은 선수이다."], ["the majority of …", "···의 다수", ["users-four", "check"], "phr", "The majority of students agreed.", "학생들의 다수가 동의했다."], ["outdated", "구식의, 시대에 뒤진", ["cassette-tape", "clock-counter-clockwise"], "adj", "This map is outdated.", "이 지도는 구식이다."], ["stay[keep] up to date", "최신 정보를 (계속) 알다", ["newspaper", "arrows-clockwise"], "phr", "I read the news to stay up to date.", "나는 최신 정보를 알기 위해 뉴스를 읽는다."], ["quote", "인용구[문]", ["quotes"], "n", "I like this quote from Einstein.", "나는 아인슈타인의 이 인용구를 좋아한다."], ["forecast", "예상[예측]하다", ["cloud-sun", "chart-line-up"], "v", "Experts forecast slow growth.", "전문가들은 느린 성장을 예측한다."], ["outsourcing", "아웃소싱", ["globe", "briefcase"], "n", "Outsourcing can reduce costs.", "아웃소싱은 비용을 줄일 수 있다."], ["lead to …", "(어떤 결과에) 이르다, 초래하다", ["flow-arrow"], "phr", "Stress can lead to illness.", "스트레스는 질병을 초래할 수 있다."], ["term", "용어", ["tag", "book"], "n", "\"Gene\" is a scientific term.", "\"유전자\"는 과학 용어이다."], ["coin", "(새로운 낱말을) 만들다", ["coin", "pen-nib"], "v", "Who coined the word \"robot\"?", "누가 \"로봇\"이라는 단어를 만들었니?"], ["get on one's feet", "일어서다, 기립하다", ["person-arms-spread", "arrow-up"], "phr", "The crowd got on their feet and cheered.", "관중은 일어서서 환호했다."], ["monument", "기념물; 건축물", ["bank"], "n", "The monument honors the soldiers.", "그 기념물은 병사들을 기린다."], ["magnificent", "장엄한, 훌륭한", ["castle-turret", "sparkle"], "adj", "The palace was magnificent.", "그 궁전은 장엄했다."], ["sculptor", "조각가", ["user", "hammer"], "n", "Rodin was a famous sculptor.", "로댕은 유명한 조각가였다."], ["await", "기다리다", ["hourglass-medium", "user"], "v", "We are awaiting your reply.", "우리는 당신의 답장을 기다리고 있다."], ["assembly", "의회, 입법 기관; 집회, 모임; 조립(품)", ["users-three", "lectern"], "n", "The National Assembly passed the law.", "국회가 그 법을 통과시켰다."], ["fund", "자금을 대다", ["piggy-bank", "building"], "v", "The city funded the new library.", "시가 새 도서관에 자금을 댔다."], ["fundraising", "모금", ["tip-jar", "coins"], "n", "The school held a fundraising event.", "학교는 모금 행사를 열었다."], ["donor", "기증자", ["hand-heart", "drop"], "n", "The donor gave blood.", "기증자가 헌혈을 했다."], ["donation", "기부(금), 기증(품)", ["gift", "hand-coins"], "n", "They made a donation to the hospital.", "그들은 병원에 기부를 했다."], ["comprehensive", "이해력 있는; 포괄적인, 넓은", ["globe", "list-bullets"], "adj", "This is a comprehensive guide.", "이것은 포괄적인 안내서이다."], ["encyclopedia", "백과사전", ["books", "text-aa"], "n", "Look it up in an encyclopedia.", "백과사전에서 그것을 찾아봐라."], ["accelerate", "가속화하다", ["rocket", "fast-forward"], "v", "The car accelerated quickly.", "그 차는 빠르게 가속했다."], ["permission", "허락, 허가", ["seal-check", "hand-pointing"], "n", "You need permission to leave.", "떠나려면 허락이 필요하다."], ["collaboration", "협동, 합작", ["puzzle-piece", "handshake"], "n", "The film was a collaboration between two studios.", "그 영화는 두 스튜디오의 합작이었다."], ["swell", "부풀다; 증가하다", ["balloon", "trend-up"], "v", "The number of visitors swelled.", "방문객 수가 증가했다."], ["compile", "(책을) 편찬하다; (자료를) 수집하다", ["book-bookmark", "files"], "v", "She compiled a list of names.", "그녀는 이름 목록을 수집했다."], ["observe", "관찰하다, 지켜보다; 지키다, 준수하다", ["binoculars", "bird"], "v", "We observed the birds.", "우리는 새들을 관찰했다."], ["citizen", "국민; 시민, 주민", ["user-circle", "city"], "n", "Every citizen has the right to vote.", "모든 시민은 투표할 권리가 있다."], ["database", "데이터베이스", ["database"], "n", "The library has an online database.", "도서관에는 온라인 데이터베이스가 있다."], ["accumulate", "모으다, 쌓아 올리다", ["coins", "stack"], "v", "Dust accumulates quickly.", "먼지는 빠르게 쌓인다."], ["respond to …", "···에 반응하다", ["bell-ringing", "person-simple-run"], "phr", "He responded to my email quickly.", "그는 내 이메일에 빨리 반응했다."], ["regionally", "국지적으로, 지역적으로", ["map-pin-simple-area"], "adv", "The food is popular regionally.", "그 음식은 지역적으로 인기가 있다."], ["enhance", "높이다, 강화하다", ["sun", "trend-up"], "v", "Music can enhance your mood.", "음악은 기분을 높여 줄 수 있다."], ["platform", "(기차역의) 플랫폼; 강단; 플랫폼(사용 기반이 되는 컴퓨터 시스템·소프트웨어)", ["train", "device-tablet"], "n", "Wait on platform 3.", "3번 플랫폼에서 기다려라."], ["take advantage of …", "···을 이용하다", ["person-simple-swim", "waves"], "phr", "Take advantage of this chance.", "이 기회를 이용해라."], ["combined", "결합된, 합동의", ["link", "plus"], "adj", "Our combined efforts made it work.", "우리의 결합된 노력이 그것을 성공시켰다."], ["mass", "덩어리; 일반 대중", ["users-four", "globe"], "n", "The show is popular with the masses.", "그 프로그램은 대중에게 인기가 있다."], ["collective", "집단의, 단체의", ["users-three", "puzzle-piece"], "adj", "It was a collective decision.", "그것은 집단의 결정이었다."], ["disabled", "장애가 있는", ["wheelchair-motion"], "adj", "The building is open to disabled people.", "그 건물은 장애가 있는 사람들에게 열려 있다."], ["breeze", "산들바람", ["wind", "leaf"], "n", "A cool breeze came from the sea.", "바다에서 시원한 산들바람이 불어왔다."], ["spectator", "관중", ["users-four", "eye"], "n", "Thousands of spectators watched the game.", "수천 명의 관중이 경기를 지켜보았다."], ["dash", "돌진; 단거리 경주", ["person-simple-run", "lightning"], "n", "He won the 100-meter dash.", "그는 100미터 단거리 경주에서 이겼다."], ["contestant", "참가자", ["identification-badge", "user"], "n", "Each contestant sang one song.", "각 참가자는 한 곡씩 불렀다."], ["blast", "폭발시키다; 크게 울리다", ["speaker-high", "bomb"], "v", "Music blasted from the speakers.", "스피커에서 음악이 크게 울렸다."], ["vigorously", "필사적으로; 힘차게", ["barbell", "lightning"], "adv", "He shook his head vigorously.", "그는 고개를 힘차게 저었다."], ["take the lead", "선두에 서다", ["medal", "person-simple-run"], "phr", "She took the lead in the race.", "그녀는 경주에서 선두에 섰다."], ["stumble", "비틀거리다; 넘어질 뻔하다", ["person-simple-walk", "warning"], "v", "He stumbled on a rock.", "그는 돌에 걸려 비틀거렸다."], ["bleed", "피가 나다", ["drop"], "v", "My nose is bleeding.", "코피가 나고 있다."], ["distressed", "괴로워하는", ["smiley-nervous", "cloud-rain"], "adj", "She looked distressed.", "그녀는 괴로워 보였다."], ["sympathy", "동정, 연민; 지지", ["hand-heart", "heart"], "n", "I have great sympathy for them.", "나는 그들에게 깊은 동정을 느낀다."], ["take … by surprise", "···을 깜짝 놀라게 하다", ["confetti", "exclamation-mark"], "phr", "The news took me by surprise.", "그 소식은 나를 깜짝 놀라게 했다."], ["fellow", "동료", ["users", "handshake"], "n", "He is a fellow student.", "그는 같은 반 동료 학생이다."], ["autism", "자폐증", ["puzzle-piece", "brain"], "n", "He was diagnosed with autism as a child.", "그는 어릴 때 자폐증 진단을 받았다."], ["brush … off ~", "~에게서 ···을 털어주다", ["broom", "t-shirt"], "phr", "She brushed the snow off his coat.", "그녀는 그의 코트에서 눈을 털어 주었다."], ["pat", "쓰다듬다, 토닥거리다", ["hand-palm", "paw-print"], "v", "He patted the dog on the head.", "그는 개의 머리를 쓰다듬었다."], ["Down syndrome", "다운 증후군", ["sock", "heart"], "n", "People with Down syndrome can live full lives.", "다운 증후군이 있는 사람들도 충실한 삶을 살 수 있다."], ["chin up", "기운내", ["smiley", "arrow-fat-up"], "phr", "Chin up! You'll do better next time.", "기운 내! 다음엔 더 잘할 거야."], ["competitor", "경쟁자", ["boxing-glove", "users"], "n", "He beat all his competitors.", "그는 모든 경쟁자를 이겼다."], ["burst into …", "갑자기 ···하기 시작하다", ["smiley-wink", "lightning"], "phr", "She burst into tears.", "그녀는 갑자기 울음을 터뜨렸다."], ["applause", "박수갈채, 칭찬", ["hands-clapping"], "n", "The audience burst into applause.", "관객들은 박수갈채를 터뜨렸다."], ["be moved to tears", "감동해서 울다", ["drop-half", "heart"], "phr", "We were moved to tears by the story.", "우리는 그 이야기에 감동해서 울었다."], ["coexistence", "공존", ["globe-hemisphere-east", "handshake"], "n", "Peaceful coexistence is important.", "평화로운 공존은 중요하다."]];
 const POS={n:['n.','명사'],v:['v.','동사'],adj:['adj.','형용사'],adv:['adv.','부사'],prep:['prep.','전치사'],phr:['phr.','숙어']};
 const W=RAW.map((r,i)=>({id:i,w:r[0],m:r[1],ic:r[2],pos:r[3],en:r[4],ko:r[5]}));
+const BY=Object.fromEntries(W.map(x=>[x.w.toLowerCase(),x]));
 const PER=30,NDAY=Math.ceil(W.length/PER);
 const store={get(k,d){try{const v=localStorage.getItem('pv362b_'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('pv362b_'+k,JSON.stringify(v))}catch(e){}}};
-let status=store.get('status',{}),memo=store.get('memo',{});
-let S={tab:'study',day:store.get('day',0),hide:store.get('hide','mean'),onlyU:false,idx:0,quiz:null,q:''};
+let status=store.get('status',{}),memo=store.get('memo',{}),myMiss=store.get('miss',{});
+try{localStorage.removeItem('pv362b_uid');localStorage.removeItem('pv362b_nick')}catch(e){}   /* 예전 버전이 만든 기기 번호는 지워요 */
+let S={tab:'study',day:store.get('day',0),hide:store.get('hide','mean'),onlyU:false,idx:0,quiz:null,q:'',rankBy:'all'};
 let revealed=false;
 const $=s=>document.querySelector(s);
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const ico=(n,cls='')=>`<svg class="${cls}" viewBox="0 0 256 256" aria-hidden="true"><use href="#p-${n}"/></svg>`;
 const ui=n=>`<svg class="i" viewBox="0 0 256 256" aria-hidden="true"><use href="#u-${n}"/></svg>`;
 
-/* 예문 속 표제어 위치 찾기 */
+/* ---------- 공유 서버(구글 시트) ---------- */
+const SV={on:!!API_URL,loaded:false,error:false,stats:{},tips:[],requests:[]};
+let queue=store.get('queue',[]);
+let lastLoad=0;
+async function loadShared(){
+  if(!SV.on)return;lastLoad=Date.now();
+  try{const r=await fetch(API_URL+'?t='+Date.now());const d=await r.json();
+    SV.stats=d.stats||{};SV.tips=d.tips||[];SV.requests=d.requests||[];SV.comm=d.community||{};SV.loaded=true;SV.error=false;
+  }catch(e){SV.error=true}
+  if(['rank','tips','board','study','class'].includes(S.tab))render();
+}
+function send(obj){
+  if(!SV.on)return Promise.resolve(false);
+  return fetch(API_URL,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(obj)}).then(()=>true).catch(()=>false);
+}
+function logAnswer(x,ok,mode){
+  if(!ok)myMiss[x.id]=(myMiss[x.id]||0)+1;store.set('miss',myMiss);
+  if(!SV.on)return;
+  queue.push({id:x.id,word:x.w,ok:ok?1:0,mode});store.set('queue',queue);
+  if(queue.length>=5)flush();
+}
+function flush(){if(!SV.on||!queue.length)return;const items=queue.splice(0,50);store.set('queue',queue);send({type:'answers',items})}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')flush()});
+setInterval(flush,30000);
+
+/* ---------- 예문 표시 ---------- */
 const STOP=new Set(['one','one’s',"one's",'to','the','of','a','an','on','in','up','by','as','into','with','at','for','from','off','down','out','over','its','it','be','is','v','ing','v-ing','to-v']);
 function keyTokens(w){return w.toLowerCase().replace(/\(.*?\)|\[.*?\]|[…~·.]/g,' ').split(/\s+/).filter(t=>t&&!STOP.has(t)&&/[a-z]/.test(t))}
 function stem(t){if(t.length<=4)return t;return t.replace(/(ies|ied|ing|ed|es|s|e|y)$/,'').slice(0,Math.max(4,t.length-3))}
-function markSentence(x){
-  const toks=keyTokens(x.w).map(stem);
-  return esc(x.en).replace(/[A-Za-z'’-]+/g,m=>{const l=m.toLowerCase();return toks.some(s=>l.startsWith(s))?`<mark>${m}</mark>`:m});
-}
-function blankSentence(x){
-  const toks=keyTokens(x.w).map(stem);let hit=0;
+function markSentence(x){const toks=keyTokens(x.w).map(stem);return esc(x.en).replace(/[A-Za-z'’-]+/g,m=>{const l=m.toLowerCase();return toks.some(s=>l.startsWith(s))?`<mark>${m}</mark>`:m})}
+function blankSentence(x){const toks=keyTokens(x.w).map(stem);let hit=0;
   const out=esc(x.en).replace(/[A-Za-z'’-]+/g,m=>{const l=m.toLowerCase();if(toks.some(s=>l.startsWith(s))){hit++;return '<span class="gap"></span>'}return m});
-  return hit?out.replace(/(<span class="gap"><\/span>)(\s*<span class="gap"><\/span>)+/g,'$1'):null;
-}
+  return hit?out.replace(/(<span class="gap"><\/span>)(\s*<span class="gap"><\/span>)+/g,'$1'):null}
 
-function rangeOf(d){if(d==='all')return W;if(d==='review')return W.filter(x=>status[x.id]==='u');return W.slice(d*PER,(d+1)*PER)}
-function pool(){let r=rangeOf(S.day);if(S.onlyU&&S.day!=='review')r=r.filter(x=>status[x.id]!=='k');return r}
-function save(){store.set('status',status);store.set('day',S.day);store.set('hide',S.hide);progress()}
+/* ---------- 범위 ---------- */
+function hardList(){
+  const src=SV.loaded&&S.rankBy==='all'?Object.entries(SV.stats).map(([id,[t,w]])=>({id:+id,t,w})):Object.entries(myMiss).map(([id,w])=>({id:+id,t:w,w}));
+  return src.filter(r=>W[r.id]&&r.w>0&&!expHide(r.id)).sort((a,b)=>b.w-a.w||(b.w/b.t)-(a.w/a.t)).slice(0,30);
+}
+function rangeOf(d){let r;if(d==='all')r=W;else if(d==='review')r=W.filter(x=>status[x.id]==='u');else if(d==='hard')r=hardList().map(r=>W[r.id]);else r=W.slice(d*PER,(d+1)*PER);return r.filter(x=>!expHide(x.id))}
+function pool(){let r=rangeOf(S.day);if(S.onlyU&&!['review','hard'].includes(S.day))r=r.filter(x=>status[x.id]!=='k');return r}
+function save(){store.set('status',status);store.set('day',S.day==='hard'?0:S.day);store.set('hide',S.hide);progress()}
 function progress(){const k=Object.values(status).filter(v=>v==='k').length;$('#pk').textContent=k;$('#pb').style.width=(k/W.length*100)+'%'}
-function speak(t){try{const u=new SpeechSynthesisUtterance(t.replace(/[~…·\[\]]/g,' ').replace(/\s+/g,' '));u.lang='en-US';u.rate=.88;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function speak(t){try{const u=new SpeechSynthesisUtterance(t.replace(/[~…·\[\]]/g,' ').replace(/\s+/g,' '));u.lang='en-US';u.rate=(typeof A11Y!=='undefined'&&A11Y.slow)?.62:.88;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
 function art(x,num){const [a,b]=x.ic;return `<div class="art">${num?`<span class="no">${num}</span>`:''}<div class="main">${ico(a)}</div>${b?`<div class="sub">${ico(b)}</div>`:''}</div>`}
+function fmtDate(s){try{const d=new Date(s);return `${d.getMonth()+1}월 ${d.getDate()}일`}catch(e){return ''}}
+function goWord(id){S.day=Math.floor(id/PER);S.onlyU=false;S.idx=id-S.day*PER;S.tab='study';revealed=true;save();setTabs();render();revealed=false;window.scrollTo({top:0})}
 
 function renderDays(){
+  const show=['study','quiz','list'].includes(S.tab);$('#days').hidden=!show;if(!show)return;
   let h='';
   for(let d=0;d<NDAY;d++){const r=rangeOf(d),k=r.filter(x=>status[x.id]==='k').length;h+=`<button class="chip" aria-pressed="${S.day===d}" data-day="${d}">Day ${d+1}<span class="n">${k}/${r.length}</span></button>`}
   h+=`<button class="chip" aria-pressed="${S.day==='review'}" data-day="review">다시 볼 단어<span class="n">${W.filter(x=>status[x.id]==='u').length}</span></button>`;
+  if(S.day==='hard')h+=`<button class="chip" aria-pressed="true" data-day="hard">많이 틀린 단어<span class="n">${rangeOf('hard').length}</span></button>`;
   h+=`<button class="chip" aria-pressed="${S.day==='all'}" data-day="all">전체<span class="n">${W.length}</span></button>`;
   $('#days').innerHTML=h;
 }
-$('#days').addEventListener('click',e=>{const b=e.target.closest('[data-day]');if(!b)return;const v=b.dataset.day;S.day=(v==='all'||v==='review')?v:+v;S.idx=0;S.quiz=null;revealed=false;save();render()});
-document.querySelector('nav.tabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(!b)return;S.tab=b.dataset.tab;S.quiz=null;setTabs();render()});
+$('#days').addEventListener('click',e=>{const b=e.target.closest('[data-day]');if(!b)return;const v=b.dataset.day;S.day=['all','review','hard'].includes(v)?v:+v;S.idx=0;S.quiz=null;revealed=false;save();render()});
+document.querySelector('nav.tabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(!b)return;S.tab=b.dataset.tab;S.quiz=null;setTabs();render();if(['rank','tips','board','class'].includes(S.tab)&&Date.now()-lastLoad>20000){flush();setTimeout(loadShared,1500)}});
 function setTabs(){document.querySelectorAll('nav.tabs button').forEach(x=>x.setAttribute('aria-selected',x.dataset.tab===S.tab))}
 
-/* 단어 카드 */
+/* ---------- 단어 카드 ---------- */
+function wordTips(id){return SV.tips.filter(t=>t.id===id).slice(-3).reverse()}
 function renderStudy(){
   const P=pool(),v=$('#view');
   const opts=`<div class="opts"><div class="seg" role="group" aria-label="가리기">
     <button data-hide="mean" aria-pressed="${S.hide==='mean'}">뜻 가리기</button>
     <button data-hide="word" aria-pressed="${S.hide==='word'}">단어 가리기</button>
     <button data-hide="none" aria-pressed="${S.hide==='none'}">모두 보기</button></div>
-    ${S.day!=='review'?`<label class="tog"><input type="checkbox" id="onlyU" ${S.onlyU?'checked':''}> 외운 단어 숨기기</label>`:''}</div>`;
-  if(!P.length){v.innerHTML=`<div style="display:flex;flex-direction:column;gap:14px">${opts}<div class="empty">${S.day==='review'?'다시 볼 단어가 없어요. 카드에서 "몰라요"를 누르거나 퀴즈에서 틀린 단어가 여기에 모여요.':'이 범위의 단어를 모두 외웠어요. "외운 단어 숨기기"를 끄면 다시 볼 수 있어요.'}</div></div>`;bindOpts();return}
+    ${['review','hard'].includes(S.day)?'':`<label class="tog"><input type="checkbox" id="onlyU" ${S.onlyU?'checked':''}> 외운 단어 숨기기</label>`}</div>`;
+  if(!P.length){v.innerHTML=`<div style="display:flex;flex-direction:column;gap:14px">${opts}<div class="empty">${S.day==='review'?'다시 볼 단어가 없어요. 카드에서 "몰라요"를 누르거나 퀴즈에서 틀린 단어가 여기에 모여요.':S.day==='hard'?'아직 틀린 기록이 없어요.':'이 범위의 단어를 모두 외웠어요. "외운 단어 숨기기"를 끄면 다시 볼 수 있어요.'}</div></div>`;bindOpts();return}
   if(S.idx>=P.length)S.idx=0;
   const x=P[S.idx],st=status[x.id],hw=S.hide==='word'&&!revealed,hm=S.hide==='mean'&&!revealed,p=POS[x.pos];
+  const st2=SV.stats[x.id];const ct=wordTips(x.id);
   v.innerHTML=`<div style="display:flex;flex-direction:column;gap:14px">${opts}
   <article class="entry fade" id="card" tabindex="0" aria-label="눌러서 정답 확인">
     ${art(x,`${String(x.id+1).padStart(3,'0')} · ${S.idx+1}/${P.length}`)}
@@ -597,14 +822,12 @@ function renderStudy(){
         ${st?`<span class="st ${st}">${st==='k'?'외웠어요':'다시 보기'}</span>`:''}
       </div>
       ${hm?`<div class="cover">그림과 예문을 보고 뜻을 떠올린 뒤 카드를 눌러 확인하세요</div>`:`<div class="def">${esc(x.m)}</div>`}
-      <div class="ex">
-        <div class="en">${hw?blankSentence(x)||esc(x.en):markSentence(x)}</div>
-        ${hm?'':`<div class="ko">${esc(x.ko)}</div>`}
-      </div>
+      <div class="ex"><div class="en">${hw?blankSentence(x)||esc(x.en):markSentence(x)}</div>${hm?'':`<div class="ko">${esc(x.ko)}</div>`}</div>
       ${hw?`<div class="cover">빈칸과 그림에 맞는 단어를 떠올린 뒤 카드를 눌러 확인하세요</div>`:''}
       <div class="tools">
         <button class="sbtn" id="sw">${ui('speak')} 단어 듣기</button>
         <button class="sbtn" id="se">${ui('speak')} 예문 듣기</button>
+        ${st2&&st2[0]>=3?`<span class="sbtn" style="cursor:default;color:var(--bad)">친구들 오답률 ${Math.round(st2[1]/st2[0]*100)}%</span>`:''}
       </div>
     </div>
   </article>
@@ -615,7 +838,10 @@ function renderStudy(){
     <button class="b" id="next" aria-label="다음 단어">${ui('next')}</button>
   </div>
   <div class="memo"><label for="memoBox">나만의 연상 메모</label>
-  <textarea id="memoBox" placeholder="그림을 보고 떠오른 장면이나 소리 연상을 적어 두면 더 오래 기억나요">${esc(memo[x.id]||'')}</textarea></div>
+  <textarea id="memoBox" maxlength="300" placeholder="그림을 보고 떠오른 장면이나 소리 연상을 적어 두면 더 오래 기억나요">${esc(memo[x.id]||'')}</textarea>
+  ${SV.on?`<div class="memo-row"><button class="small-b" id="shareTip">이 메모를 친구들과 팁으로 공유</button><span class="msg" id="tipMsg"></span></div>`:''}
+  ${ct.length&&!(hm||hw)?`<div class="ctips"><h3 style="font-size:.85rem;color:var(--muted);font-weight:500;margin:6px 0 0">친구들의 암기 팁</h3>${ct.map(t=>`<div class="t">${esc(t.text)} ${likeBtn(t)}</div>`).join('')}</div>`:''}
+  </div>
   <p class="hint">키보드: Space 뒤집기 · ← → 이동 · 1 몰라요 · 2 외웠어요</p></div>`;
   bindOpts();
   $('#card').onclick=e=>{if(e.target.closest('.sbtn'))return;revealed=!revealed;renderStudy()};
@@ -623,84 +849,639 @@ function renderStudy(){
   $('#prev').onclick=()=>move(-1);$('#next').onclick=()=>move(1);
   $('#no').onclick=()=>mark('u');$('#yes').onclick=()=>mark('k');
   $('#memoBox').oninput=e=>{const t=e.target.value;if(t.trim())memo[x.id]=t;else delete memo[x.id];store.set('memo',memo)};
+  const sh=$('#shareTip');if(sh)sh.onclick=()=>shareTip(x,$('#memoBox').value,$('#tipMsg'));
+}
+let lastPost=0;
+async function shareTip(x,text,msg){
+  text=(text||'').trim();
+  if(text.length<4){msg.className='msg err';msg.textContent='팁을 4글자 이상 적어 주세요.';return}
+  if(Date.now()-lastPost<8000){msg.className='msg err';msg.textContent='잠시 후 다시 올려 주세요.';return}
+  lastPost=Date.now();
+  await send({type:'tip',id:x?x.id:'',word:x?x.w:'',text});
+  SV.tips.push({id:x?x.id:null,word:x?x.w:'',text,time:new Date().toISOString()});
+  msg.className='msg ok';msg.textContent='공유했어요. 친구들 화면에는 잠시 뒤 나타나요.';
 }
 function bindOpts(){document.querySelectorAll('[data-hide]').forEach(b=>b.onclick=()=>{S.hide=b.dataset.hide;revealed=false;save();renderStudy()});const o=$('#onlyU');if(o)o.onchange=()=>{S.onlyU=o.checked;S.idx=0;renderStudy()}}
 function move(d){const n=pool().length;if(!n)return;S.idx=(S.idx+d+n)%n;revealed=false;renderStudy()}
-function mark(v){const P=pool(),x=P[S.idx];if(!x)return;status[x.id]=v;save();renderDays();revealed=false;
+function mark(v){const P=pool(),x=P[S.idx];if(!x)return;status[x.id]=v;logAnswer(x,v==='k','card');save();renderDays();revealed=false;
   const gone=(S.onlyU&&v==='k')||(S.day==='review'&&v==='k');if(!gone)S.idx=(S.idx+1)%P.length;renderStudy()}
-document.addEventListener('keydown',e=>{if(S.tab!=='study'||e.target.matches('textarea,input'))return;
+document.addEventListener('keydown',e=>{if(S.tab!=='study'||e.target.matches('textarea,input,select'))return;
   if(e.key===' '){e.preventDefault();revealed=!revealed;renderStudy()}else if(e.key==='ArrowRight')move(1);else if(e.key==='ArrowLeft')move(-1);else if(e.key==='1')mark('u');else if(e.key==='2')mark('k')});
 
-/* 퀴즈 */
+/* ---------- 퀴즈 ---------- */
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
-const MODES=[
-  ['p2w','image','그림 → 단어','그림과 뜻 없이 단어 고르기'],
-  ['w2p','eye','단어 → 그림','단어를 보고 맞는 그림 고르기'],
-  ['blank','text-aa','예문 빈칸','예문 속 빈칸에 들어갈 단어'],
-  ['k2w','translate','뜻 → 단어','한국어 뜻을 보고 영어 고르기']];
+const MODES=[['p2w','image','그림 → 단어','그림만 보고 단어 고르기'],['w2p','eye','단어 → 그림','단어를 보고 맞는 그림 고르기'],['blank','text-aa','예문 빈칸','예문 속 빈칸에 들어갈 단어'],['k2w','translate','뜻 → 단어','한국어 뜻을 보고 영어 고르기']];
 function newQuiz(type){
   let P=rangeOf(S.day);if(type==='blank')P=P.filter(x=>blankSentence(x));if(!P.length)return null;
-  const qs=shuffle(P).slice(0,Math.min(10,P.length)).map(x=>{
-    const near=W.filter(y=>y.id!==x.id&&Math.abs(y.id-x.id)<45&&y.ic[0]!==x.ic[0]);
-    return{x,ops:shuffle([x,...shuffle(near).slice(0,3)])};
-  });
+  const qs=shuffle(P).slice(0,Math.min(10,P.length)).map(x=>{const near=W.filter(y=>y.id!==x.id&&Math.abs(y.id-x.id)<45&&y.ic[0]!==x.ic[0]);return{x,ops:shuffle([x,...shuffle(near).slice(0,3)])}});
   return{qs,i:0,score:0,wrong:[],done:false,type};
 }
 function pair(x){const[a,b]=x.ic;return `<div class="pair"><div class="main">${ico(a)}</div>${b?`<div class="sub">${ico(b)}</div>`:''}</div>`}
 function renderQuiz(){
   const v=$('#view');
-  if(!S.quiz){
-    const n=rangeOf(S.day).length;
-    v.innerHTML=`<div class="qcard"><div class="start"><h2>${n?`이 범위에서 ${Math.min(10,n)}문제`:'다시 볼 단어가 없어요'}</h2>
+  if(!S.quiz){const n=rangeOf(S.day).length;
+    v.innerHTML=`<div class="qcard"><div class="start"><h2>${n?`${S.day==='hard'?'많이 틀린 단어에서 ':'이 범위에서 '}${Math.min(10,n)}문제`:'풀 수 있는 단어가 없어요'}</h2>
     ${n?`<p class="hint" style="margin:0">틀린 단어는 자동으로 "다시 볼 단어"에 들어가요</p><div class="modes">${MODES.map(m=>`<button class="mode" data-q="${m[0]}">${ico(m[1])}<b>${m[2]}</b><span>${m[3]}</span></button>`).join('')}</div>`:''}</div></div>`;
-    v.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{S.quiz=newQuiz(b.dataset.q);renderQuiz()});return;
-  }
+    v.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{S.quiz=newQuiz(b.dataset.q);renderQuiz()});return}
   const Q=S.quiz;
-  if(Q.i>=Q.qs.length){
-    const r=Q.score/Q.qs.length;
+  if(Q.i>=Q.qs.length){flush();const r=Q.score/Q.qs.length;
     v.innerHTML=`<div class="qcard"><div class="start"><div class="score">${Q.score}<span style="font-size:1.6rem;color:var(--muted)"> / ${Q.qs.length}</span></div>
     <h2 style="font-size:1.2rem">${r===1?'모두 맞혔어요':r>=.7?'잘했어요. 틀린 단어만 다시 확인해 보세요':'"다시 볼 단어"로 한 번 더 복습해 보세요'}</h2>
-    ${Q.wrong.length?`<div class="list" style="width:100%;text-align:left">${Q.wrong.map(x=>`<div class="li" style="cursor:default"><div class="ic">${ico(x.ic[0])}</div><div style="min-width:0"><div class="w">${esc(x.w)}<i>${POS[x.pos][0]}</i></div><div class="m">${esc(x.m)}</div></div><span></span></div>`).join('')}</div>`:''}
+    ${Q.wrong.length?`<div class="list" style="width:100%;text-align:left">${Q.wrong.map(x=>`<div class="li" data-go="${x.id}"><div class="ic">${ico(x.ic[0])}</div><div style="min-width:0"><div class="w">${esc(x.w)}<i>${POS[x.pos][0]}</i></div><div class="m">${esc(x.m)}</div></div><span></span></div>`).join('')}</div>`:''}
     <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center"><button class="b yes" id="again">다시 풀기</button><button class="b" id="back">유형 고르기</button></div></div></div>`;
-    $('#again').onclick=()=>{S.quiz=newQuiz(Q.type);renderQuiz()};$('#back').onclick=()=>{S.quiz=null;renderQuiz()};return;
-  }
-  const q=Q.qs[Q.i],x=q.x,t=Q.type;
-  let prompt;
+    v.querySelectorAll('[data-go]').forEach(el=>el.onclick=()=>goWord(+el.dataset.go));
+    $('#again').onclick=()=>{S.quiz=newQuiz(Q.type);renderQuiz()};$('#back').onclick=()=>{S.quiz=null;renderQuiz()};return}
+  const q=Q.qs[Q.i],x=q.x,t=Q.type;let prompt;
   if(t==='p2w')prompt=`<div class="qart">${pair(x)}</div>`;
   else if(t==='w2p')prompt=`<div class="qtext"><div class="big">${esc(x.w)}</div><div class="sub2">이 단어에 맞는 그림은?</div></div>`;
   else if(t==='blank')prompt=`<div class="qtext"><div class="sent">${blankSentence(x)}</div><div class="sub2">${esc(x.ko)}</div></div>`;
   else prompt=`<div class="qtext"><div class="big" style="font-family:var(--f-body);font-size:1.5rem">${esc(x.m)}</div><div class="sub2">${POS[x.pos][1]}</div></div>`;
-  v.innerHTML=`<div style="display:flex;flex-direction:column;gap:14px">
-    <div class="qtop"><span>Q ${Q.i+1} / ${Q.qs.length}</span><span>정답 ${Q.score}</span></div>
+  v.innerHTML=`<div style="display:flex;flex-direction:column;gap:14px"><div class="qtop"><span>Q ${Q.i+1} / ${Q.qs.length}</span><span>정답 ${Q.score}</span></div>
     <div class="qcard fade">${prompt}</div>
     <div class="choices">${q.ops.map((o,k)=>`<button class="ch ${t==='w2p'?'pic':''}" data-k="${k}">${t==='w2p'?pair(o):esc(o.w)}</button>`).join('')}</div>
-    <div class="fb" id="fb"></div>
-    <button class="b yes" id="nx" hidden>다음 문제 ${ui('next')}</button></div>`;
+    <div class="fb" id="fb"></div><button class="b yes" id="nx" hidden>다음 문제 ${ui('next')}</button></div>`;
   v.querySelectorAll('.ch').forEach(b=>b.onclick=()=>{
-    if(Q.done)return;Q.done=true;
-    const o=q.ops[+b.dataset.k],ok=o.id===x.id;
+    if(Q.done)return;Q.done=true;const o=q.ops[+b.dataset.k],ok=o.id===x.id;
     v.querySelectorAll('.ch').forEach(c=>{if(q.ops[+c.dataset.k].id===x.id)c.classList.add('ok')});
     if(ok)Q.score++;else{b.classList.add('ng');Q.wrong.push(x);status[x.id]='u';save();renderDays()}
+    logAnswer(x,ok,t);
     $('#fb').innerHTML=`${ok?'정답입니다.':'아쉬워요.'} <span class="w">${esc(x.w)}</span> ${esc(x.m)}<br><span class="hint">${esc(x.en)}</span>`;
-    speak(x.w);
-    const n=$('#nx');n.hidden=false;n.focus();n.onclick=()=>{Q.i++;Q.done=false;renderQuiz()};
+    speak(x.w);const n=$('#nx');n.hidden=false;n.focus();n.onclick=()=>{Q.i++;Q.done=false;renderQuiz()};
   });
 }
 
-/* 목록 */
-function renderList(){
-  const v=$('#view');
-  v.innerHTML=`<div style="display:flex;flex-direction:column;gap:12px"><input class="search" id="q" type="search" placeholder="영어 단어나 뜻으로 검색 (예: 공존, launch)" value="${esc(S.q)}"><div class="list" id="lst"></div></div>`;
-  const draw=()=>{const q=S.q.trim().toLowerCase();
-    const r=(q?W:rangeOf(S.day)).filter(x=>!q||x.w.toLowerCase().includes(q)||x.m.includes(q));
-    $('#lst').innerHTML=r.length?r.map(x=>`<div class="li" data-id="${x.id}"><div class="ic">${ico(x.ic[0])}</div><div style="min-width:0"><div class="w">${esc(x.w)}<i>${POS[x.pos][0]}</i></div><div class="m">${esc(x.m)}${memo[x.id]?' · 메모 있음':''}</div></div><span class="dot ${status[x.id]||''}"></span></div>`).join(''):`<div class="empty" style="border:0">찾는 단어가 없어요</div>`};
-  draw();
-  $('#q').oninput=e=>{S.q=e.target.value;draw()};
-  $('#lst').onclick=e=>{const li=e.target.closest('[data-id]');if(!li)return;const id=+li.dataset.id;
-    S.day=Math.floor(id/PER);S.onlyU=false;S.idx=id-S.day*PER;S.tab='study';revealed=true;save();setTabs();render();revealed=false};
+/* ---------- 오답 랭킹 ---------- */
+function serverNote(){
+  if(!SV.on)return `<div class="notice"><span>공유 서버가 아직 연결되지 않아 <b>내 기록</b>만 보여요. 관리자가 앱에 구글 시트 주소를 넣으면 친구들 기록이 함께 모여요.</span></div>`;
+  if(SV.error)return `<div class="notice"><span>친구들 기록을 불러오지 못했어요. 인터넷 연결을 확인한 뒤 새로고침해 주세요.</span></div>`;
+  if(!SV.loaded)return `<div class="notice"><span>친구들 기록을 불러오는 중이에요.</span></div>`;
+  return '';
 }
-function render(){renderDays();progress();if(S.tab==='study')renderStudy();else if(S.tab==='quiz')renderQuiz();else renderList()}
-render();
+function renderRank(){
+  if(!SV.loaded)S.rankBy='me';
+  const rows=hardList();const total=SV.loaded?Object.values(SV.stats).reduce((a,[t])=>a+t,0):0;
+  $('#view').innerHTML=`<div class="panel">
+    <div><h2>가장 많이 틀린 단어</h2><p class="lead">${S.rankBy==='all'?`친구들이 푼 ${total.toLocaleString()}번의 기록에서 "몰라요"와 퀴즈 오답을 모았어요.`:'내가 "몰라요"를 누르거나 퀴즈에서 틀린 횟수 순서예요.'}</p></div>
+    ${serverNote()}
+    ${SV.loaded?`<div class="sw" role="group"><button data-rb="all" aria-pressed="${S.rankBy==='all'}">친구들 전체</button><button data-rb="me" aria-pressed="${S.rankBy==='me'}">내 기록</button></div>`:''}
+    ${rows.length?`<div class="rank">${rows.map((r,i)=>{const x=W[r.id],pct=Math.round(r.w/Math.max(1,r.t)*100);return `<div class="rk" data-go="${x.id}"><span class="no">${i+1}</span><div class="ic">${ico(x.ic[0])}</div><div style="min-width:0"><div class="w">${esc(x.w)}</div><div class="m">${esc(x.m)}</div>${S.rankBy==='all'?`<div class="meter"><i style="width:${pct}%"></i></div>`:''}</div><div class="pct">${S.rankBy==='all'?`<b>${pct}%</b>${r.w}/${r.t}회`:`<b>${r.w}회</b>틀림`}</div></div>`}).join('')}</div>
+    <button class="b yes" id="hardQuiz">이 단어들로 퀴즈 풀기</button>`:`<div class="empty" style="border:0">아직 틀린 기록이 없어요. 카드나 퀴즈로 공부하면 여기에 쌓여요.</div>`}
+  </div>`;
+  document.querySelectorAll('[data-rb]').forEach(b=>b.onclick=()=>{S.rankBy=b.dataset.rb;renderRank()});
+  document.querySelectorAll('[data-go]').forEach(el=>el.onclick=()=>goWord(+el.dataset.go));
+  const hq=$('#hardQuiz');if(hq)hq.onclick=()=>{S.day='hard';S.tab='quiz';S.quiz=null;setTabs();render()};
+}
+
+/* ---------- 암기 팁 ---------- */
+const FAM=[
+  ['올라가고 내려가고',['ascend','ascent','descend']],
+  ['사람을 나타내는 -or / -ian / -ist',['donor','sculptor','statistician','futurist','competitor','invader']],
+  ['같은 뿌리, 다른 품사',['donation','sculpture','statistics','injure','injured','offend','offense','resemble','resemblance','coexist','coexistence']],
+  ['거대함 4형제',['vast','massive','enormous','tremendous']],
+  ['반대를 만드는 접두사 in- / un- / dis-',['inadequate','insignificant','independent','unstable','disability','disabled']],
+  ['할 수 있는 -able / -ible',['manageable','recognizable','be capable of']]
+];
+const VS=[['former','전자 (먼저 말한 것)','latter','후자 (나중에 말한 것)'],['infectious','전염되는 (병균으로)','contagious','전염되는 (접촉으로)'],['envy','부러움','jealousy','질투심 (빼앗길까 두려움)'],['sympathy','동정, 지지','compassion','연민 (돕고 싶은 마음)'],['ascend','오르다','descend','내려오다'],['sculpture','조각품','sculptor','조각가']];
+const TIPS=[
+  ['떠올린 다음 확인','뜻을 보기 전에 3초 동안 먼저 떠올려 보세요. 맞는지 확인하는 것보다 떠올리려고 애쓰는 과정이 기억을 더 단단하게 만들어요. "뜻 가리기"와 "단어 가리기"를 번갈아 써 보세요.'],
+  ['1일, 3일, 7일 간격 복습','한 번에 오래 보는 것보다 간격을 두고 여러 번 보는 것이 오래 남아요. 오늘 "몰라요"를 누른 단어는 "다시 볼 단어"에 모이니, 내일과 사흘 뒤에 다시 열어 보세요.'],
+  ['단어 말고 문장으로','시험에서는 단어가 문장 속에 나와요. 예문 듣기를 누르고 그대로 따라 말해 보세요. 소리, 뜻, 쓰임이 한꺼번에 기억돼요.'],
+  ['그림을 내 이야기로','그림 두 개가 무엇을 하고 있는지 한 문장으로 말해 보세요. 예를 들어 despite는 "우산을 쓰고도 달리는 사람"이에요. 내가 만든 장면은 메모에 적어 두세요.'],
+  ['뿌리가 같은 단어는 묶어서','donor와 donation, sculptor와 sculpture처럼 뿌리가 같은 단어는 함께 외우면 두 배로 빨라요. 아래 묶음을 눌러 바로 확인해 보세요.'],
+  ['헷갈리는 쌍은 나란히','former와 latter처럼 늘 헷갈리는 단어는 따로 외우면 계속 섞여요. 차이점 하나만 정해서 나란히 비교하세요.'],
+  ['30개씩, 자기 전 5분','Day 하나가 30개예요. 하루 한 Day를 공부하고, 잠들기 전 5분 동안 그날 틀린 단어만 다시 보면 잠자는 동안 기억이 정리돼요.'],
+  ['많이 틀린 단어부터','"오답 랭킹"에는 친구들이 가장 어려워한 단어가 모여요. 시험 직전에는 그 단어들로 퀴즈를 먼저 풀어 보세요.']
+];
+function chipFor(w){const x=BY[w.toLowerCase()];return x&&!expHide(x.id)?`<button class="wchip" data-go="${x.id}">${esc(x.w)}<small>${esc(x.m.split(/[,;]/)[0])}</small></button>`:''}
+function renderTips(){
+  const shared=SV.tips.filter(t=>t.text&&!(t.id!=null&&t.id!==''&&expHide(+t.id))).slice().reverse().slice(0,40);
+  $('#view').innerHTML=`<div style="display:flex;flex-direction:column;gap:16px">
+  <div class="panel"><div><h2>단어 외우는 요령</h2><p class="lead">이 앱의 기능과 함께 쓰면 효과가 커지는 방법이에요.</p></div>
+    <div class="tipgrid">${TIPS.map((t,i)=>`<div class="tip"><span class="tag">Tip ${i+1}</span><h3>${t[0]}</h3><p>${t[1]}</p></div>`).join('')}</div></div>
+  <div class="panel"><div><h2>함께 외우면 쉬운 묶음</h2><p class="lead">362개 단어 안에서 뿌리나 뜻이 이어지는 단어들이에요. 누르면 카드로 이동해요.</p></div>
+    ${FAM.map(f=>`<div style="display:flex;flex-direction:column;gap:8px"><h3>${f[0]}</h3><div class="fam">${f[1].map(chipFor).join('')}</div></div>`).join('')}</div>
+  <div class="panel"><div><h2>헷갈리는 쌍</h2><p class="lead">차이점 하나만 기억하세요.</p></div>
+    ${VS.map(v=>`<div class="vs"><div>${chipFor(v[0])}<div class="m" style="font-size:.82rem;color:var(--muted);margin-top:4px">${v[1]}</div></div><span class="mid">VS</span><div>${chipFor(v[2])}<div class="m" style="font-size:.82rem;color:var(--muted);margin-top:4px">${v[3]}</div></div></div>`).join('')}</div>
+  <div class="panel"><div><h2>친구들이 공유한 팁</h2><p class="lead">단어 카드의 "연상 메모"를 공유하거나, 여기에 공부 요령을 남겨 주세요.</p></div>
+    ${serverNote()}
+    ${SV.on?`<div class="form"><div class="row2"><label>단어 (선택)<input id="tipWord" list="wl" placeholder="예: despite"></label></div>
+      <datalist id="wl">${W.map(x=>`<option value="${esc(x.w)}">`).join('')}</datalist>
+      <label>팁<textarea id="tipText" maxlength="300" placeholder="예: despite는 '디스(this) 핏(fit)한 운동복이 젖어도' 달린다로 외웠어요"></textarea></label>
+      <div class="memo-row"><button class="b yes" id="tipSend" style="padding:10px 18px">팁 올리기</button><span class="msg" id="tipMsg2"></span></div>
+      <p class="hint" style="text-align:left;margin:0">이름, 학번, 연락처 같은 개인정보는 적지 마세요.</p></div>`:''}
+    ${shared.length?`<div>${shared.map(t=>{const x=t.id!=null&&t.id!==''?W[t.id]:null;return `<div class="post"><div class="meta">${x?`<button class="wchip" data-go="${x.id}">${esc(x.w)}</button>`:'<span class="badge cat">공부 요령</span>'}<span>${fmtDate(t.time)}</span></div><div class="txt">${esc(t.text)}</div><div>${likeBtn(t)}</div></div>`}).join('')}</div>`:(SV.loaded?'<p class="lead">아직 공유된 팁이 없어요. 첫 팁을 남겨 주세요.</p>':'')}
+  </div></div>`;
+  document.querySelectorAll('[data-go]').forEach(el=>el.onclick=()=>goWord(+el.dataset.go));
+  const b=$('#tipSend');if(b)b.onclick=()=>{const x=BY[$('#tipWord').value.trim().toLowerCase()]||null;
+    shareTip(x,$('#tipText').value,$('#tipMsg2')).then(()=>{if($('#tipMsg2').classList.contains('ok')){$('#tipText').value='';setTimeout(renderTips,900)}})};
+}
+
+/* ---------- 요청 게시판 ---------- */
+const CATS=['기능 추가','그림 바꾸기','오류 신고','단어·뜻 수정','기타'];
+function renderBoard(){
+  const list=SV.requests.slice().reverse();
+  $('#view').innerHTML=`<div class="panel"><div><h2>요청 게시판</h2><p class="lead">바꾸고 싶은 그림, 틀린 뜻, 있었으면 하는 기능을 남겨 주세요. 관리자가 확인하고 답을 달아요.</p></div>
+    ${serverNote()}
+    ${SV.on?`<div class="form"><div class="row2"><label>종류<select id="rqCat">${CATS.map(c=>`<option>${c}</option>`).join('')}</select></label></div>
+      <label>내용<textarea id="rqText" maxlength="500" placeholder="예: 87번 meditate 그림이 명상처럼 안 보여요"></textarea></label>
+      <div class="memo-row"><button class="b yes" id="rqSend" style="padding:10px 18px">요청 남기기</button><span class="msg" id="rqMsg"></span></div>
+      <p class="hint" style="text-align:left;margin:0">이름, 학번, 연락처 같은 개인정보는 적지 마세요.</p></div>`:''}
+    ${list.length?`<div>${list.map(r=>{const s=(r.status||'').trim();const cls=/완료|반영/.test(s)?'done':s?'doing':'';return `<div class="post"><div class="meta"><span class="badge cat">${esc(r.category||'기타')}</span><span class="badge ${cls}">${esc(s||'접수')}</span><span>${fmtDate(r.time)}</span></div><div class="txt">${esc(r.text)}</div>${r.reply?`<div class="reply"><b>관리자 답변</b> ${esc(r.reply)}</div>`:''}</div>`}).join('')}</div>`:(SV.loaded?'<p class="lead">아직 요청이 없어요.</p>':'')}
+  </div>`;
+  const b=$('#rqSend');if(b)b.onclick=async()=>{const msg=$('#rqMsg'),text=$('#rqText').value.trim();
+    if(text.length<4){msg.className='msg err';msg.textContent='내용을 4글자 이상 적어 주세요.';return}
+    if(Date.now()-lastPost<8000){msg.className='msg err';msg.textContent='잠시 후 다시 남겨 주세요.';return}
+    lastPost=Date.now();const category=$('#rqCat').value;await send({type:'request',category,text});
+    SV.requests.push({category,text,time:new Date().toISOString(),status:'',reply:''});
+    msg.className='msg ok';msg.textContent='요청을 남겼어요. 고마워요!';$('#rqText').value='';setTimeout(renderBoard,900)};
+}
+
+/* ---------- 목록 ---------- */
+function renderList(){
+  $('#view').innerHTML=`<div style="display:flex;flex-direction:column;gap:12px"><input class="search" id="q" type="search" placeholder="영어 단어나 뜻으로 검색 (예: 공존, launch)" value="${esc(S.q)}"><div class="list" id="lst"></div></div>`;
+  const draw=()=>{const q=S.q.trim().toLowerCase();const r=(q?W.filter(x=>!expHide(x.id)):rangeOf(S.day)).filter(x=>!q||x.w.toLowerCase().includes(q)||x.m.includes(q));
+    $('#lst').innerHTML=r.length?r.map(x=>`<div class="li" data-id="${x.id}"><div class="ic">${ico(x.ic[0])}</div><div style="min-width:0"><div class="w">${esc(x.w)}<i>${POS[x.pos][0]}</i></div><div class="m">${esc(x.m)}${memo[x.id]?' · 메모 있음':''}</div></div><span class="dot ${status[x.id]||''}"></span></div>`).join(''):`<div class="empty" style="border:0">찾는 단어가 없어요</div>`};
+  draw();$('#q').oninput=e=>{S.q=e.target.value;draw()};
+  $('#lst').onclick=e=>{const li=e.target.closest('[data-id]');if(li)goWord(+li.dataset.id)};
+}
+function render(){stopView();renderDays();progress();({study:renderStudy,quiz:renderQuiz,exp:renderExp,class:renderClass,rank:renderRank,tips:renderTips,board:renderBoard,list:renderList,admin:renderAdmin})[S.tab]()}
+/* ================== 효과 실험 ================== */
+const DAY=86400000;
+const XIDS=EXP.setX.map(w=>BY[w.toLowerCase()]).filter(Boolean).map(x=>x.id);
+const YIDS=EXP.setY.map(w=>BY[w.toLowerCase()]).filter(Boolean).map(x=>x.id);
+const EXPSET=new Set([...XIDS,...YIDS]);
+const XSET=new Set(XIDS);
+let ex=store.get('exp',null);
+function makeCode(){const ch='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let s='';const a=new Uint32Array(6);(window.crypto||{getRandomValues:x=>x.map(()=>Math.random()*4e9)}).getRandomValues(a);for(let i=0;i<5;i++)s+=ch[a[i]%ch.length];return s+'23456789'[a[5]%8]}
+const PHASES=[['pre','사전 시험'],['post','사후 시험'],['delay','1주 뒤 시험']];
+const COND={A:'그림·예문',B:'기본(단어·뜻)'};
+function saveEx(){store.set('exp',ex)}
+function groupOf(pid){const m=pid.match(/(\d)(?!.*\d)/);if(m)return (+m[1])%2===1?1:2;let h=0;for(const c of pid)h=(h*31+c.charCodeAt(0))>>>0;return h%2?1:2}
+function condOf(id,g){g=g||(ex&&ex.group);if(!EXPSET.has(id))return null;const inX=XSET.has(id);return (g===1)===inX?'A':'B'}
+function expHide(id){return !!(ex&&ex.pid&&!ex.delayAt&&EXPSET.has(id))}
+function hashStr(s){let h=1779033703;for(const c of s){h=Math.imul(h^c.charCodeAt(0),3432918353);h=h<<13|h>>>19}return h>>>0}
+function rng(seed){let a=hashStr(String(seed));return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function sshuffle(arr,seed){const r=rng(seed),a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+function dayIdx(){return ex&&ex.preAt?Math.floor((Date.now()-ex.preAt)/DAY)+1:0}
+function openAt(ph){
+  if(!ex)return Infinity;
+  if(ph==='post'){if(!ex.preAt)return Infinity;return EXP.postOpenDate?new Date(EXP.postOpenDate+'T00:00').getTime():ex.preAt+EXP.studyDays*DAY}
+  if(ph==='delay'){if(!ex.postAt)return Infinity;return EXP.delayOpenDate?new Date(EXP.delayOpenDate+'T00:00').getTime():ex.postAt+EXP.delayDays*DAY}
+  return 0;
+}
+const fmtD=t=>{const d=new Date(t);return `${d.getMonth()+1}월 ${d.getDate()}일`};
+function short(m){return m.split(/;/)[0].trim()}
+
+/* 시험 문항: 단어마다 보기를 고정(같은 품사 오답 3개)해서 세 번의 시험을 똑같은 난이도로 */
+function testItem(id,phase){
+  const x=W[id];const r=rng('opt'+id);
+  const same=W.filter(y=>y.id!==id&&y.pos===x.pos&&short(y.m)!==short(x.m));
+  const pool=(same.length>=3?same:W.filter(y=>y.id!==id));
+  const ds=[];const used=new Set();while(ds.length<3){const y=pool[Math.floor(r()*pool.length)];if(!used.has(y.id)){used.add(y.id);ds.push(y)}}
+  const opts=sshuffle([x,...ds],'ord'+id+phase).map(y=>({id:y.id,t:short(y.m)}));
+  return{id,opts};
+}
+
+/* 사용 기록 */
+let evq=store.get('evq',[]);let view=null;
+function logEv(e){if(!ex)return;e.d=dayIdx();evq.push(e);store.set('evq',evq);
+  const t=today();ex.days=ex.days||[];if(!ex.days.includes(t)){ex.days.push(t);saveEx()}
+  if(evq.length>=8)flushEv()}
+function flushEv(){if(!SV.on||!ex||!evq.length)return;const items=evq.splice(0,80);store.set('evq',evq);send({type:'events',pid:ex.pid,items})}
+function stopView(){if(!view)return;const ms=Math.min(Date.now()-view.t0,60000);if(ms>800){logEv({k:'view',id:view.id,c:view.c,ms});ex.studyMs=ex.studyMs||{A:0,B:0};ex.studyMs[view.c]+=ms;saveEx()}view=null}
+function startView(id){view={id,c:condOf(id),t0:Date.now()}}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){const v=view;stopView();if(v)view={...v,t0:Date.now()};flushEv()}});
+setInterval(flushEv,30000);
+
+/* 서버와 진행 상태 맞추기 (기기를 바꿔도 이어서) */
+async function expSync(){
+  if(!SV.on||!ex||!ex.pid)return;
+  try{const r=await fetch(API_URL+'?action=status&pid='+encodeURIComponent(ex.pid)+'&t='+Date.now());const s=await r.json();
+    if(s&&s.pid){let ch=false;for(const k of ['svPre','preAt','postAt','svPost','delayAt']){if(s[k]&&!ex[k]){ex[k]=s[k];ch=true}}
+      if(s.scores){ex.scores=Object.assign({},s.scores,ex.scores||{});ch=true}
+      if(ch){saveEx();if(S.tab==='exp')render()}}
+  }catch(e){}
+}
+
+/* ---------- 화면 ---------- */
+let XV={v:'home'};
+function renderExp(){
+  const v=$('#view');
+  if(!ex||!ex.pid)return expIntro(v);
+  ({home:expHome,survey:expSurvey,test:expTest,study:expStudy,prac:expPrac,mine:expMine})[XV.v](v);
+}
+function expIntro(v){
+  v.innerHTML=`<div class="panel">
+   <div><span class="eyebrow-s">효과 실험 참여</span><h2>그림과 예문은 단어 기억에 정말 도움이 될까?</h2>
+   <p class="lead">이 앱이 실제로 효과가 있는지 확인하는 약 3주짜리 실험이에요. 참여하면 같은 사람 안에서 두 가지 공부 방식을 비교해요.</p></div>
+   <ol class="steps-intro">
+     <li><b>사전 설문과 사전 시험</b> 40개 단어의 뜻을 고르는 시험이에요. 약 5분 걸려요.</li>
+     <li><b>${EXP.studyDays}일 동안 공부</b> 40개 중 20개는 그림과 예문으로, 20개는 단어와 뜻만으로 공부해요. 어떤 단어가 어느 방식인지는 익명 번호로 정해져요.</li>
+     <li><b>사후 시험과 설문</b> 공부가 끝나면 같은 시험을 한 번 더 봐요.</li>
+     <li><b>${EXP.delayDays}일 뒤 시험</b> 얼마나 오래 기억에 남았는지 마지막으로 확인해요.</li>
+   </ol>
+   <div class="notice"><span>이름, 학번 없이 앱이 만든 <b>익명 번호</b>로만 기록해요. 누가 누구인지는 아무도 알 수 없어요. 시험 결과는 성적과 관계없고, 언제든 참여를 그만둘 수 있어요. 실험 단어 40개는 실험이 끝날 때까지 일반 단어 카드에서 잠시 빠져요.</span></div>
+   ${SV.on?'':'<div class="notice"><span><b>서버 미연결</b> 지금은 기록이 이 기기에만 저장돼요. 실험을 진행하려면 관리자가 앱에 구글 시트 주소를 먼저 넣어야 해요.</span></div>'}
+   <div class="form">
+     <div class="anoncode"><span>내 익명 번호</span><b id="newCode">${XV.code||(XV.code=makeCode())}</b><small>다른 기기에서 이어서 하려면 이 번호가 필요해요. 사진을 찍거나 적어 두세요.</small></div>
+     <details><summary>이미 받은 익명 번호가 있어요</summary><label style="margin-top:8px">익명 번호<input id="pid" maxlength="10" autocomplete="off" placeholder="예: K7F2Q4"></label></details>
+     <label class="check"><input type="checkbox" id="agree"> 위 내용을 읽었고, 실험에 참여하는 데 동의해요.</label>
+     <div class="memo-row"><button class="b yes" id="join" style="padding:11px 20px">참여 시작</button><span class="msg" id="jmsg"></span></div>
+   </div></div>`;
+  $('#join').onclick=async()=>{
+    const typed=$('#pid').value.trim().toUpperCase(),pid=typed||XV.code,m=$('#jmsg');
+    if(!/^[A-Z0-9-]{2,10}$/.test(pid)){m.className='msg err';m.textContent='익명 번호는 영문과 숫자 2~10자예요.';return}
+    if(!$('#agree').checked){m.className='msg err';m.textContent='동의에 체크해 주세요.';return}
+    ex={pid,group:groupOf(pid),joinAt:Date.now(),days:[],studyMs:{A:0,B:0},scores:{}};saveEx();
+    send({type:'join',pid,group:ex.group});
+    await expSync();XV={v:'home'};render();
+  };
+}
+function stepState(){
+  const now=Date.now();
+  return [
+    {k:'svPre',t:'사전 설문',d:'공부 습관과 자신감에 대한 4문항',done:ex.svPre,can:true,go:()=>{XV={v:'survey',ph:'pre'};render()}},
+    {k:'preAt',t:'사전 시험',d:'40문항 · 약 5분 · 정답은 알려주지 않아요',done:ex.preAt,can:!!ex.svPre,go:()=>startTest('pre')},
+    {k:'study',t:`실험 단어 공부 (${EXP.studyDays}일)`,d:ex.preAt?`공부한 날 ${(ex.days||[]).length}일 · 공부 시간 ${Math.round(((ex.studyMs||{}).A+(ex.studyMs||{}).B||0)/60000)}분`:'사전 시험 뒤에 열려요',done:ex.postAt,can:!!ex.preAt&&!ex.postAt,study:true},
+    {k:'postAt',t:'사후 시험과 설문',d:openAt('post')>now&&ex.preAt?`${fmtD(openAt('post'))}에 열려요`:'40문항 시험 뒤 설문 7문항',done:ex.postAt&&ex.svPost,can:!!ex.preAt&&now>=openAt('post'),go:()=>ex.postAt?(XV={v:'survey',ph:'post'},render()):startTest('post')},
+    {k:'delayAt',t:`${EXP.delayDays}일 뒤 시험`,d:ex.postAt&&openAt('delay')>now?`${fmtD(openAt('delay'))}에 열려요`:'얼마나 오래 기억하는지 확인해요',done:ex.delayAt,can:!!ex.postAt&&!!ex.svPost&&now>=openAt('delay'),go:()=>startTest('delay')}
+  ];
+}
+function expHome(v){
+  const st=stepState();const cur=st.findIndex(s=>!s.done&&s.can);
+  v.innerHTML=`<div class="panel">
+   <div class="exp-head"><div><span class="eyebrow-s">익명 번호 ${esc(ex.pid)}</span><h2>${ex.delayAt?'실험을 모두 마쳤어요':'효과 실험 진행 상황'}</h2></div>
+   <button class="small-b" id="leave">다른 번호로 바꾸기</button></div>
+   <ol class="stepper">${st.map((s,i)=>{const state=s.done?'done':(i===cur||(s.study&&s.can))?'now':'lock';
+     return `<li class="${state}"><span class="dotn">${s.done?ui('check'):i+1}</span><div class="sbody"><b>${s.t}</b><span>${s.d}</span>
+     ${s.study&&s.can?`<div class="memo-row" style="margin-top:6px"><button class="b yes sm" id="goStudy">카드로 공부</button><button class="b sm" id="goPrac">연습 퀴즈</button></div>`:''}
+     ${!s.study&&!s.done&&s.can?`<button class="b yes sm" data-step="${i}" style="margin-top:6px">${i===3&&ex.postAt?'사후 설문 하기':'시작하기'}</button>`:''}</div></li>`}).join('')}</ol>
+   ${ex.delayAt?`<button class="b yes" id="mine">내 결과 보기</button>`:''}
+   ${ex.preAt&&!ex.postAt?`<p class="hint" style="text-align:left;margin:0">하루에 10분이면 충분해요. 매일 조금씩 공부한 날이 많을수록 실험 결과가 정확해져요.</p>`:''}
+  </div>`;
+  v.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>st[+b.dataset.step].go());
+  const gs=$('#goStudy');if(gs){gs.onclick=()=>{XV={v:'study',i:0};render()};$('#goPrac').onclick=()=>{XV={v:'prac',q:newPrac()};render()}}
+  const mi=$('#mine');if(mi)mi.onclick=()=>{XV={v:'mine'};render()};
+  $('#leave').onclick=()=>{v.querySelector('.exp-head').insertAdjacentHTML('afterend',`<div class="notice"><span>이 기기의 실험 기록을 지우고 다른 번호로 바꿀까요? 서버에 저장된 기록은 남아요. <button class="small-b" id="leaveYes">바꾸기</button></span></div>`);$('#leaveYes').onclick=()=>{ex=null;saveEx();store.set('exp_test',null);render()}};
+}
+
+/* 설문 */
+const SQ_PRE=[['q1','영어 단어를 외우는 데 자신이 있다.'],['q2','영어 단어 공부가 재미있다.'],['q3','외운 단어가 오래 기억에 남는 편이다.'],['q4','문장 속에서 단어를 보면 뜻을 떠올릴 수 있다.']];
+const SQ_POST=[...SQ_PRE,['q5','그림이 있는 단어가 그림이 없는 단어보다 외우기 쉬웠다.'],['q6','예문이 단어의 뜻과 쓰임을 이해하는 데 도움이 되었다.'],['q7','시험이 끝나도 이 앱을 계속 쓰고 싶다.']];
+const FEATS=['그림','예문','뜻·단어 가리기','퀴즈','발음 듣기','오답 랭킹','친구들의 팁','연상 메모'];
+function expSurvey(v){
+  const ph=XV.ph,qs=ph==='pre'?SQ_PRE:SQ_POST;XV.a=XV.a||{};const a=XV.a;
+  v.innerHTML=`<div class="panel"><div><span class="eyebrow-s">${ph==='pre'?'사전':'사후'} 설문</span><h2>솔직하게 골라 주세요</h2><p class="lead">1 전혀 아니다 · 3 보통 · 5 매우 그렇다</p></div>
+   ${qs.map(([k,t],i)=>`<div class="lik"><p>${i+1}. ${t}</p><div class="likr" role="group">${[1,2,3,4,5].map(n=>`<button data-q="${k}" data-n="${n}" aria-pressed="${a[k]===n}">${n}</button>`).join('')}</div></div>`).join('')}
+   ${ph==='post'?`<div class="lik"><p>8. 가장 도움이 된 기능을 두 개까지 골라 주세요.</p><div class="fam">${FEATS.map(f=>`<button class="wchip feat" data-f="${f}" aria-pressed="${(a.feat||[]).includes(f)}">${f}</button>`).join('')}</div></div>
+   <label class="lik">9. 좋았던 점이나 아쉬웠던 점을 자유롭게 적어 주세요. (선택)<textarea id="free" maxlength="500">${esc(a.text||'')}</textarea></label>`:''}
+   <div class="memo-row"><button class="b yes" id="svSend" style="padding:11px 20px">제출하기</button><button class="b" id="svBack" style="padding:11px 16px">나중에</button><span class="msg" id="svMsg"></span></div></div>`;
+  v.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{a[b.dataset.q]=+b.dataset.n;b.parentNode.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+  v.querySelectorAll('.feat').forEach(b=>b.onclick=()=>{a.feat=a.feat||[];const f=b.dataset.f;if(a.feat.includes(f))a.feat=a.feat.filter(x=>x!==f);else if(a.feat.length<2)a.feat.push(f);v.querySelectorAll('.feat').forEach(x=>x.setAttribute('aria-pressed',a.feat.includes(x.dataset.f)))});
+  const fr=$('#free');if(fr)fr.oninput=()=>{a.text=fr.value};
+  $('#svBack').onclick=()=>{XV={v:'home'};render()};
+  $('#svSend').onclick=()=>{const miss=qs.filter(([k])=>!a[k]).length;const m=$('#svMsg');
+    if(miss){m.className='msg err';m.textContent=`아직 고르지 않은 문항이 ${miss}개 있어요.`;return}
+    const answers={};qs.forEach(([k])=>answers[k]=a[k]);if(ph==='post'){answers.feat=(a.feat||[]).join('|');answers.text=(a.text||'').trim().slice(0,500)}
+    send({type:'survey',pid:ex.pid,phase:ph,answers});
+    if(ph==='pre')ex.svPre=Date.now();else ex.svPost=Date.now();ex['sv_'+ph]=answers;saveEx();XV={v:'home'};render();window.scrollTo({top:0})};
+}
+
+/* 시험 */
+function startTest(ph){
+  let T=store.get('exp_test',null);
+  if(!T||T.ph!==ph||T.pid!==ex.pid)T={ph,pid:ex.pid,order:sshuffle([...EXPSET],ex.pid+ph),i:0,ans:[],t0:Date.now()};
+  store.set('exp_test',T);XV={v:'test',T};render();
+}
+function expTest(v){
+  const T=XV.T;
+  if(T.i>=T.order.length)return finishTest(v,T);
+  const id=T.order[T.i],it=testItem(id,T.ph),x=W[id];
+  v.innerHTML=`<div style="display:flex;flex-direction:column;gap:14px">
+   <div class="qtop"><span>${PHASES.find(p=>p[0]===T.ph)[1]} · ${T.i+1} / ${T.order.length}</span><span>정답은 시험이 끝나도 알려주지 않아요</span></div>
+   <div class="bar"><i style="width:${T.i/T.order.length*100}%"></i></div>
+   <div class="qcard"><div class="qtext"><div class="big">${esc(x.w)}</div><div class="sub2">이 단어의 뜻으로 알맞은 것은?</div></div></div>
+   <div class="choices">${it.opts.map(o=>`<button class="ch" style="font-family:var(--f-body);font-size:1rem" data-c="${o.id}">${esc(o.t)}</button>`).join('')}</div>
+   <button class="b" data-c="-1">모르겠어요</button>
+   <p class="hint">찍지 말고 모르면 "모르겠어요"를 눌러 주세요. 그래야 실험 결과가 정확해져요.</p></div>`;
+  const t1=Date.now();
+  v.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{const c=+b.dataset.c;T.ans.push({id,c:condOf(id),ok:c===id?1:0,ch:c,ms:Date.now()-t1});T.i++;store.set('exp_test',T);expTest(v)});
+}
+function finishTest(v,T){
+  const sc={A:[0,0],B:[0,0]};T.ans.forEach(a=>{sc[a.c][1]++;sc[a.c][0]+=a.ok});
+  ex.scores=ex.scores||{};ex.scores[T.ph]=sc;ex[T.ph+'At']=Date.now();saveEx();store.set('exp_test',null);
+  send({type:'test',pid:ex.pid,phase:T.ph,items:T.ans});
+  const next=T.ph==='pre'?'이제 실험 단어 공부가 열렸어요. 매일 조금씩 공부해 주세요.':T.ph==='post'?'마지막으로 사후 설문에 답해 주세요.':'모든 시험을 마쳤어요. 참여해 줘서 고마워요!';
+  v.innerHTML=`<div class="panel" style="align-items:center;text-align:center"><span class="eyebrow-s">${PHASES.find(p=>p[0]===T.ph)[1]} 완료</span><h2>수고했어요</h2><p class="lead">${next}</p>
+   <button class="b yes" id="toNext" style="padding:11px 20px">${T.ph==='post'?'사후 설문 하기':T.ph==='delay'?'내 결과 보기':'진행 상황으로'}</button></div>`;
+  $('#toNext').onclick=()=>{XV=T.ph==='post'?{v:'survey',ph:'post'}:T.ph==='delay'?{v:'mine'}:{v:'home'};render()};
+}
+
+/* 실험 단어 공부 */
+function studyOrder(){if(!ex.order){ex.order=sshuffle([...EXPSET],ex.pid+'study');saveEx()}return ex.order}
+function expStudy(v){
+  const ord=studyOrder();const i=((XV.i%ord.length)+ord.length)%ord.length;XV.i=i;const x=W[ord[i]],c=condOf(x.id),p=POS[x.pos];
+  const hw=S.hide==='word'&&!revealed,hm=S.hide==='mean'&&!revealed;
+  const body=c==='A'?`${art(x,`${i+1} / ${ord.length}`)}<div class="body">
+      <div class="hw-row">${hw?`<span class="hw" style="color:var(--muted)">? ? ?</span>`:`<span class="hw">${esc(x.w)}</span>`}<span class="pos">${p[0]}</span><span class="pos-ko">${p[1]}</span></div>
+      ${hm?`<div class="cover">그림과 예문을 보고 뜻을 떠올린 뒤 카드를 눌러 확인하세요</div>`:`<div class="def">${esc(x.m)}</div>`}
+      <div class="ex"><div class="en">${hw?blankSentence(x)||esc(x.en):markSentence(x)}</div>${hm?'':`<div class="ko">${esc(x.ko)}</div>`}</div>
+      <div class="tools"><button class="sbtn" id="sw">${ui('speak')} 단어 듣기</button><button class="sbtn" id="se">${ui('speak')} 예문 듣기</button></div></div>`
+    :`<div class="plain"><span class="no">${i+1} / ${ord.length}</span>
+      <div class="hw-row" style="justify-content:center">${hw?`<span class="hw" style="color:var(--muted)">? ? ?</span>`:`<span class="hw">${esc(x.w)}</span>`}<span class="pos">${p[0]}</span></div>
+      ${hm?`<div class="cover">뜻을 떠올린 뒤 카드를 눌러 확인하세요</div>`:`<div class="def">${esc(x.m)}</div>`}
+      ${hw?`<div class="cover">뜻에 맞는 단어를 떠올린 뒤 카드를 눌러 확인하세요</div>`:''}
+      <div class="tools" style="justify-content:center"><button class="sbtn" id="sw">${ui('speak')} 단어 듣기</button></div></div>`;
+  v.innerHTML=`<div style="display:flex;flex-direction:column;gap:14px">
+   <div class="opts"><button class="small-b" id="back">${ui('prev')} 진행 상황</button><div class="seg" role="group">
+    <button data-hide="mean" aria-pressed="${S.hide==='mean'}">뜻 가리기</button><button data-hide="word" aria-pressed="${S.hide==='word'}">단어 가리기</button><button data-hide="none" aria-pressed="${S.hide==='none'}">모두 보기</button></div></div>
+   <article class="entry fade ${c==='B'?'is-plain':''}" id="card" tabindex="0">${body}</article>
+   <div class="actions"><button class="b" id="prev" aria-label="이전">${ui('prev')}</button><button class="b no" id="no">${ui('x')} 몰라요</button><button class="b yes" id="yes">${ui('check')} 외웠어요</button><button class="b" id="next" aria-label="다음">${ui('next')}</button></div>
+   <p class="hint">실험 단어 40개 중 절반은 그림 없이 나와요. 두 방식 모두 똑같이 열심히 공부해 주세요.</p></div>`;
+  startView(x.id);
+  document.querySelectorAll('[data-hide]').forEach(b=>b.onclick=()=>{S.hide=b.dataset.hide;revealed=false;save();render()});
+  $('#card').onclick=e=>{if(e.target.closest('.sbtn'))return;revealed=!revealed;render()};
+  $('#sw').onclick=()=>speak(x.w);const se=$('#se');if(se)se.onclick=()=>speak(x.en);
+  const go=d=>{XV.i+=d;revealed=false;render()};
+  $('#prev').onclick=()=>go(-1);$('#next').onclick=()=>go(1);
+  $('#no').onclick=()=>{logEv({k:'mark',id:x.id,c,ok:0});go(1)};$('#yes').onclick=()=>{logEv({k:'mark',id:x.id,c,ok:1});go(1)};
+  $('#back').onclick=()=>{XV={v:'home'};render()};
+}
+function newPrac(){
+  const A=[...EXPSET].filter(id=>condOf(id)==='A'),B=[...EXPSET].filter(id=>condOf(id)==='B');
+  const pick=[...shuffle(A).slice(0,5),...shuffle(B).slice(0,5)];
+  return{qs:shuffle(pick).map(id=>({id,ops:shuffle([id,...shuffle([...EXPSET].filter(y=>y!==id)).slice(0,3)])})),i:0,score:0,done:false};
+}
+function expPrac(v){
+  const Q=XV.q;
+  if(Q.i>=Q.qs.length){flushEv();v.innerHTML=`<div class="panel" style="align-items:center;text-align:center"><div class="score">${Q.score}<span style="font-size:1.6rem;color:var(--muted)"> / ${Q.qs.length}</span></div><h2 style="font-size:1.2rem">연습 퀴즈 완료</h2>
+    <div class="memo-row" style="justify-content:center"><button class="b yes" id="again">한 번 더</button><button class="b" id="back">진행 상황으로</button></div></div>`;
+    $('#again').onclick=()=>{XV={v:'prac',q:newPrac()};render()};$('#back').onclick=()=>{XV={v:'home'};render()};return}
+  const q=Q.qs[Q.i],x=W[q.id],c=condOf(q.id);
+  v.innerHTML=`<div style="display:flex;flex-direction:column;gap:14px"><div class="qtop"><span>연습 ${Q.i+1} / ${Q.qs.length}</span><span>정답 ${Q.score}</span></div>
+   <div class="qcard fade">${c==='A'?`<div class="qart" style="padding:18px">${pair(x)}</div>`:''}<div class="qtext"><div class="big" style="font-family:var(--f-body);font-size:1.4rem">${esc(x.m)}</div><div class="sub2">이 뜻을 가진 단어는?</div></div></div>
+   <div class="choices">${q.ops.map(o=>`<button class="ch" data-k="${o}">${esc(W[o].w)}</button>`).join('')}</div>
+   <div class="fb" id="fb"></div><button class="b yes" id="nx" hidden>다음 ${ui('next')}</button></div>`;
+  v.querySelectorAll('.ch').forEach(b=>b.onclick=()=>{if(Q.done)return;Q.done=true;const ok=+b.dataset.k===q.id;
+    v.querySelectorAll('.ch').forEach(cb=>{if(+cb.dataset.k===q.id)cb.classList.add('ok')});if(ok)Q.score++;else b.classList.add('ng');
+    logEv({k:'prac',id:q.id,c,ok:ok?1:0});
+    $('#fb').innerHTML=`${ok?'정답입니다.':'아쉬워요.'} <span class="w">${esc(x.w)}</span> ${esc(x.m)}${c==='A'?`<br><span class="hint">${esc(x.en)}</span>`:''}`;
+    const n=$('#nx');n.hidden=false;n.focus();n.onclick=()=>{Q.i++;Q.done=false;render()}});
+}
+
+/* 내 결과 */
+function pct(s){return s&&s[1]?Math.round(s[0]/s[1]*100):null}
+function expMine(v){
+  const sc=ex.scores||{};const ser=['A','B'].map(c=>({name:COND[c],c,vals:PHASES.map(p=>pct((sc[p[0]]||{})[c]))}));
+  const dA=(pct((sc.delay||{}).A)??0)-(pct((sc.pre||{}).A)??0),dB=(pct((sc.delay||{}).B)??0)-(pct((sc.pre||{}).B)??0);
+  v.innerHTML=`<div class="panel"><div class="exp-head"><div><span class="eyebrow-s">익명 번호 ${esc(ex.pid)}</span><h2>내 단어 기억 변화</h2></div><button class="small-b" id="back">진행 상황으로</button></div>
+   ${lineChart(ser,PHASES.map(p=>p[1]),'정답률 (%)')}
+   <p class="lead">사전 시험 대비 1주 뒤 시험에서 그림·예문 단어는 <b>${dA>=0?'+':''}${dA}%p</b>, 기본 단어는 <b>${dB>=0?'+':''}${dB}%p</b> 변했어요. ${dA>dB?'나에게는 그림과 예문 방식이 더 효과가 있었어요.':dA<dB?'나에게는 기본 방식이 더 효과가 있었어요. 반 전체 결과는 다를 수 있어요.':'두 방식의 효과가 비슷했어요.'}</p>
+   <p class="hint" style="text-align:left;margin:0">이제 실험 단어 40개도 일반 단어 카드에서 그림과 함께 볼 수 있어요.</p></div>`;
+  $('#back').onclick=()=>{XV={v:'home'};render()};
+}
+
+/* ---------- 그래프 (SVG) ---------- */
+function lineChart(series,xl,ytitle,opt={}){
+  const w=600,h=300,m={l:48,r:118,t:20,b:44},iw=w-m.l-m.r,ih=h-m.t-m.b;const ymax=opt.ymax||100;
+  const X=i=>m.l+(xl.length===1?iw/2:i*iw/(xl.length-1)),Y=v=>m.t+ih-(v/ymax)*ih;
+  let g='';for(let t=0;t<=ymax;t+=ymax/4){g+=`<line x1="${m.l}" x2="${m.l+iw}" y1="${Y(t)}" y2="${Y(t)}" class="grid"/><text x="${m.l-8}" y="${Y(t)+4}" class="tick" text-anchor="end">${Math.round(t)}</text>`}
+  g+=xl.map((l,i)=>`<text x="${X(i)}" y="${h-m.b+22}" class="tick" text-anchor="middle">${esc(l)}</text>`).join('');
+  const lines=series.map(s=>{const pts=s.vals.map((v,i)=>v==null?null:[X(i),Y(v),v,i]).filter(Boolean);if(!pts.length)return'';const last=pts[pts.length-1];
+    return `<g class="s-${s.c}"><polyline points="${pts.map(p=>p[0]+','+p[1]).join(' ')}" class="ln"/>${pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" class="pt"><title>${esc(s.name)} · ${esc(xl[p[3]])}: ${p[2]}${opt.unit??'%'}</title></circle>`).join('')}
+      <text x="${last[0]+10}" y="${last[1]+4}" class="dl">${esc(s.name)} ${last[2]}${opt.unit??'%'}</text></g>`}).join('');
+  return `<figure class="chart"><div class="legend">${series.map(s=>`<span><i class="sw-${s.c}"></i>${esc(s.name)}</span>`).join('')}</div>
+   <div class="cwrap"><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(ytitle)}">${g}${lines}<text x="12" y="${m.t+ih/2}" class="tick" transform="rotate(-90 12 ${m.t+ih/2})" text-anchor="middle">${esc(ytitle)}</text></svg></div></figure>`;
+}
+function barPairs(rows,names,opt={}){ /* rows: [{label, a, b}] 가로 막대 두 개씩 */
+  const max=opt.max||Math.max(1,...rows.flatMap(r=>[r.a||0,r.b||0]));
+  return `<figure class="chart">${names?`<div class="legend">${names.map((n,i)=>`<span><i class="sw-${i?'B':'A'}"></i>${esc(n)}</span>`).join('')}</div>`:''}
+   <div class="hbars">${rows.map(r=>`<div class="hb"><span class="hl">${esc(r.label)}</span><div class="hbs">
+     ${[['a','A'],['b','B']].filter(([k])=>r[k]!=null).map(([k,c])=>`<div class="hbrow"><div class="hbtrack"><i class="sw-${c}" style="width:${(r[k]/max*100).toFixed(1)}%"></i></div><span class="hv">${opt.fmt?opt.fmt(r[k]):r[k]}</span></div>`).join('')}</div></div>`).join('')}</div></figure>`;
+}
+function scatter(pts,xt,yt){
+  const w=600,h=300,m={l:52,r:20,t:16,b:48},iw=w-m.l-m.r,ih=h-m.t-m.b;
+  const xmax=Math.max(10,...pts.map(p=>p.x))*1.05,ymin=Math.min(0,...pts.map(p=>p.y)),ymax=Math.max(10,...pts.map(p=>p.y));
+  const X=v=>m.l+v/xmax*iw,Y=v=>m.t+ih-(v-ymin)/(ymax-ymin)*ih;
+  let g='';for(let i=0;i<=4;i++){const v=ymin+(ymax-ymin)*i/4;g+=`<line x1="${m.l}" x2="${m.l+iw}" y1="${Y(v)}" y2="${Y(v)}" class="grid"/><text x="${m.l-8}" y="${Y(v)+4}" class="tick" text-anchor="end">${Math.round(v)}</text>`;
+    const xv=xmax*i/4;g+=`<text x="${X(xv)}" y="${h-m.b+20}" class="tick" text-anchor="middle">${Math.round(xv)}</text>`}
+  return `<figure class="chart"><div class="cwrap"><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(yt)}">${g}
+   ${pts.map(p=>`<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="6" class="pt s-A-fill"><title>${esc(p.l)} · ${Math.round(p.x)}분, ${p.y>=0?'+':''}${Math.round(p.y)}%p</title></circle>`).join('')}
+   <text x="${m.l+iw/2}" y="${h-6}" class="tick" text-anchor="middle">${esc(xt)}</text><text x="12" y="${m.t+ih/2}" class="tick" transform="rotate(-90 12 ${m.t+ih/2})" text-anchor="middle">${esc(yt)}</text></svg></div></figure>`;
+}
+
+/* ---------- 통계 ---------- */
+const mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:NaN;
+const sdev=a=>{if(a.length<2)return NaN;const m=mean(a);return Math.sqrt(a.reduce((s,v)=>s+(v-m)**2,0)/(a.length-1))};
+function betacf(a,b,x){let qab=a+b,qap=a+1,qam=a-1,c=1,d=1-qab*x/qap;if(Math.abs(d)<1e-30)d=1e-30;d=1/d;let h=d;
+  for(let m=1;m<=200;m++){const m2=2*m;let aa=m*(b-m)*x/((qam+m2)*(a+m2));d=1+aa*d;if(Math.abs(d)<1e-30)d=1e-30;c=1+aa/c;if(Math.abs(c)<1e-30)c=1e-30;d=1/d;h*=d*c;
+    aa=-(a+m)*(qab+m)*x/((a+m2)*(qap+m2));d=1+aa*d;if(Math.abs(d)<1e-30)d=1e-30;c=1+aa/c;if(Math.abs(c)<1e-30)c=1e-30;d=1/d;const del=d*c;h*=del;if(Math.abs(del-1)<3e-12)break}return h}
+function lgamma(z){const g=7,c=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+  if(z<0.5)return Math.log(Math.PI/Math.sin(Math.PI*z))-lgamma(1-z);z-=1;let x=c[0];for(let i=1;i<g+2;i++)x+=c[i]/(z+i);const t=z+g+0.5;return 0.5*Math.log(2*Math.PI)+(z+0.5)*Math.log(t)-t+Math.log(x)}
+function ibeta(x,a,b){if(x<=0)return 0;if(x>=1)return 1;const bt=Math.exp(lgamma(a+b)-lgamma(a)-lgamma(b)+a*Math.log(x)+b*Math.log(1-x));return x<(a+1)/(a+b+2)?bt*betacf(a,b,x)/a:1-bt*betacf(b,a,1-x)/b}
+function pairedT(d){const n=d.length;if(n<2)return null;const m=mean(d),s=sdev(d);if(!(s>0))return{n,m,s:0,t:Infinity,p:m===0?1:0,dz:Infinity,pos:d.filter(v=>v>0).length};
+  const t=m/(s/Math.sqrt(n)),df=n-1,p=ibeta(df/(df+t*t),df/2,.5);return{n,m,s,t,p,dz:m/s,pos:d.filter(v=>v>0).length,neg:d.filter(v=>v<0).length}}
+function corr(xs,ys){const n=xs.length;if(n<3)return NaN;const mx=mean(xs),my=mean(ys);let a=0,b=0,c=0;for(let i=0;i<n;i++){a+=(xs[i]-mx)*(ys[i]-my);b+=(xs[i]-mx)**2;c+=(ys[i]-my)**2}return a/Math.sqrt(b*c)}
+const f1=v=>isFinite(v)?(Math.round(v*10)/10).toFixed(1):'-';
+const pfmt=p=>p==null||!isFinite(p)?'-':p<.001?'p < .001':'p = '+p.toFixed(3).replace(/^0/,'');
+function effWord(dz){const a=Math.abs(dz);return !isFinite(a)?'':a<.2?'거의 없음':a<.5?'작은 효과':a<.8?'중간 효과':'큰 효과'}
+
+/* ---------- 관리자 결과 페이지 ---------- */
+let AD={data:null,demo:false,msg:''};
+function renderAdmin(){
+  const v=$('#view');
+  if(!AD.data){v.innerHTML=`<div class="panel"><div><span class="eyebrow-s">관리자 전용</span><h2>효과 실험 결과 분석</h2><p class="lead">Code.gs에 정한 관리자 키를 넣으면 참가자 기록을 모아 자동으로 분석해요.</p></div>
+    <div class="form"><label>관리자 키<input id="akey" type="password" autocomplete="off" value="${esc(store.get('akey',''))}"></label>
+    <div class="memo-row"><button class="b yes" id="aload" style="padding:10px 18px">결과 불러오기</button><button class="b" id="ademo" style="padding:10px 16px">예시 데이터로 미리보기</button><span class="msg ${AD.msg?'err':''}">${esc(AD.msg)}</span></div></div></div>`;
+    $('#aload').onclick=async()=>{const k=$('#akey').value.trim();store.set('akey',k);if(!SV.on){AD.msg='앱에 서버 주소(API_URL)가 없어요.';return renderAdmin()}
+      try{const r=await fetch(API_URL+'?action=results&key='+encodeURIComponent(k)+'&t='+Date.now());const d=await r.json();if(d.error){AD.msg=d.error==='key'?'관리자 키가 맞지 않아요.':d.error;return renderAdmin()}AD={data:d,demo:false,msg:''}}catch(e){AD.msg='결과를 불러오지 못했어요.'}renderAdmin()};
+    $('#ademo').onclick=()=>{AD={data:demoData(),demo:true,msg:''};renderAdmin()};return}
+  v.innerHTML=analysisHTML(AD.data,AD.demo);
+  $('#aclose').onclick=()=>{AD={data:null,demo:false,msg:''};renderAdmin()};
+  const cp=$('#csv');if(cp)cp.onclick=()=>{const t=csvOf(AD.data);const m=$('#csvMsg');
+    navigator.clipboard?.writeText(t).then(()=>{m.className='msg ok';m.textContent='복사했어요. 스프레드시트에 붙여 넣으세요.'}).catch(()=>{const ta=$('#csvBox');ta.hidden=false;ta.value=t;ta.select();m.className='msg';m.textContent='자동 복사가 막혀 있어요. 아래 내용을 직접 복사하세요.'})};
+  const cs=$('#sumCopy');if(cs)cs.onclick=()=>{navigator.clipboard?.writeText($('#sumText').innerText).catch(()=>{})};
+}
+function sc(p,ph,c){const s=(p.scores[ph]||{})[c];return s&&s[1]?s[0]/s[1]*100:null}
+function analysisHTML(d,demo){
+  const P=d.participants||[];
+  const n={join:P.length,pre:P.filter(p=>p.preAt).length,post:P.filter(p=>p.postAt).length,delay:P.filter(p=>p.delayAt).length};
+  const C=P.filter(p=>p.preAt&&p.postAt&&p.delayAt);const base=C.length>=2?C:P.filter(p=>p.preAt&&p.postAt);
+  const ph3=PHASES.map(p=>p[0]);
+  const avg=(set,ph,c)=>{const a=set.map(p=>sc(p,ph,c)).filter(v=>v!=null);return a.length?Math.round(mean(a)):null};
+  const ser=['A','B'].map(c=>({name:COND[c],c,vals:ph3.map(ph=>avg(base,ph,c))}));
+  const gainD=C.map(p=>(sc(p,'delay','A')-sc(p,'pre','A'))-(sc(p,'delay','B')-sc(p,'pre','B')));
+  const delayD=C.map(p=>sc(p,'delay','A')-sc(p,'delay','B'));
+  const tG=pairedT(gainD),tD=pairedT(delayD);
+  const PC=P.filter(p=>p.preAt&&p.postAt);const postG=PC.map(p=>(sc(p,'post','A')-sc(p,'pre','A'))-(sc(p,'post','B')-sc(p,'pre','B')));const tP=pairedT(postG);
+  const ret=c=>{const a=C.map(p=>{const g=sc(p,'post',c)-sc(p,'pre',c);return g>0?(sc(p,'delay',c)-sc(p,'pre',c))/g*100:null}).filter(v=>v!=null);return a.length?Math.round(mean(a)):null};
+  // 설문
+  const SV2=P.filter(p=>p.sv&&p.sv.pre&&p.sv.post);
+  const svRows=SQ_PRE.map(([k,t])=>({label:t,a:SV2.length?+mean(SV2.map(p=>+p.sv.pre[k])).toFixed(2):null,b:SV2.length?+mean(SV2.map(p=>+p.sv.post[k])).toFixed(2):null}));
+  const postOnly=P.filter(p=>p.sv&&p.sv.post);
+  const q567=SQ_POST.slice(4).map(([k,t])=>({label:t,a:postOnly.length?+mean(postOnly.map(p=>+p.sv.post[k])).toFixed(2):null}));
+  const feat={};postOnly.forEach(p=>String(p.sv.post.feat||'').split('|').filter(Boolean).forEach(f=>feat[f]=(feat[f]||0)+1));
+  const featRows=Object.entries(feat).sort((a,b)=>b[1]-a[1]).map(([f,c])=>({label:f,a:c}));
+  const texts=postOnly.map(p=>String(p.sv.post.text||'').trim()).filter(Boolean);
+  // 사용
+  const U=P.filter(p=>p.preAt);const minA=U.map(p=>(p.study?.A||0)/60000),minB=U.map(p=>(p.study?.B||0)/60000);
+  const days=U.map(p=>p.days||0);
+  const scat=PC.map(p=>({l:p.pid,x:((p.study?.A||0)+(p.study?.B||0))/60000,y:(sc(p,'post','A')+sc(p,'post','B'))/2-(sc(p,'pre','A')+sc(p,'pre','B'))/2}));
+  const r=corr(scat.map(s=>s.x),scat.map(s=>s.y));
+  const maxDay=Math.min(EXP.studyDays,Math.max(0,...P.flatMap(p=>Object.keys(p.prac||{}).map(Number))));
+  const curve=['A','B'].map(c=>({name:COND[c],c,vals:Array.from({length:maxDay},(_,i)=>{let ok=0,t=0;P.forEach(p=>{const s=(p.prac||{})[i+1];if(s&&s[c]){ok+=s[c][0];t+=s[c][1]}});return t?Math.round(ok/t*100):null})}));
+  const cm=d.community||{};
+  const mA=avg(base,'delay','A'),mB=avg(base,'delay','B');
+  const sum=[];
+  if(n.join)sum.push(`효과 실험에 참여한 학생 ${n.join}명 가운데 사전 시험 ${n.pre}명, 사후 시험 ${n.post}명, ${EXP.delayDays}일 뒤 시험 ${n.delay}명이 참여했다.`);
+  if(C.length)sum.push(`세 번의 시험을 모두 마친 ${C.length}명을 분석한 결과, ${EXP.delayDays}일 뒤 정답률은 그림·예문 방식 단어가 평균 ${mA}%, 기본 방식 단어가 평균 ${mB}%였다.`);
+  if(tG)sum.push(`사전 시험 대비 향상 폭은 그림·예문 방식이 기본 방식보다 평균 ${f1(tG.m)}%p ${tG.m>=0?'컸다':'작았다'} (대응표본 t검정 t(${tG.n-1}) = ${f1(tG.t)}, ${pfmt(tG.p)}, 효과 크기 dz = ${f1(tG.dz)}, ${effWord(tG.dz)}). 학생 ${tG.n}명 중 ${tG.pos}명은 그림·예문 단어에서 더 많이 향상되었다.`);
+  if(ret('A')!=null&&ret('B')!=null)sum.push(`사후 시험에서 늘어난 점수가 ${EXP.delayDays}일 뒤까지 유지된 비율은 그림·예문 방식 ${ret('A')}%, 기본 방식 ${ret('B')}%였다.`);
+  if(U.length)sum.push(`공부 시간은 1인 평균 그림·예문 단어 ${f1(mean(minA))}분, 기본 단어 ${f1(mean(minB))}분으로 ${Math.abs(mean(minA)-mean(minB))<Math.max(2,mean(minA)*.2)?'비슷해, 차이가 공부 시간 때문이라고 보기 어렵다':'차이가 있어 해석에 주의가 필요하다'}.`);
+  if(SV2.length)sum.push(`설문에서 "외운 단어가 오래 기억에 남는다"는 응답은 5점 만점에 ${svRows[2].a}점에서 ${svRows[2].b}점으로, "단어 공부가 재미있다"는 ${svRows[1].a}점에서 ${svRows[1].b}점으로 변했다.`);
+  if(featRows.length)sum.push(`가장 도움이 된 기능으로 많이 꼽힌 것은 ${featRows.slice(0,2).map(f=>`"${f.label}"(${f.a}명)`).join(', ')}였다.`);
+  if(isFinite(r))sum.push(`공부 시간과 점수 향상의 상관계수는 r = ${f1(r)}였다.`);
+  if(cm.tips!=null)sum.push(`학생들이 서로 공유한 암기 팁은 ${cm.tips}개였고, 다른 학생이 "도움됐어요"를 누른 횟수는 ${cm.likes}번이었다. 반 전체가 함께 쌓은 학습은 ${(cm.studyCount||0).toLocaleString()}번으로 협동 목표의 ${Math.min(100,Math.round((cm.studyCount||0)/COOP.goal*100))}%를 채웠다.`);
+  if(cm.requests!=null)sum.push(`요청 게시판에 올라온 의견 ${cm.requests}개 중 ${cm.done}개를 앱에 반영했${cm.avgReplyDays!=null?`고, 반영까지 평균 ${f1(cm.avgReplyDays)}일이 걸렸`:''}다.`);
+  if(cm.needsN)sum.push(`처음 사용할 때 ${cm.needsN}명에게 단어 공부의 어려움을 물었더니 ${Object.entries(cm.needs||{}).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([k,v])=>`"${k}"(${v}명)`).join(', ')} 순으로 많았다.`);
+  if(cm.a11yOn)sum.push(`큰 글씨·색각 배려 색·느린 발음 같은 배려 모드는 ${cm.a11yOn}번 켜졌다.`);
+  return `<div style="display:flex;flex-direction:column;gap:16px">
+  ${demo?`<div class="notice demo"><span><b>예시 데이터</b> 실제 기록이 아니라 결과 화면을 미리 보기 위한 가짜 데이터예요. 보고서에 쓰지 마세요.</span></div>`:''}
+  <div class="panel"><div class="exp-head"><div><span class="eyebrow-s">효과 실험 결과</span><h2>그림·예문 방식은 단어 기억에 효과가 있었나</h2></div><button class="small-b" id="aclose">닫기</button></div>
+   <div class="kpis">${[['참여',n.join],['사전 시험',n.pre],['사후 시험',n.post],[`${EXP.delayDays}일 뒤 시험`,n.delay]].map(([l,v])=>`<div class="kpi"><span>${l}</span><b>${v}<small>명</small></b></div>`).join('')}</div>
+  </div>
+  <div class="panel"><h3>시험 정답률 변화 <small>${base===C?`세 시험 모두 본 ${C.length}명`:`사전·사후를 본 ${base.length}명`} 평균</small></h3>${lineChart(ser,PHASES.map(p=>p[1]),'정답률 (%)')}
+   <div class="tablewrap"><table><thead><tr><th>방식</th>${PHASES.map(p=>`<th>${p[1]}</th>`).join('')}<th>${EXP.delayDays}일 뒤 유지율</th></tr></thead><tbody>${ser.map(s=>`<tr><td><i class="sw-${s.c} key"></i>${s.name}</td>${s.vals.map(v=>`<td>${v??'-'}${v!=null?'%':''}</td>`).join('')}<td>${ret(s.c)??'-'}${ret(s.c)!=null?'%':''}</td></tr>`).join('')}</tbody></table></div></div>
+  <div class="panel"><h3>같은 학생 안에서 두 방식 비교 <small>그림·예문 향상 폭 − 기본 향상 폭</small></h3>
+   <div class="kpis">${[[`사후 시험 기준`,tP],[`${EXP.delayDays}일 뒤 기준`,tG]].map(([l,t])=>`<div class="kpi wide"><span>${l}</span>${t?`<b>${t.m>=0?'+':''}${f1(t.m)}<small>%p</small></b><em>${pfmt(t.p)} · dz ${f1(t.dz)} (${effWord(t.dz)}) · ${t.pos}/${t.n}명이 그림 쪽 향상 더 큼</em>`:'<b>-</b><em>2명 이상 완료하면 계산돼요</em>'}</div>`).join('')}</div>
+   <p class="lead">p가 .05보다 작으면 "우연으로 보기 어려운 차이"로 해석해요. dz는 0.2 작은 효과, 0.5 중간, 0.8 큰 효과가 기준이에요. 같은 학생이 두 방식을 모두 써서 실력 차이의 영향이 없어요.</p></div>
+  <div class="panel"><h3>설문 변화 <small>사전·사후 모두 응답한 ${SV2.length}명 평균, 5점 만점</small></h3>${SV2.length?barPairs(svRows,['사전','사후'],{max:5,fmt:v=>v.toFixed(2)}):'<p class="lead">아직 응답이 없어요.</p>'}
+   ${postOnly.length?`<h3>사후 설문만 있는 문항</h3>${barPairs(q567,null,{max:5,fmt:v=>v.toFixed(2)})}`:''}
+   ${featRows.length?`<h3>가장 도움이 된 기능 <small>응답 수</small></h3>${barPairs(featRows,null,{fmt:v=>v+'명'})}`:''}
+   ${texts.length?`<h3>학생 의견 <small>${texts.length}개</small></h3><div class="quotes">${texts.map(t=>`<blockquote>${esc(t)}</blockquote>`).join('')}</div>`:''}</div>
+  <div class="panel"><h3>학습 과정</h3>
+   <div class="kpis">${[['평균 공부한 날',f1(mean(days))+'일'],['그림·예문 단어 공부 시간',f1(mean(minA))+'분'],['기본 단어 공부 시간',f1(mean(minB))+'분'],['공부 시간과 향상의 상관',isFinite(r)?'r = '+f1(r):'-']].map(([l,v])=>`<div class="kpi"><span>${l}</span><b style="font-size:1.35rem">${v}</b></div>`).join('')}</div>
+   ${maxDay>1?`<h3>연습 퀴즈 정답률 <small>공부 날짜별</small></h3>${lineChart(curve.map(s=>({...s})),Array.from({length:maxDay},(_,i)=>i+1+'일'),'정답률 (%)')}`:''}
+   ${scat.length>=3?`<h3>공부 시간과 점수 향상 <small>한 점이 학생 한 명</small></h3>${scatter(scat,'총 공부 시간 (분)','사후 − 사전 (%p)')}`:''}</div>
+  ${cm.tips!=null?`<div class="panel"><h3>공동체에 준 영향</h3><div class="kpis">${[['공유된 암기 팁',cm.tips+'개'],['도움됐어요',cm.likes+'번'],['요청 / 반영',cm.requests+' / '+cm.done+'개'],['반영까지 평균',cm.avgReplyDays!=null?f1(cm.avgReplyDays)+'일':'-'],['배려 모드 켠 횟수',(cm.a11yOn||0)+'번'],['협동 목표 달성',Math.min(100,Math.round((cm.studyCount||0)/COOP.goal*100))+'%'],['친구들의 한마디',(cm.notes||[]).length+'개']].map(([l,v])=>`<div class="kpi"><span>${l}</span><b style="font-size:1.35rem">${v}</b></div>`).join('')}</div>
+   ${cm.needsN?`<h3>사용 전 조사: 단어 공부의 어려움 <small>${cm.needsN}명</small></h3>${barPairs(Object.entries(cm.needs).sort((a,b)=>b[1]-a[1]).map(([l,n])=>({label:l,a:n})),null,{fmt:v=>v+'명'})}`:''}
+   ${(cm.notes||[]).length?`<h3>친구들의 한마디</h3><div class="quotes">${cm.notes.slice(-6).reverse().map(n=>`<blockquote>${esc(n.text)}</blockquote>`).join('')}</div>`:''}</div>`:''}
+  <div class="panel"><div class="exp-head"><h3>보고서용 요약</h3><button class="small-b" id="sumCopy">복사</button></div><div id="sumText" class="summary">${sum.map(s=>`<p>${esc(s)}</p>`).join('')}</div>
+   <h3>해석할 때 주의할 점</h3><ul class="limits"><li>참여 인원이 ${n.join}명으로 적어, 다른 학교나 학년으로 일반화하기 어렵다.</li><li>자발적으로 참여한 학생이라 공부 의지가 높은 학생이 많았을 수 있다.</li><li>학생이 앱 밖에서 실험 단어를 따로 공부했는지는 확인할 수 없다.</li><li>시험이 객관식이라 단어를 직접 쓰는 능력은 측정하지 않았다.</li></ul></div>
+  <div class="panel"><div class="exp-head"><h3>학생별 기록</h3><span class="memo-row"><button class="small-b" id="csv">CSV 복사</button><span class="msg" id="csvMsg"></span></span></div>
+   <textarea id="csvBox" hidden style="min-height:120px;font-family:var(--f-mono);font-size:.75rem"></textarea>
+   <div class="tablewrap"><table><thead><tr><th>익명 번호</th><th>그룹</th>${PHASES.map(p=>`<th>${p[1]} 그림</th><th>${p[1]} 기본</th>`).join('')}<th>공부(분)</th><th>날 수</th></tr></thead>
+   <tbody>${P.map(p=>`<tr><td>${esc(p.pid)}</td><td>${p.group}</td>${ph3.map(ph=>['A','B'].map(c=>{const v=sc(p,ph,c);return `<td>${v==null?'-':Math.round(v)}</td>`}).join('')).join('')}<td>${Math.round(((p.study?.A||0)+(p.study?.B||0))/60000)}</td><td>${p.days||0}</td></tr>`).join('')}</tbody></table></div></div>
+  </div>`;
+}
+function csvOf(d){const h=['pid','group','pre_A','pre_B','post_A','post_B','delay_A','delay_B','study_min_A','study_min_B','days',...SQ_POST.map(q=>'post_'+q[0]),...SQ_PRE.map(q=>'pre_'+q[0])];
+  const rows=(d.participants||[]).map(p=>[p.pid,p.group,...PHASES.flatMap(([ph])=>['A','B'].map(c=>{const v=sc(p,ph,c);return v==null?'':Math.round(v)})),Math.round((p.study?.A||0)/60000),Math.round((p.study?.B||0)/60000),p.days||0,
+    ...SQ_POST.map(q=>p.sv?.post?.[q[0]]??''),...SQ_PRE.map(q=>p.sv?.pre?.[q[0]]??'')]);
+  return [h,...rows].map(r=>r.join('\t')).join('\n')}
+function demoData(){
+  const r=rng('demo');const P=[];const clamp=v=>Math.max(0,Math.min(20,Math.round(v)));
+  for(let i=1;i<=24;i++){const pid='E'+String(i).padStart(2,'0');const abil=r();const pre=2+abil*5;
+    const dropout=i>21?(i>23?2:1):0;const p={pid,group:groupOf(pid),preAt:1,postAt:dropout<2?2:null,delayAt:dropout<1?3:null,scores:{},sv:{},study:{},days:Math.round(6+r()*8),prac:{}};
+    const gA=5+abil*5+r()*5,gB=4.5+abil*5+r()*5;
+    p.scores.pre={A:[clamp(pre+r()*2),20],B:[clamp(pre+r()*2),20]};
+    if(p.postAt)p.scores.post={A:[clamp(pre+gA),20],B:[clamp(pre+gB),20]};
+    if(p.delayAt)p.scores.delay={A:[clamp(pre+gA*(.55+r()*.4)),20],B:[clamp(pre+gB*(.45+r()*.4)),20]};
+    p.study={A:(40+r()*60)*60000,B:(38+r()*60)*60000};
+    for(let dd=1;dd<=14;dd++){const k=Math.min(.95,.45+dd*.035+abil*.1);p.prac[dd]={A:[Math.round(5*Math.min(.98,k+.06)),5],B:[Math.round(5*k),5]}}
+    const L=v=>Math.max(1,Math.min(5,Math.round(v)));
+    p.sv.pre={q1:L(2+abil*2),q2:L(2+r()*2),q3:L(2+r()*1.5),q4:L(2+abil*2)};
+    if(p.postAt)p.sv.post={q1:L(3+abil*2),q2:L(3+r()*2),q3:L(3+r()*1.5),q4:L(3+abil*1.8),q5:L(3.5+r()*1.6),q6:L(3.3+r()*1.6),q7:L(3+r()*2),feat:sshuffle(FEATS.slice(0,5),pid).slice(0,2).join('|'),text:i%5===0?['그림이 있는 단어는 시험 볼 때 그림이 먼저 떠올랐어요.','예문을 따라 읽으니 쓰임이 이해됐어요.','기본 단어는 금방 까먹은 느낌이었어요.','하루 10분이라 부담이 없었어요.'][i/5-1]:''};
+    P.push(p)}
+  return{participants:P,community:{studyCount:4120,tips:37,likes:118,requests:12,done:7,avgReplyDays:1.8,a11yOn:9,needsN:27,needs:{'금방 잊어버려요':19,'뜻이 비슷해서 헷갈려요':11,'지루해서 오래 못 해요':9,'문장 속에서는 뜻을 모르겠어요':7,'시간이 부족해요':4,'발음을 몰라요':3},notes:[{text:'오답 랭킹 덕분에 시험 전에 어려운 단어만 골라 볼 수 있었어요.'},{text:'친구 팁으로 외운 단어는 시험에서 바로 생각났어요.'},{text:'큰 글씨 모드가 있어서 눈이 덜 피곤했어요.'}]}};
+}
+
+/* ================== 우리 반 (공동체) ================== */
+let A11Y=store.get('a11y',{big:false,cvd:false,slow:false});
+function applyA11y(){const r=document.documentElement;r.classList.toggle('a-big',!!A11Y.big);r.classList.toggle('a-cvd',!!A11Y.cvd)}
+applyA11y();
+let liked=store.get('liked',{});
+const NEEDS=['금방 잊어버려요','뜻이 비슷해서 헷갈려요','지루해서 오래 못 해요','문장 속에서는 뜻을 모르겠어요','발음을 몰라요','시간이 부족해요'];
+
+
+/* 보기 설정 (배려 모드) */
+function a11yPanel(){
+  return `<div class="a11y" id="a11y" hidden><b>보기 설정</b>
+   <label><input type="checkbox" id="aBig" ${A11Y.big?'checked':''}> 큰 글씨</label>
+   <label><input type="checkbox" id="aCvd" ${A11Y.cvd?'checked':''}> 색각 배려 색 (빨강·초록 대신 파랑·주황)</label>
+   <label><input type="checkbox" id="aSlow" ${A11Y.slow?'checked':''}> 발음 천천히</label></div>`;
+}
+function bindA11y(){
+  const btn=$('#a11yBtn'),pn=$('#a11y');btn.onclick=()=>{pn.hidden=!pn.hidden;btn.setAttribute('aria-expanded',!pn.hidden)};
+  const upd=()=>{A11Y={big:$('#aBig').checked,cvd:$('#aCvd').checked,slow:$('#aSlow').checked};store.set('a11y',A11Y);applyA11y();
+    if(SV.on&&(A11Y.big||A11Y.cvd||A11Y.slow))send({type:'a11y',big:A11Y.big?1:0,cvd:A11Y.cvd?1:0,slow:A11Y.slow?1:0})};
+  ['#aBig','#aCvd','#aSlow'].forEach(s=>$(s).onchange=upd);
+}
+
+/* 도움됐어요 */
+function likeBtn(t){if(!t.k)return '';const on=!!liked[t.k];return `<button class="like" data-like="${t.k}" aria-pressed="${on}">${ui('check')} 도움됐어요 <b>${(t.likes||0)}</b></button>`}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-like]');if(!b)return;e.stopPropagation();const k=b.dataset.like;if(liked[k])return;
+  liked[k]=1;store.set('liked',liked);send({type:'like',k:+k});const t=SV.tips.find(x=>String(x.k)===k);if(t)t.likes=(t.likes||0)+1;
+  b.setAttribute('aria-pressed','true');b.querySelector('b').textContent=t?t.likes:'1'},true);
+
+/* 필요 조사 카드 (처음 한 번) */
+function needsCard(){
+  if(store.get('needsDone',false)||!SV.on)return '';
+  return `<div class="panel needs" id="needs"><div><span class="eyebrow-s">친구들의 목소리</span><h3>단어 공부할 때 가장 어려운 점은 무엇인가요?</h3><p class="lead">고른 답은 앱을 고치는 데 쓰여요. 누가 답했는지는 기록되지 않아요.</p></div>
+   <div class="fam">${NEEDS.map(n=>`<button class="wchip need" data-need="${esc(n)}" aria-pressed="false">${esc(n)}</button>`).join('')}</div>
+   <input id="needTxt" class="search" maxlength="120" placeholder="다른 어려움이 있다면 적어 주세요 (선택)">
+   <div class="memo-row"><button class="b yes sm" id="needSend">보내기</button><button class="b sm" id="needSkip">다음에</button><span class="msg" id="needMsg"></span></div></div>`;
+}
+function bindNeeds(after){
+  const box=$('#needs');if(!box)return;const pick=new Set();
+  box.querySelectorAll('.need').forEach(b=>b.onclick=()=>{const n=b.dataset.need;pick.has(n)?pick.delete(n):pick.add(n);b.setAttribute('aria-pressed',pick.has(n))});
+  $('#needSkip').onclick=()=>{store.set('needsDone',true);box.remove()};
+  $('#needSend').onclick=()=>{const txt=$('#needTxt').value.trim();if(!pick.size&&!txt){$('#needMsg').className='msg err';$('#needMsg').textContent='하나 이상 골라 주세요.';return}
+    send({type:'needs',answer:[...pick].join('|'),text:txt});store.set('needsDone',true);
+    SV.comm=SV.comm||{};SV.comm.needs=SV.comm.needs||{};pick.forEach(n=>SV.comm.needs[n]=(SV.comm.needs[n]||0)+1);
+    box.innerHTML='<p class="lead" style="margin:0">고마워요. 의견이 우리 반 탭의 "친구들이 말한 어려움"에 더해졌어요.</p>';if(after)setTimeout(after,1200)};
+}
+
+/* 우리 반 탭 */
+function renderClass(){
+  const c=SV.comm||{};const total=c.studyCount||0;const pctGoal=Math.min(100,total/COOP.goal*100);
+  const ms=[25,50,75,100];const reached=ms.filter(m=>pctGoal>=m).length;
+  const topTips=(SV.tips||[]).filter(t=>t.likes>0&&!(t.id!=null&&expHide(+t.id))).sort((a,b)=>b.likes-a.likes).slice(0,3);
+  const needRows=Object.entries(c.needs||{}).sort((a,b)=>b[1]-a[1]).map(([l,n])=>({label:l,a:n}));
+  const notes=(c.notes||[]).slice().reverse().slice(0,30);
+  $('#view').innerHTML=`<div style="display:flex;flex-direction:column;gap:16px">
+  ${serverNote()}
+  ${needsCard()}
+  <div class="panel"><div><span class="eyebrow-s">함께 만든 변화</span><h2>우리 반이 이 앱으로 함께한 것</h2></div>
+   <div class="kpis">${[['함께 쌓은 학습',(c.studyCount??'-'),'번'],['서로 나눈 암기 팁',(c.tips??'-'),'개'],['팁이 도움된 횟수',(c.likes??'-'),'번'],['배려 모드를 켠 횟수',(c.a11yOn??'-'),'번']].map(([l,v,u])=>`<div class="kpi"><span>${l}</span><b>${v}<small>${v==='-'?'':u}</small></b></div>`).join('')}</div></div>
+  <p class="anon">이 앱은 이름, 학번, 기기 정보를 저장하지 않아요. 모든 기록은 누가 남겼는지 알 수 없는 익명으로 모여요.</p>
+  <div class="panel coop"><div><span class="eyebrow-s">협동 목표</span><h2>${esc(COOP.title)}</h2><p class="lead">순위 대신 모두의 공부가 하나의 목표로 모여요. 카드에서 "몰라요/외웠어요"를 누르거나 퀴즈를 풀 때마다 1씩 채워져요.</p></div>
+   <div class="goal"><div class="gbar"><i style="width:${pctGoal.toFixed(1)}%"></i>${ms.map(m=>`<span class="mk ${pctGoal>=m?'on':''}" style="left:${m}%"></span>`).join('')}</div>
+   <div class="gnum"><b>${total.toLocaleString()}</b> / ${COOP.goal.toLocaleString()}번 · ${pctGoal.toFixed(0)}%</div></div>
+   <p class="lead">${reached>=4?'목표를 달성했어요. 모두 수고했어요!':reached?`${ms[reached-1]}% 지점을 넘었어요. 다음 목표 ${ms[reached]}%까지 ${Math.max(0,Math.ceil(COOP.goal*ms[reached]/100-total)).toLocaleString()}번 남았어요.`:`첫 25%까지 ${Math.max(0,Math.ceil(COOP.goal*.25-total)).toLocaleString()}번 남았어요.`}</p></div>
+  ${needRows.length?`<div class="panel"><div><h2>친구들이 말한 어려움</h2><p class="lead">이 의견을 보고 앱의 기능을 정했어요. 응답 ${c.needsN||0}명</p></div>${barPairs(needRows,null,{fmt:v=>v+'명'})}
+   ${(c.needTexts||[]).length?`<div class="quotes">${c.needTexts.slice(-5).reverse().map(t=>`<blockquote>${esc(t)}</blockquote>`).join('')}</div>`:''}</div>`:''}
+  ${topTips.length?`<div class="panel"><div><h2>친구들에게 가장 도움이 된 팁</h2></div>${topTips.map(t=>{const x=t.id!=null&&t.id!==''?W[t.id]:null;return `<div class="post"><div class="meta">${x?`<button class="wchip" data-go="${x.id}">${esc(x.w)}</button>`:'<span class="badge cat">공부 요령</span>'}</div><div class="txt">${esc(t.text)}</div><div>${likeBtn(t)}</div></div>`}).join('')}</div>`:''}
+  <div class="panel"><div><h2>친구들의 한마디</h2><p class="lead">앱을 쓰며 도움이 된 점, 친구들에게 하고 싶은 응원을 남겨 주세요.</p></div>
+   ${SV.on?`<div class="form">
+    <label>한마디<textarea id="ntText" maxlength="200" placeholder="예: 오답 랭킹 덕분에 시험 전에 어려운 단어만 골라 볼 수 있었어요"></textarea></label>
+    <div class="memo-row"><button class="b yes sm" id="ntSend">남기기</button><span class="msg" id="ntMsg"></span></div>
+    <p class="hint" style="text-align:left;margin:0">이름, 학번, 연락처 같은 개인정보는 적지 마세요.</p></div>`:''}
+   ${notes.length?notes.map(n=>`<div class="post"><div class="meta"><span>${fmtDate(n.time)}</span></div><div class="txt">${esc(n.text)}</div></div>`).join(''):(SV.loaded?'<p class="lead">아직 한마디가 없어요.</p>':'')}</div>
+  </div>`;
+  bindNeeds(renderClass);
+  document.querySelectorAll('[data-go]').forEach(el=>el.onclick=()=>goWord(+el.dataset.go));
+  const ns=$('#ntSend');if(ns)ns.onclick=async()=>{const m=$('#ntMsg'),text=$('#ntText').value.trim();
+    if(text.length<4){m.className='msg err';m.textContent='4글자 이상 적어 주세요.';return}
+    if(Date.now()-lastPost<8000){m.className='msg err';m.textContent='잠시 후 다시 남겨 주세요.';return}
+    lastPost=Date.now();await send({type:'note',text});SV.comm=SV.comm||{};SV.comm.notes=(SV.comm.notes||[]).concat([{text,time:new Date().toISOString()}]);
+    m.className='msg ok';m.textContent='남겼어요. 고마워요!';setTimeout(renderClass,800)};
+}
+
+$('.prog').insertAdjacentHTML('beforeend',`<button class="small-b a11y-btn" id="a11yBtn" aria-expanded="false">보기 설정</button>`);$('header').insertAdjacentHTML('afterend',a11yPanel());bindA11y();
+if(location.hash==='#admin'){$('#adminTab').hidden=false;S.tab='admin';setTabs()}
+window.addEventListener('hashchange',()=>{if(location.hash==='#admin'){$('#adminTab').hidden=false;S.tab='admin';setTabs();render()}});
+render();loadShared();flush();expSync();
 </script>
 
 </body>
